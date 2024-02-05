@@ -22,31 +22,19 @@ const Registration = () => {
       password: data.get('password'),
       password2: data.get('password2'),
     }
-    console.log(actualData)
-    
-    try {
-      const res = await registerUser(actualData);
-    
-      if (res.error) {
-        // Handle the error
-        console.error('Error:', res.error.error);
-        if (res.error.data) {
-          setServerError(res.error.data.errors);
-        } else {
-          // Handle other types of errors if needed
-        }
-      }
-    
-      if (res.data) {
-        console.log(typeof res.data);
-        console.log(res.data);
-        storeToken(res.data.token);
-        navigate('/dashboard');
-      }
-    } catch (error) {
-      // Handle the network error
-      console.error('Network Error:', error.message);
-      // You can set a state to display a user-friendly message or perform other actions
+
+    console.log("actualData", actualData)
+    const res = await registerUser(actualData)
+    console.log("res", res)
+
+    if (res.error) {
+      setServerError(res.error.data.errors)
+    }
+    if (res.data) {
+      console.log(typeof (res.data))
+      console.log(res.data)
+      storeToken(res.data.token)
+      navigate('/dashboard')
     }
   }
   return <>
