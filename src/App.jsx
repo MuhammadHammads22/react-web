@@ -1,35 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import LoginReg from "./pages/auth/LoginReg";
+import ResetPassword from "./pages/auth/ResetPassword";
+import SendPasswordResetEmail from "./pages/auth/SendPasswordResetEmail";
+import Contact from "./pages/Contact";
+import Dashboard from "./pages/Dashboard.jsx";
+import Home from "./pages/Home";
+import Layout from "./pages/Layout";
+import { useSelector } from "react-redux";
 function App() {
-  const [count, setCount] = useState(0)
-
+  const { access_token } = useSelector(state => state.auth)
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="login" element={!access_token ? <LoginReg /> : <Navigate to="/dashboard" />} />
+            <Route path="sendpasswordresetemail" element={<SendPasswordResetEmail />} />
+            <Route path="api/user/reset/:id/:token" element={<ResetPassword />} />
+          </Route>
+          <Route path="/dashboard" element={access_token ? <Dashboard /> : <Navigate to="/login" />} />
+          <Route path="*" element={<h1>Error 404 Page not found !!</h1>} />
+        </Routes>
+      </BrowserRouter>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
