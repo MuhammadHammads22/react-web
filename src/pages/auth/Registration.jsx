@@ -1,4 +1,4 @@
-import { TextField, FormControlLabel, Checkbox, Button, Box, Alert, Typography } from '@mui/material';
+import { TextField, FormControlLabel, Button, Box, Alert, Typography, FormLabel, RadioGroup } from '@mui/material';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRegisterUserMutation } from '../../services/userAuthApi'
@@ -8,41 +8,70 @@ const Registration = () => {
   const [server_error, setServerError] = useState({})
   const navigate = useNavigate();
   const [registerUser, { isLoading }] = useRegisterUserMutation()
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
     const actualData = {
-      name: data.get('name'),
+      name: data.get('fullname'),
+      username: data.get('username'),
       email: data.get('email'),
+      gender: data.get('gender'),
+      date_of_birth: data.get('date_of_birth'),
+      religion: data.get('religion'),
       password: data.get('password'),
       password2: data.get('password2'),
-      tc: data.get('tc'),
     }
-    const res = await registerUser(actualData)
-    if (res.error) {
-      // console.log(typeof (res.error.data.errors))
-      // console.log(res.error.data.errors)
-      setServerError(res.error.data.errors)
-    }
-    if (res.data) {
-      console.log(typeof (res.data))
-      console.log(res.data)
-      storeToken(res.data.token)
-      navigate('/dashboard')
+    console.log(actualData)
+    
+    try {
+      const res = await registerUser(actualData);
+    
+      if (res.error) {
+        // Handle the error
+        console.error('Error:', res.error.error);
+        if (res.error.data) {
+          setServerError(res.error.data.errors);
+        } else {
+          // Handle other types of errors if needed
+        }
+      }
+    
+      if (res.data) {
+        console.log(typeof res.data);
+        console.log(res.data);
+        storeToken(res.data.token);
+        navigate('/dashboard');
+      }
+    } catch (error) {
+      // Handle the network error
+      console.error('Network Error:', error.message);
+      // You can set a state to display a user-friendly message or perform other actions
     }
   }
   return <>
-    {/* {server_error.non_field_errors ? console.log(server_error.non_field_errors[0]) : ""}
-    {server_error.name ? console.log(server_error.name[0]) : ""}
-    {server_error.email ? console.log(server_error.email[0]) : ""}
-    {server_error.password ? console.log(server_error.password[0]) : ""}
-    {server_error.password2 ? console.log(server_error.password2[0]) : ""}
-    {server_error.tc ? console.log(server_error.tc[0]) : ""} */}
     <Box component='form' noValidate sx={{ mt: 1 }} id='registration-form' onSubmit={handleSubmit}>
       
-      <TextField margin='normal' required fullWidth id='name' name='name' label='Name' />
-      {server_error.name ? <Typography style={{ fontSize: 12, color: 'red', paddingLeft: 10 }}>{server_error.name[0]}</Typography> : ""}
-      
+      <TextField margin='normal' required fullWidth id='fullname' name='fullname' label='Full name' />
+      {server_error.fullname ? <Typography style={{ fontSize: 12, color: 'red', paddingLeft: 10 }}>{server_error.fullname[0]}</Typography> : ""}
+
+      <TextField margin='normal' required fullWidth id='username' name='username' label='username' />
+      {server_error.username ? <Typography style={{ fontSize: 12, color: 'red', paddingLeft: 10 }}>{server_error.username[0]}</Typography> : ""}
+
+      <TextField margin='normal' required fullWidth id='religion' name='religion' label='Religion' />
+      {server_error.religion ? <Typography style={{ fontSize: 12, color: 'red', paddingLeft: 10 }}>{server_error.religion[0]}</Typography> : ""}
+
+      <label htmlFor="gender">Gender</label>
+      <select name="gender" id="gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+
+      <label htmlFor="date_of_birth">Birthday:</label>
+      <input type="date" id="date_of_birth" name="date_of_birth" /> 
+      {server_error.date_of_birth ? <Typography style={{ fontSize: 12, color: 'red', paddingLeft: 10 }}>{server_error.date_of_birth[0]}</Typography> : ""}
+
+
       <TextField margin='normal' required fullWidth id='email' name='email' label='Email Address' />
       {server_error.email ? <Typography style={{ fontSize: 12, color: 'red', paddingLeft: 10 }}>{server_error.email[0]}</Typography> : ""}
       
@@ -52,8 +81,6 @@ const Registration = () => {
       <TextField margin='normal' required fullWidth id='password2' name='password2' label='Confirm Password' type='password' />
       {server_error.password2 ? <Typography style={{ fontSize: 12, color: 'red', paddingLeft: 10 }}>{server_error.password2[0]}</Typography> : ""}
       
-      <FormControlLabel control={<Checkbox value={true} color="primary" name="tc" id="tc" />} label="I agree to term and condition." />
-      {server_error.tc ? <span style={{ fontSize: 12, color: 'red', paddingLeft: 10 }}>{server_error.tc[0]}</span> : ""}
       
       <Box textAlign='center'>
         <Button type='submit' variant='contained' sx={{ mt: 3, mb: 2, px: 5 }}>Join</Button>
