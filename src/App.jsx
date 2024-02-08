@@ -6,10 +6,11 @@ import Contact from "./pages/Contact";
 import Dashboard from "./pages/Dashboard.jsx";
 import Home from "./pages/Home";
 import Layout from "./pages/Layout";
+import VerifyEmail from "./pages/auth/verifyEmail.jsx";
 import { useSelector } from "react-redux";
 function App() {
   const { access_token } = useSelector(state => state.auth)
-  return (
+  return (  
     <>
       <BrowserRouter>
         <Routes>
@@ -18,7 +19,8 @@ function App() {
             <Route path="contact" element={<Contact />} />
             <Route path="login" element={!access_token ? <LoginReg /> : <Navigate to="/dashboard" />} />
             <Route path="sendpasswordresetemail" element={<SendPasswordResetEmail />} />
-            <Route path="api/user/reset/:id/:token" element={<ResetPassword />} />
+            <Route path="user/reset/:id/:token" element={<ResetPassword />} />
+            <Route path="user/verify/:token/" element={<VerifyEmail />} />
           </Route>
           <Route path="/dashboard" element={access_token ? <Dashboard /> : <Navigate to="/login" />} />
           <Route path="*" element={<h1>Error 404 Page not found !!</h1>} />

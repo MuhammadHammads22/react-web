@@ -1,9 +1,8 @@
-import { Grid, Card, Tabs, Typography, Tab, Box } from '@mui/material';
+import { Grid, Card, Tabs, Tab, Box } from '@mui/material';
 import { useState } from 'react';
-import Pic1 from '../../images/pic1.png'
 import Registration from './Registration';
 import UserLogin from './UserLogin';
-import { ShoppingBag } from '@mui/icons-material';
+import '../../assets/css/auth_card.css';
 
 const TabPanel = (props) => {
   const { children, value, index } = props;
@@ -23,17 +22,10 @@ const LoginReg = () => {
     setValue(newValue);
   }
   return <>
-    <Grid container sx={{ height: '90vh' }}>
-      <Grid item lg={7} sm={5} sx={{
-        backgroundImage: `url(${Pic1})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        display: { xs: 'none', sm: 'block' }
-      }}>
-      </Grid>
+    <Grid container sx={{ height: '50vh' }}>
+
       <Grid item lg={5} sm={7} xs={12}>
-        <Card sx={{ width: '100%', height: '100%' }}>
+        <Card className="LoginCard">
           <Box sx={{ mx: 3, height: 530 }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
               <Tabs value={value} textColor='secondary' indicatorColor='secondary' onChange={handleChange}>
@@ -48,10 +40,7 @@ const LoginReg = () => {
               <Registration />
             </TabPanel>
           </Box>
-          <Box textAlign='center' sx={{ mt: 2 }}>
-            <ShoppingBag sx={{ color: 'purple', fontSize: 100 }} />
-            <Typography variant='h5' sx={{ fontWeight: 'bold' }}>Geek-Shop</Typography>
-          </Box>
+          
         </Card>
       </Grid>
     </Grid>

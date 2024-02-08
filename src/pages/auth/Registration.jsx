@@ -1,8 +1,16 @@
-import { TextField, FormControlLabel, Button, Box, Alert, Typography, FormLabel, RadioGroup } from '@mui/material';
+import { TextField, Button, Box, Alert, Typography, CircularProgress} from '@mui/material';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRegisterUserMutation } from '../../services/userAuthApi'
 import { storeToken } from '../../services/LocalStorageService';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import Radio from '@mui/material/Radio';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import RadioGroup from '@mui/material/RadioGroup';
+
 
 const Registration = () => {
   const [server_error, setServerError] = useState({})
@@ -13,35 +21,31 @@ const Registration = () => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
     const actualData = {
-      name: data.get('fullname'),
-      username: data.get('username'),
       email: data.get('email'),
+      full_name: data.get('fullname'),
+      username: data.get('username'),
+      religion: data.get('religion'),
       gender: data.get('gender'),
       date_of_birth: data.get('date_of_birth'),
-      religion: data.get('religion'),
       password: data.get('password'),
-      password2: data.get('password2'),
+      password2: data.get('password2'), 
     }
 
-    console.log("actualData", actualData)
     const res = await registerUser(actualData)
-    console.log("res", res)
 
     if (res.error) {
       setServerError(res.error.data.errors)
     }
     if (res.data) {
-      console.log(typeof (res.data))
-      console.log(res.data)
       storeToken(res.data.token)
       navigate('/dashboard')
     }
   }
   return <>
-    <Box component='form' noValidate sx={{ mt: 1 }} id='registration-form' onSubmit={handleSubmit}>
+    <Box component='form' noValidate sx={{ mt: 1, maxHeight: 400, overflow: 'auto' }} id='registration-form' onSubmit={handleSubmit}>
       
       <TextField margin='normal' required fullWidth id='fullname' name='fullname' label='Full name' />
-      {server_error.fullname ? <Typography style={{ fontSize: 12, color: 'red', paddingLeft: 10 }}>{server_error.fullname[0]}</Typography> : ""}
+      {server_error.full_name ? <Typography style={{ fontSize: 12, color: 'red', paddingLeft: 10 }}>{server_error.full_name[0]}</Typography> : ""}
 
       <TextField margin='normal' required fullWidth id='username' name='username' label='username' />
       {server_error.username ? <Typography style={{ fontSize: 12, color: 'red', paddingLeft: 10 }}>{server_error.username[0]}</Typography> : ""}
@@ -49,16 +53,21 @@ const Registration = () => {
       <TextField margin='normal' required fullWidth id='religion' name='religion' label='Religion' />
       {server_error.religion ? <Typography style={{ fontSize: 12, color: 'red', paddingLeft: 10 }}>{server_error.religion[0]}</Typography> : ""}
 
-      <label htmlFor="gender">Gender</label>
-      <select name="gender" id="gender">
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-      </select>
+      <RadioGroup
+          row
+          aria-labelledby="gender"
+          name="gender"
+        >
+          <FormControlLabel value="female" control={<Radio />} label="Female" />
+          <FormControlLabel value="male" control={<Radio />} label="Male" />
+      </RadioGroup>
 
-      <label htmlFor="date_of_birth">Birthday:</label>
-      <input type="date" id="date_of_birth" name="date_of_birth" /> 
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <DemoContainer components={['DatePicker']}>
+          <DatePicker format="YYYY-MM-DD" label="Birthday" id="date_of_birth" name="date_of_birth" />
+        </DemoContainer>
+      </LocalizationProvider>
       {server_error.date_of_birth ? <Typography style={{ fontSize: 12, color: 'red', paddingLeft: 10 }}>{server_error.date_of_birth[0]}</Typography> : ""}
-
 
       <TextField margin='normal' required fullWidth id='email' name='email' label='Email Address' />
       {server_error.email ? <Typography style={{ fontSize: 12, color: 'red', paddingLeft: 10 }}>{server_error.email[0]}</Typography> : ""}
@@ -71,8 +80,9 @@ const Registration = () => {
       
       
       <Box textAlign='center'>
-        <Button type='submit' variant='contained' sx={{ mt: 3, mb: 2, px: 5 }}>Join</Button>
+        {isLoading ? <CircularProgress /> : <Button type='submit' variant='contained' sx={{ mt: 3, mb: 2, px: 5 }}>Register</Button>}
       </Box>
+
       {server_error.non_field_errors ? <Alert severity='error'>{server_error.non_field_errors[0]}</Alert> : ''}
     </Box>
   </>;
