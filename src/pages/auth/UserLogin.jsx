@@ -56,7 +56,14 @@ const UserLogin = () => {
       </Box>
 
       <NavLink to='/sendpasswordresetemail' >Forgot Password ?</NavLink>
-
+      <br />
+      <br />
+      <center>
+        <NavLink to='/policy' >Privacy Policy</NavLink> 
+        {' & '}
+        <NavLink to='/terms' >Terms and Conditions</NavLink> 
+        
+      </center>
       {server_error.non_field_errors ? <Alert severity='error'>{server_error.non_field_errors[0]}</Alert> : ''}
 
       
