@@ -1,7 +1,7 @@
 import { Grid, TextField, Button, Box, Alert, Typography } from "@mui/material";
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useResetPasswordMutation } from "../../services/userAuthApi";
+import { useResetPasswordMutation } from "../services/userAuthApi";
 
 const ResetPassword = () => {
   const [server_error, setServerError] = useState({})

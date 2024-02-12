@@ -1,20 +1,14 @@
 import { Button, CssBaseline, Grid, Typography } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { unSetUserToken } from '../features/authSlice';
 import { getToken, removeToken } from '../services/LocalStorageService';
-import ChangePassword from './auth/ChangePassword';
+import ChangePassword from '../auth/ChangePassword';
 import { useGetLoggedUserQuery } from '../services/userAuthApi';
 import { useEffect, useState } from 'react';
 import { setUserInfo, unsetUserInfo } from '../features/userSlice';
 
 const Dashboard = () => {
-  const handleLogout = () => {
-    dispatch(unsetUserInfo({ name: "", email: "" }))
-    dispatch(unSetUserToken({ access_token: null }))
-    removeToken()
-    navigate('/login')
-  }
+
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { access_token } = getToken()
@@ -52,7 +46,6 @@ const Dashboard = () => {
         <h1>Dashboard</h1>
         <Typography variant='h5'>Email: {userData.email}</Typography>
         <Typography variant='h6'>Name: {userData.name}</Typography>
-        <Button variant='contained' color='warning' size='large' onClick={handleLogout} sx={{ mt: 8 }}>Logout</Button>
       </Grid>
       <Grid item sm={8}>
         <ChangePassword />

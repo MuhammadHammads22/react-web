@@ -1,8 +1,8 @@
 import { TextField, Button, Box, Alert, Typography, CircularProgress} from '@mui/material';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useRegisterUserMutation } from '../../services/userAuthApi'
-import { storeToken } from '../../services/LocalStorageService';
+import { useRegisterUserMutation } from '../services/userAuthApi'
+import { storeToken } from '../services/LocalStorageService';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';

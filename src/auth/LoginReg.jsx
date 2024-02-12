@@ -2,7 +2,7 @@ import { Grid, Card, Tabs, Tab, Box } from '@mui/material';
 import { useState } from 'react';
 import Registration from './Registration';
 import UserLogin from './UserLogin';
-import '../../assets/css/auth_card.css';
+import '../assets/css/auth_card.css';
 
 const TabPanel = (props) => {
   const { children, value, index } = props;
