@@ -21,7 +21,7 @@ const LogoutButton = () => {
   return (
     <Button
       component={NavLink}
-      to='/fam/dashboard'
+      to='/fam'
       onClick={handleLogout}
       style={({ isActive }) => ({ backgroundColor: isActive ? '#6d1b7b' : '' })}
       sx={{ color: 'white', textTransform: 'none' }}
