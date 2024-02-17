@@ -1,35 +1,12 @@
-import { Button, CssBaseline, Grid, Typography } from '@mui/material';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { getToken, removeToken } from '../../services/LocalStorageService';
-import { useGetFamHistoryQuery } from '../../services/famApis';
+import React from 'react'
 
-const FAMHistory = () => {
-  const { access_token } = getToken();
-
-  const { data, isSuccess } = useGetFamHistoryQuery(access_token);
-
+const FamHistory = () => {
   return (
-    <>
-      <CssBaseline />
-      <p>{data}</p>
-      <Grid container>
-        <Grid item sm={4} sx={{ backgroundColor: 'gray', p: 5, color: 'white' }}>
-          <h1>Fam history</h1>
-          {isSuccess && data && (
-            <>
-              {data.map((post) => (
-                <div key={post.id}>
-                  <Typography variant='h5'>id: {post.id}</Typography>
-                  <Typography variant='h6'>Seeker: {post.seeker}</Typography>
-                </div>
-              ))}
-            </>
-          )}
-        </Grid>
-      </Grid>
-    </>
-  );
-};
+    <div>
+      <h1>FamHistory</h1>
+      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Culpa doloremque amet temporibus eaque in animi nesciunt? Dolore nesciunt blanditiis magnam repellat velit fuga iste enim quisquam. Error voluptatem maiores cumque.</p>
+    </div>
+  )
+}
 
-export default FAMHistory;
+export default FamHistory

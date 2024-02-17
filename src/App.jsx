@@ -4,12 +4,27 @@ import ResetPassword from "./auth/ResetPassword";
 import SendPasswordResetEmail from "./auth/SendPasswordResetEmail";
 import PrivacyPolicy from "./auth/privacy_policy";
 import TermsAndConditions from "./auth/terms&conditions.jsx";
-import FAMHome from "./fam/pages/home.jsx";
-import FAMHistory from "./fam/pages/history.jsx";
+
 import Layout from "./components/Layout.jsx";
 import VerifyEmail from "./auth/verifyEmail.jsx";
 import { useSelector } from "react-redux";
 import ChangePassword from "./auth/ChangePassword.jsx";
+
+// Fam Pages 
+import FAMHome from "./fam/pages/home.jsx";
+import FamHistory from "./fam/pages/history.jsx";
+import FamSatisfied from "./fam/pages/satisfied.jsx";
+import FamSaves from "./fam/pages/saves.jsx";
+import FamFilter from "./fam/pages/filter.jsx";
+
+
+//Org Pages
+import OrgHome from "./org/pages/home.jsx";
+import OrgFilters from "./org/pages/filter.jsx";
+import OrgHistory from "./org/pages/history.jsx";
+import OrgSaves from "./org/pages/saves.jsx";
+import OrgSatisfied from "./org/pages/satisfied.jsx";
+
 
 function App() {
   const { access_token } = useSelector(state => state.auth)
@@ -27,16 +42,22 @@ function App() {
             <Route path="user/reset/:id/:token" element={<ResetPassword />} />
             <Route path="user/verify/:token/" element={<VerifyEmail />} />
             <Route path="change_password" element={<ChangePassword />} />
-
           </Route>
 
           <Route path="/fam" element={<Layout />}>
             <Route index element={access_token ? <FAMHome /> : <Navigate to="/login" />} />
-            <Route path="history/" element={<FAMHistory />} />
+            <Route path="satisfied/" element={<FamSatisfied />} />
+            <Route path="history/" element={<FamHistory />} />
+            <Route path="saves/" element={<FamSaves />} />
+            <Route path="filters/" element={<FamFilter />} />
           </Route>
 
           <Route path="/org" element={<Layout />}>
-            <Route index element={<FAMHome />} />
+            <Route index element={<OrgHome />} />
+            <Route path="filters/" element={<OrgFilters />} />
+            <Route path="history/" element={<OrgHistory />} />
+            <Route path="saves/" element={<OrgSaves />} />
+            <Route path="satisfied/" element={<OrgSatisfied />} />
           </Route>
 
           <Route path="*" element={<h1>Error 404 Page not found !!</h1>} />

@@ -14,9 +14,7 @@ const Navbar = () => {
 
           <Button component={NavLink} to='/fam' style={({ isActive }) => { return { backgroundColor: isActive ? '#6d1b7b' : '' } }} sx={{ color: 'white', textTransform: 'none' }}>FAM</Button>
 
-          <Button component={NavLink} to='/org' style={({ isActive }) => { return { backgroundColor: isActive ? '#6d1b7b' : '' } }} sx={{ color: 'white', textTransform: 'none' }}>ORG</Button>
-
-
+          <Button component={NavLink} to='/org' style={({ isActive }) => { return { backgroundColor: isActive ? '#6d1b7b' : '' } }} sx={{ color: 'white', textTransform: 'none' }} >ORG</Button>
 
           {access_token ? 
           <AccountMenu />

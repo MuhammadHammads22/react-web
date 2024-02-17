@@ -1,0 +1,13 @@
+/* Layout.module.css */
+
+.flex {
+  display: flex;
+}
+
+.sidebar {
+  width: 300px; /* Set the width of the sidebar */
+}
+
+.content {
+  flex-grow: 1;
+}
