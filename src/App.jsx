@@ -25,6 +25,7 @@ import OrgHistory from "./org/pages/history.jsx";
 import OrgSaves from "./org/pages/saves.jsx";
 import OrgSatisfied from "./org/pages/satisfied.jsx";
 
+import "./globals.css";
 
 function App() {
   const { access_token } = useSelector(state => state.auth)

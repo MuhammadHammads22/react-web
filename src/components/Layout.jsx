@@ -7,7 +7,7 @@ import styles from './Layout.module.css'; // Import CSS module
 
 const Layout = () => {
   return (
-    <>
+    <div >
       <CssBaseline />
       <Navbar />
       <div className={styles.flex}> 
@@ -18,7 +18,7 @@ const Layout = () => {
           <Outlet />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

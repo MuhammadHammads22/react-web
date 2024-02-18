@@ -14,8 +14,7 @@ const FAMHome = () => {
 
   return (
     <>
-      <div className="flex">
-      
+      <div>
           {isSuccess && data && (
             <>
               {data.map((post) => (

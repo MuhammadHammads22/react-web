@@ -1,32 +1,5 @@
-/* Import Tailwind base styles
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-.sidebar {
-  @apply fixed top-0 left-0 w-64 h-screen bg-gray-800 text-white font-medium;
-
-  @screen md {
-    display: none;
-  }
+.lli{
+  margin: 5px;
+  padding: 5px;
+  margin-top: 10px;
 }
-
-.sidebar ul {
-  @apply list-none p-4;
-}
-
-.sidebar li {
-  @apply py-2 px-4 hover:bg-gray-700 rounded-md transition-colors duration-200;
-}
-
-.sidebar a {
-  @apply block text-left font-normal text-sm;
-}
-
-.sidebar a:hover {
-  @apply underline;
-}
-
-.sidebar a.active {
-  @apply bg-gray-900 text-white;
-} */
