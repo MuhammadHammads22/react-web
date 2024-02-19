@@ -31,7 +31,7 @@ const UserLogin = () => {
       storeToken(res.data.token)
       let { access_token } = getToken()
       dispatch(setUserToken({ access_token: access_token }))
-      navigate('/dashboard')
+      navigate('/fam')
     }
   }
   

@@ -28,7 +28,32 @@ export const famApis = createApi({
         }
       }
     }),
+
+    getFamSatisfied: builder.query({
+      query: (access_token) => {
+        return {
+          url: 'satisfied/',
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${access_token}`,
+          }
+        }
+      }
+    }),
+
+    getFamSaves: builder.query({
+      query: (access_token) => {
+        return {
+          url: 'showSave/',
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${access_token}`,
+          }
+        }
+      }
+    }),
+
   }),
 })
 
-export const { useGetFamListQuery, useGetFamHistoryQuery } = famApis
+export const { useGetFamListQuery, useGetFamHistoryQuery, useGetFamSatisfiedQuery, useGetFamSavesQuery } = famApis

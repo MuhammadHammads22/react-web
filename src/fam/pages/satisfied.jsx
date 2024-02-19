@@ -1,10 +1,22 @@
-import React from 'react'
+import React from 'react';
+import PostCard from '../components/postCard';
+import {getToken, removeToken} from '../../services/LocalStorageService';
+import { useGetFamSatisfiedQuery } from '../../services/famApis';
 
 const FamSatisfied = () => {
+  const {access_token} = getToken();
+  const {data, isSuccess} = useGetFamSatisfiedQuery(access_token);
+  
+
   return (
     <div>
-      <h1>FamSatisfed</h1>
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Necessitatibus quis unde incidunt eligendi laboriosam natus, illum vitae ullam doloremque error odio optio, eius cum! Voluptatem ab odio voluptate consequatur repellendus?</p>
+      {isSuccess && data && (
+        <>
+          {data.map((post)=>(
+            <PostCard key={post.id} post={post} />
+          ))}
+        </>
+      )}
     </div>
   )
 }

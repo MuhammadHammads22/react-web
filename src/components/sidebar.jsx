@@ -33,21 +33,36 @@ const Sidebar = () => {
   return (
     <div className="sidebar-dev">
       <ul className="list-none p-4">
-        <li className="text-xl py-4 my-2 hover:bg-slate-800 font-bold text-center text-yellow-300 bg-slate-700 rounded-lg">
-          <Link to={`${appPrefix}`}>Home</Link>
-        </li>
-        <li className="text-xl py-4 my-2 hover:bg-slate-800 font-bold text-center text-yellow-300 bg-slate-700 rounded-lg">
-          <Link to={`${appPrefix}/satisfied`}>Satisfied People</Link>
-        </li>
-        <li className="text-xl py-4 my-2 hover:bg-slate-800 font-bold text-center text-yellow-300 bg-slate-700 rounded-lg">
-          <Link to={`${appPrefix}/saves`}>Save Posts</Link>
-        </li>
-        <li className="text-xl py-4 my-2 hover:bg-slate-800 font-bold text-center text-yellow-300 bg-slate-700 rounded-lg">
-          <Link to={`${appPrefix}/history`}>History</Link>
-        </li>
-        <li className="text-xl py-4 my-2 hover:bg-slate-800 font-bold text-center text-yellow-300 bg-slate-700 rounded-lg">
-          <Link to={`${appPrefix}/filters`}>Filter Posts</Link>
-        </li>
+        <Link to={`${appPrefix}`}>
+          <li className="text-xl py-4 my-2 hover:bg-slate-800 font-bold text-center text-yellow-300 bg-slate-700 rounded-lg">
+            Home
+          </li>
+        </Link>
+
+        <Link to={`${appPrefix}/satisfied`}>
+          <li className="text-xl py-4 my-2 hover:bg-slate-800 font-bold text-center text-yellow-300 bg-slate-700 rounded-lg">
+            Satisfied People
+          </li>
+        </Link>
+
+        <Link to={`${appPrefix}/saves`}>
+          <li className="text-xl py-4 my-2 hover:bg-slate-800 font-bold text-center text-yellow-300 bg-slate-700 rounded-lg">
+            Save Posts
+          </li>
+        </Link>
+
+        <Link to={`${appPrefix}/history`}>
+          <li className="text-xl py-4 my-2 hover:bg-slate-800 font-bold text-center text-yellow-300 bg-slate-700 rounded-lg">
+            History
+          </li>
+        </Link>
+
+        
+        <Link to={`${appPrefix}/filters`}>
+          <li className="text-xl py-4 my-2 hover:bg-slate-800 font-bold text-center text-yellow-300 bg-slate-700 rounded-lg">
+            Filter Posts
+          </li>
+        </Link>
 
         <li className="text-xl py-4 my-2 hover:bg-slate-800 font-bold text-center text-yellow-300 bg-slate-700 rounded-lg">
           <button onClick={() => {

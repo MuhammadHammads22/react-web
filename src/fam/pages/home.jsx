@@ -1,16 +1,38 @@
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { getToken, removeToken } from '../../services/LocalStorageService';
-import { useEffect, useState } from 'react';
-import { setUserInfo, unsetUserInfo } from '../../features/userSlice';
+import React, { useEffect, useState } from 'react';
+import { getToken, removeToken, storeToken } from '../../services/LocalStorageService';
 import { useGetFamListQuery } from '../../services/famApis';
 import PostCard from '../components/postCard';
+import { useRefreshTokenMutation } from '../../services/userAuthApi';
 
 const FAMHome = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { access_token } = getToken();
-  const { data, isSuccess } = useGetFamListQuery(access_token);
+  const [accessToken, setAccessToken] = useState('');
+  const [refreshToken, setRefreshToken] = useState('');
+  
+  useEffect(() => {
+    const { access_token, refresh_token } = getToken();
+    setAccessToken(access_token);
+    setRefreshToken(refresh_token);
+  }, []);
+
+  const { data, isSuccess, isFetching, isError, error, refetch } = useGetFamListQuery(accessToken);
+
+
+  useEffect(() => {
+    if (isError && error.status === 401) {
+      refreshAccessToken();
+    }
+  }, [isError]);
+
+  const refreshAccessToken = async () => {
+    try {
+      const { data, isSuccess, isFetching, isError, error, refetch } = useRefreshTokenMutation(accessToken);
+      storeToken({ access_token: data.access_token });
+      setAccessToken( data.access_token );
+    } catch (error) {
+      // Handle refresh token failure
+      console.error('Failed to refresh access token:', error);
+    }
+  };
 
   return (
     <>
