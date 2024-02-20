@@ -1,7 +1,7 @@
 import React from 'react'
 import {getToken, removeToken} from '../../services/LocalStorageService';
 import { useGetFamSavesQuery } from "../../services/famApis";
-import PostCard from '../components/postCard';
+import PostCard from '../../components/shared/postCard';
 
 const FamSaves = () => {
   const { access_token } = getToken();

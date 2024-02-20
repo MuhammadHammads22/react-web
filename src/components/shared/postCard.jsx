@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import "../assets/css/PostCard.css"
+import "./postcard.module.css"
 import { multiFormatDateString } from '../../lib/utils/DateConvertor'
 import VideoPlayer from './VideoPlayer'
 

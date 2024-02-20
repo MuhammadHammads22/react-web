@@ -1,7 +1,7 @@
 import React from 'react'
 import {getToken, removeToken} from '../../services/LocalStorageService';
 import { useGetFamHistoryQuery } from '../../services/famApis';
-import PostCard from '../components/postCard';
+import PostCard from '../../components/shared/postCard';
 
 
 const FamHistory = () => {

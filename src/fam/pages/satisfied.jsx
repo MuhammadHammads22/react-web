@@ -1,5 +1,5 @@
 import React from 'react';
-import PostCard from '../components/postCard';
+import PostCard from '../../components/shared/postCard';
 import {getToken, removeToken} from '../../services/LocalStorageService';
 import { useGetFamSatisfiedQuery } from '../../services/famApis';
 

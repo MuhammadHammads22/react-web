@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getToken, removeToken, storeToken } from '../../services/LocalStorageService';
 import { useGetFamListQuery } from '../../services/famApis';
-import PostCard from '../components/postCard';
+import PostCard from '../../components/shared/postCard';
 import { useRefreshTokenMutation } from '../../services/userAuthApi';
 
 const FAMHome = () => {
