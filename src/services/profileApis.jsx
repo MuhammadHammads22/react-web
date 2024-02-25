@@ -4,7 +4,8 @@ import { getToken } from "./LocalStorageService";
 export const profileApis = createApi({
   reducerPath: 'profileApis',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://127.0.0.1:8000/profiles/'
+    baseUrl: 'http://127.0.0.1:8000/profiles/',
+    
   }),
 
   endpoints: (builder) => ({
