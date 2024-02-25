@@ -8,6 +8,7 @@ export const profileApis = createApi({
   }),
 
   endpoints: (builder) => ({
+    
     profile: builder.query({
       query: (pk) => {
         return {
@@ -23,7 +24,7 @@ export const profileApis = createApi({
     allProfiles: builder.query({
       query: ()=>{
         return {
-          url: 'allp',
+          url: 'allp/',
           method: 'GET',
           headers: {
             Authorization: `Bearer ${localStorage.getItem('access_token')}`, 
@@ -31,7 +32,6 @@ export const profileApis = createApi({
         }
       }
     }),
-
 
     allOrgs: builder.query({
       query: ()=>{
@@ -46,10 +46,7 @@ export const profileApis = createApi({
     })
 
 
-
-
   })
-
 
 });
 

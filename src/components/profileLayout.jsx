@@ -1,4 +1,3 @@
-
 import { CssBaseline } from "@mui/material";
 import { Outlet } from "react-router-dom";
 import Navbar from "./Navbar";
@@ -12,7 +11,7 @@ const ProfileLayout = () => {
       <Navbar />
       <div className={styles.flex}> 
         <div className={styles.sidebar}>
-          <ProfileSidebar />
+          <ProfileSidebar /> 
         </div>
         <div className={styles.content}> 
           <Outlet />

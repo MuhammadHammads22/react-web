@@ -31,6 +31,10 @@ import ProfileLayout from "./components/profileLayout.jsx";
 import ProfileDetail from "./profile/pages/profile.jsx";
 import AllProfiles from "./profile/pages/allProfiles.jsx";
 import AllOrgs from "./profile/pages/allOrgs.jsx";
+import NearMe from "./profile/pages/near-me.jsx";
+import MasjidMadrasa from "./profile/pages/masjid-madrasa.jsx";
+import Following from "./profile/pages/following.jsx";
+import Followers from "./profile/pages/followers.jsx";
 
 
 import "./globals.css";
@@ -73,7 +77,11 @@ function App() {
           <Route path="/profiles" element={<ProfileLayout />}>
             <Route path=":username" element={<ProfileDetail />} />
             <Route index element={<AllProfiles />} />
-            <Route path="Organization" element={<AllOrgs />} />
+            <Route path="organization" element={<AllOrgs />} />
+            <Route path="masjid-madrasa" element={<MasjidMadrasa />} />
+            <Route path="near-me" element={<NearMe />} />
+            <Route path="followers" element={<Followers />} />
+            <Route path="following" element={<Following />} />
           </Route>
 
           <Route path="*" element={<h1>Error 404 Page not found !!</h1>} />
