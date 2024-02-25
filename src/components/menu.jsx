@@ -12,8 +12,11 @@ import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Logout from '@mui/icons-material/Logout';
-import LogoutButton from './Logout_btn';
+import LogoutButton from '../auth/Logout_btn';
 import { Button } from '@mui/material';
+import { Link } from "react-router-dom";
+import ProfileDetail from "../profile/pages/profile.jsx"
+
 
 export default function AccountMenu() {
   const navigate = useNavigate();
@@ -25,7 +28,16 @@ export default function AccountMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+
+  const handleProfileClick = () => {
+    const username = 'abuubaida01';
+    navigate(`/profiles/${username}`);
+  };
+
+
   return (
+    
     <React.Fragment>
       <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
         <Tooltip title="Account settings">
@@ -76,37 +88,39 @@ export default function AccountMenu() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem onClick={handleClose}>
+        
+        <MenuItem onClick={handleProfileClick}>
           <Avatar /> Profile
         </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <Avatar /> My account
-        </MenuItem>
-        <Divider />
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <PersonAdd fontSize="small" />
-          </ListItemIcon>
-          Add another account
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <Settings fontSize="small" />
-          </ListItemIcon>
-          Settings
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <Settings fontSize="small" />
-          </ListItemIcon>
-          <Button component={NavLink} to='/change_password'>Change Password</Button>
-        </MenuItem>
+
+      <Divider />
+
+        <Link to='/settings'>
+          <MenuItem onClick={handleClose}>
+            <ListItemIcon>
+              <Settings fontSize="small" />
+            </ListItemIcon>
+            Settings
+          </MenuItem>
+        </Link>
+
+        <Link to='/change_password'>
+          <MenuItem onClick={handleClose}>
+            <ListItemIcon>
+              <Settings fontSize="small" />
+            </ListItemIcon>
+            Change Password
+          </MenuItem>
+        </Link>
+
         <MenuItem onClick={handleClose}>
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>
           <LogoutButton />
         </MenuItem>
+
+
       </Menu>
     </React.Fragment>
   );

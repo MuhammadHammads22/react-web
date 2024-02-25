@@ -2,7 +2,7 @@ import { AppBar, Box, Toolbar, Typography, Button } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import { getToken } from '../services/LocalStorageService';
 import LogoutButton from '../auth/Logout_btn';
-import AccountMenu from '../auth/menu';
+import AccountMenu from './menu';
 
 const Navbar = () => {
   const { access_token } = getToken()
@@ -15,6 +15,8 @@ const Navbar = () => {
           <Button component={NavLink} to='/fam' style={({ isActive }) => { return { backgroundColor: isActive ? '#6d1b7b' : '' } }} sx={{ color: 'white', textTransform: 'none' }}>FAM</Button>
 
           <Button component={NavLink} to='/org' style={({ isActive }) => { return { backgroundColor: isActive ? '#6d1b7b' : '' } }} sx={{ color: 'white', textTransform: 'none' }} >ORG</Button>
+
+          <Button component={NavLink} to='/profiles' style={({ isActive }) => { return { backgroundColor: isActive ? '#6d1b7b' : '' } }} sx={{ color: 'white', textTransform: 'none' }} >Profiles</Button>
 
           {access_token ? 
           <AccountMenu />

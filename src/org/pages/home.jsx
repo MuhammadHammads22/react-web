@@ -7,13 +7,15 @@ import PostCard from '../../components/shared/postCard';
 
 const OrgHome = () => {
   const [accessToken, setAccessToken] = useState('');
+  const [refreshToken, setRefreshToken] = useState('');
 
   useEffect(()=>{
     const { access_token, refresh_token } = getToken();
     setAccessToken(access_token);
+    setRefreshToken(refresh_token);
   }, []);
 
-  const { data, isSuccess, isFetching, isError, error, refetch } = useGetOrgListQuery()
+  const { data, isSuccess, isFetching, isError, error, refetch } = useGetOrgListQuery(accessToken)
 
   useEffect(()=>{
     if(isError && error.status===401){
@@ -23,7 +25,7 @@ const OrgHome = () => {
 
   const refreshAccessToken = async()=>{
     try{
-      const {data, isSuccess, isFetching, isError, error, refetch } = useRefreshTokenMutation(access_token);
+      const {data, isSuccess, isFetching, isError, error, refetch } = useRefreshTokenMutation(accessToken);
       storeToken({ access_token: data.access_token });
       setAccessToken( data.access_token );
     } catch (error){

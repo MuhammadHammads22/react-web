@@ -6,9 +6,11 @@ import PrivacyPolicy from "./auth/privacy_policy";
 import TermsAndConditions from "./auth/terms&conditions.jsx";
 
 import Layout from "./components/Layout.jsx";
+import AuthLayout from "./components/authLayout.jsx";
 import VerifyEmail from "./auth/verifyEmail.jsx";
 import { useSelector } from "react-redux";
 import ChangePassword from "./auth/ChangePassword.jsx";
+import Settings from "./auth/settings.jsx";
 
 // Fam Pages 
 import FAMHome from "./fam/pages/home.jsx";
@@ -17,13 +19,19 @@ import FamSatisfied from "./fam/pages/satisfied.jsx";
 import FamSaves from "./fam/pages/saves.jsx";
 import FamFilter from "./fam/pages/filter.jsx";
 
-
 //Org Pages
 import OrgHome from "./org/pages/home.jsx";
 import OrgFilters from "./org/pages/filter.jsx";
 import OrgHistory from "./org/pages/history.jsx";
 import OrgSaves from "./org/pages/saves.jsx";
 import OrgSatisfied from "./org/pages/satisfied.jsx";
+
+//profile Pages: 
+import ProfileLayout from "./components/profileLayout.jsx";
+import ProfileDetail from "./profile/pages/profile.jsx";
+import AllProfiles from "./profile/pages/allProfiles.jsx";
+import AllOrgs from "./profile/pages/allOrgs.jsx";
+
 
 import "./globals.css";
 
@@ -34,7 +42,7 @@ function App() {
       <BrowserRouter>
         <Routes>
 
-          <Route path="/" element={<Layout />}>
+          <Route path="/" element={<AuthLayout />}>
             <Route path="policy" element={<PrivacyPolicy />} />
             <Route path="terms" element={<TermsAndConditions />} />
 
@@ -43,6 +51,7 @@ function App() {
             <Route path="user/reset/:id/:token" element={<ResetPassword />} />
             <Route path="user/verify/:token/" element={<VerifyEmail />} />
             <Route path="change_password" element={<ChangePassword />} />
+            <Route path="/settings" element={<Settings />} />
           </Route>
 
           <Route path="/fam" element={<Layout />}>
@@ -54,11 +63,17 @@ function App() {
           </Route>
 
           <Route path="/org" element={<Layout />}>
-            <Route index element={<OrgHome />} />
+            <Route index element={access_token ? <OrgHome /> : <Navigate to="/login" />} />
             <Route path="filters/" element={<OrgFilters />} />
             <Route path="history/" element={<OrgHistory />} />
             <Route path="saves/" element={<OrgSaves />} />
             <Route path="satisfied/" element={<OrgSatisfied />} />
+          </Route>
+
+          <Route path="/profiles" element={<ProfileLayout />}>
+            <Route path=":username" element={<ProfileDetail />} />
+            <Route index element={<AllProfiles />} />
+            <Route path="Organization" element={<AllOrgs />} />
           </Route>
 
           <Route path="*" element={<h1>Error 404 Page not found !!</h1>} />

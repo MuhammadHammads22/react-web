@@ -23,8 +23,6 @@ const LogoutButton = () => {
       component={NavLink}
       to='/fam'
       onClick={handleLogout}
-      style={({ isActive }) => ({ backgroundColor: isActive ? '#6d1b7b' : '' })}
-      sx={{ color: 'white', textTransform: 'none' }}
     >
       Logout
     </Button>
