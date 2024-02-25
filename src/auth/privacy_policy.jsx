@@ -4,7 +4,7 @@ const PrivacyPolicy = () => {
   return <>
     <Grid container justifyContent='center'>
       <Grid item sm={10}>
-        <h1>Privacy Policy</h1>
+        <h1>Privacy policy</h1>
         <hr />
         <h1 id='AdaZakat_english_font_hading'>What is the Privacy Policy</h1>
 
