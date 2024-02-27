@@ -1,12 +1,30 @@
 import React from 'react'
+import {useNearMeQuery} from "../../services/profileApis";
+import { useParams } from 'react-router-dom';
+import {  CircularProgress } from '@mui/material';
 
 const NearMe = () => {
+  const { username } = useParams(); // Extract username from URL parameters
+
+  const { data, isSuccess, isError, error, isLoading } = useNearMeQuery(username);
+
+  if (isLoading){
+    return <div><CircularProgress />Loading...</div>;
+  }
+  if (isError) return <div>Error: {error.message}</div>;
+
   return (
     <div>
-      <h1>nearme</h1>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam sint aut pariatur fugit ex facilis voluptate similique perspiciatis reiciendis, ab quia ea exercitationem iusto porro id, illo quos voluptatem blanditiis.
+      {username}
+
+      {isSuccess && data && (
+        <>
+          <p>{data.intro}</p>
+        </>
+      )}
     </div>
-  )
-}
+  );
+};
+
 
 export default NearMe

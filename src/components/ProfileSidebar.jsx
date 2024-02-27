@@ -5,7 +5,10 @@ import "./sidebar.module.css";
 
 
 const ProfileSidebar = () => {
+  const username = 'abuubaida01';
+
   return (
+
     <div className="sidebar-dev">
       <ul className="list-none p-4">
         <Link to='/profiles'>
@@ -26,20 +29,20 @@ const ProfileSidebar = () => {
           </li>
         </Link>
 
-        <Link to='/profiles/near-me'>
+        <Link to={`/profiles/${username}/near-me`}>
           <li className="text-xl py-4 my-2 hover:bg-slate-800 font-bold text-center text-yellow-300 bg-slate-700 rounded-lg">
             Near Me
           </li>
         </Link>
 
         
-        <Link to='/profiles/following'>
+        <Link to={`/profiles/${username}/following`}>
           <li className="text-xl py-4 my-2 hover:bg-slate-800 font-bold text-center text-yellow-300 bg-slate-700 rounded-lg">
             Following
           </li>
         </Link>
 
-        <Link to='/profiles/followers'>
+        <Link to={`/profiles/${username}/followers`}>
           <li className="text-xl py-4 my-2 hover:bg-slate-800 font-bold text-center text-yellow-300 bg-slate-700 rounded-lg">
             Followers
           </li>

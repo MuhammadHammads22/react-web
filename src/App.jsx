@@ -58,7 +58,7 @@ function App() {
             <Route path="/settings" element={<Settings />} />
           </Route>
 
-          <Route path="/fam" element={<Layout />}>
+          <Route path="/fam" element={access_token ? <Layout /> : <Navigate to="/login" />}>
             <Route index element={access_token ? <FAMHome /> : <Navigate to="/login" />} />
             <Route path="satisfied/" element={<FamSatisfied />} />
             <Route path="history/" element={<FamHistory />} />
@@ -66,7 +66,7 @@ function App() {
             <Route path="filters/" element={<FamFilter />} />
           </Route>
 
-          <Route path="/org" element={<Layout />}>
+          <Route path="/org" element={access_token ? <Layout /> : <Navigate to="/login" />}>
             <Route index element={access_token ? <OrgHome /> : <Navigate to="/login" />} />
             <Route path="filters/" element={<OrgFilters />} />
             <Route path="history/" element={<OrgHistory />} />
@@ -74,14 +74,14 @@ function App() {
             <Route path="satisfied/" element={<OrgSatisfied />} />
           </Route>
 
-          <Route path="/profiles" element={<ProfileLayout />}>
+          <Route path="/profiles" element={access_token ? <ProfileLayout /> : <Navigate to="/login" />}>
             <Route path=":username" element={<ProfileDetail />} />
             <Route index element={<AllProfiles />} />
             <Route path="organization" element={<AllOrgs />} />
             <Route path="masjid-madrasa" element={<MasjidMadrasa />} />
-            <Route path="near-me" element={<NearMe />} />
-            <Route path="followers" element={<Followers />} />
-            <Route path="following" element={<Following />} />
+            <Route path=":username/near-me" element={<NearMe />} />
+            <Route path=":username/followers" element={<Followers />} />
+            <Route path=":username/following" element={<Following />} />
           </Route>
 
           <Route path="*" element={<h1>Error 404 Page not found !!</h1>} />

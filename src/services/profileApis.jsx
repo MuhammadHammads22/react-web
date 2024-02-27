@@ -44,11 +44,63 @@ export const profileApis = createApi({
           }
         }
       }
-    })
+    }),
+
+    allMM: builder.query({
+      query: ()=>{
+        return {
+          url: "M&M",
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+          }
+        }
+      }
+    }),
+
+    NearMe: builder.query({
+      query: (pk)=>{
+        return {
+          url: `${pk}/nearme`,
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+          }
+        }
+      }
+    }),
+
+    allFollowers: builder.query({
+      query: (pk)=>{
+        return {
+          url: `${pk}/followers`,
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+          }
+        }
+      }
+    }),
+
+    allFollowing: builder.query({
+      query: (pk)=>{
+        return {
+          url: `${pk}/following`,
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+          }
+        }
+      }
+    }),
+
+
+
+
 
 
   })
 
 });
 
-export const { useProfileQuery, useAllOrgsQuery, useAllProfilesQuery } = profileApis;
+export const { useProfileQuery, useAllOrgsQuery, useAllProfilesQuery, useAllFollowersQuery, useAllFollowingQuery, useAllMMQuery, useNearMeQuery } = profileApis;

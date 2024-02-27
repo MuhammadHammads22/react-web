@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useProfileQuery } from '../../services/profileApis';
 import {  CircularProgress } from '@mui/material';
+
+import { useProfileQuery } from '../../services/profileApis';
 
 
 const ProfileDetail = () => {
