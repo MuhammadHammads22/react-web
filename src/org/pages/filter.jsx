@@ -15,7 +15,7 @@ const OrgFilters = () => {
     setRefreshToken(refresh_token);
   }, []);
 
-  const { data, isSuccess, isFetching, isError, error, refetch } = useGetOrgListQuery(accessToken)
+  const { data, isSuccess, isFetching, isError, error, refetch } = useGetOrgListQuery()
 
   useEffect(()=>{
     if(isError && error.status===401){

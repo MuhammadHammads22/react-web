@@ -6,7 +6,7 @@ import PostCard from '../../components/shared/postCard';
 
 const FamHistory = () => {
   const {access_token} = getToken();
-  const {data, isSuccess} = useGetFamHistoryQuery(access_token);
+  const {data, isSuccess} = useGetFamHistoryQuery();
 
   return (
     <div>

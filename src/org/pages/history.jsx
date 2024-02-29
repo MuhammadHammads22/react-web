@@ -15,7 +15,7 @@ const OrgHistory = () => {
     setRefreshToken(refresh_token);
   }, []);
 
-  const { data, isSuccess, isFetching, isError, error, refetch } = useGetOrgHistoryQuery(accessToken)
+  const { data, isSuccess, isFetching, isError, error, refetch } = useGetOrgHistoryQuery()
 
   useEffect(()=>{
     if(isError && error.status===401){

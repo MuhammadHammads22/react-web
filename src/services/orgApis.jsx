@@ -8,36 +8,36 @@ export const orgApis = createApi({
   endpoints: (builder)=>({
 
     getOrgList: builder.query({
-      query: (access_token)=>{
+      query: ()=>{
         return {
           url: 'list/',
           method: 'GET',
           headers: {
-            'Authorization': `Bearer ${access_token}`, 
+            'Authorization': `Bearer ${localStorage.getItem('access_token') }`, 
           }
         }
       }
     }),
 
     getOrgHistory: builder.query({
-      query: (access_token)=>{
+      query: ()=>{
         return {
           url: 'history/',
           method: 'GET',
           headers: {
-            'Authorization': `Bearer ${access_token}`,
+            'Authorization': `Bearer ${localStorage.getItem('access_token') }`,
           }
         }
       }
     }),
 
     getOrgSatisfied: builder.query({
-      query:(access_token)=>{
+      query:()=>{
         return {
           url: 'satisfied/',
           method:'GET',
           headers: {
-            'Authorization': `Bearer ${access_token}`,
+            'Authorization': `Bearer ${localStorage.getItem('access_token') }`,
           }
         }
       }
@@ -45,12 +45,12 @@ export const orgApis = createApi({
 
 
     getOrgSaves: builder.query({
-      query:(access_token) => {
+      query:() => {
         return {
           url: 'showSave/',
           method: 'GET',
           headers: {
-            'Authorization':`Bearer ${access_token}`,
+            'Authorization':`Bearer ${localStorage.getItem('access_token') }`,
           }
         }
       }

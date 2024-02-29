@@ -15,7 +15,7 @@ const OrgSaves = () => {
     setRefreshToken(refresh_token);
   }, []);
 
-  const { data, isSuccess, isFetching, isError, error, refetch } = useGetOrgSavesQuery(accessToken)
+  const { data, isSuccess, isFetching, isError, error, refetch } = useGetOrgSavesQuery()
 
   useEffect(()=>{
     if(isError && error.status===401){

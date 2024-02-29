@@ -45,12 +45,12 @@ export const userAuthApi = createApi({
     }),
 
     getLoggedUser: builder.query({
-      query: (access_token) => {
+      query: () => {
         return {
           url: 'getuserD/',
           method: 'GET',
           headers: {
-            'authorization': `Bearer ${access_token}`,
+            'authorization': `Bearer ${localStorage.getItem('access_token') }`,
           }
         }
       }

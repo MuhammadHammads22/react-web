@@ -14,7 +14,7 @@ const FAMHome = () => {
     setRefreshToken(refresh_token);
   }, []);
 
-  const { data, isSuccess, isFetching, isError, error, refetch } = useGetFamListQuery(accessToken);
+  const { data, isSuccess, isFetching, isError, error, refetch } = useGetFamListQuery();
 
 
   useEffect(() => {

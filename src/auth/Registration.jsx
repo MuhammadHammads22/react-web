@@ -38,7 +38,7 @@ const Registration = () => {
     }
     if (res.data) {
       storeToken(res.data.token)
-      navigate('/dashboard')
+      navigate('/fam')
     }
   }
   return <>

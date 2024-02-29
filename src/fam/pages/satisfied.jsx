@@ -5,7 +5,7 @@ import { useGetFamSatisfiedQuery } from '../../services/famApis';
 
 const FamSatisfied = () => {
   const {access_token} = getToken();
-  const {data, isSuccess} = useGetFamSatisfiedQuery(access_token);
+  const {data, isSuccess} = useGetFamSatisfiedQuery();
   
 
   return (

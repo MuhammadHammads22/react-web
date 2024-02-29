@@ -15,7 +15,7 @@ const OrgSatisfied = () => {
     setRefreshToken(refresh_token);
   }, []);
 
-  const { data, isSuccess, isFetching, isError, error, refetch } = useGetOrgSatisfiedQuery(accessToken)
+  const { data, isSuccess, isFetching, isError, error, refetch } = useGetOrgSatisfiedQuery()
 
   useEffect(()=>{
     if(isError && error.status===401){

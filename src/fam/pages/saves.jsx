@@ -5,7 +5,7 @@ import PostCard from '../../components/shared/postCard';
 
 const FamSaves = () => {
   const { access_token } = getToken();
-  const { data, isSuccess } = useGetFamSavesQuery(access_token)
+  const { data, isSuccess } = useGetFamSavesQuery()
 
   return (
     <div>
