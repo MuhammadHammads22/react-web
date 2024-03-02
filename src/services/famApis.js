@@ -1,10 +1,16 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { handleTokenRefresh } from './LocalStorageService';
+import { useRefreshTokenMutation, userAuthApi } from './userAuthApi';
+import { getToken, storeToken } from "./LocalStorageService";
+
 
 // Define a service using a base URL and expected endpoints
 export const famApis = createApi({
-  
   reducerPath: 'famApis',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://127.0.0.1:8000/fam/' }),
+  baseQuery: fetchBaseQuery({ 
+    baseUrl: 'http://127.0.0.1:8000/fam/', 
+  }),
+  
   endpoints: (builder) => ({
     
     getFamList: builder.query({
@@ -17,10 +23,9 @@ export const famApis = createApi({
           }
         }
       },
-      onError: (error) => {
-        if (error.status === 401) {
-          handleRefreshTokenError();
-        }
+      
+      onError: async (error) => {
+        console.log("get error")
       },
     }),
 
@@ -34,11 +39,6 @@ export const famApis = createApi({
           }
         }
       },
-      onError: (error) => {
-        if (error.status === 401) {
-          handleRefreshTokenError();
-        }
-      },
     }),
 
     getFamSatisfied: builder.query({
@@ -50,7 +50,7 @@ export const famApis = createApi({
             'Authorization': `Bearer ${localStorage.getItem('access_token') }`,
           }
         }
-      }
+      }, 
     }),
 
     getFamSaves: builder.query({
@@ -63,15 +63,10 @@ export const famApis = createApi({
           }
         }
       },
-      // Use a custom error handler for unauthorized access errors
-      onError: (error) => {
-        if (error.status === 401) {
-          handleRefreshTokenError();
-        }
-      },
     }),
 
   }),
 })
 
 export const { useGetFamListQuery, useGetFamHistoryQuery, useGetFamSatisfiedQuery, useGetFamSavesQuery } = famApis
+

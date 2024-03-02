@@ -1,5 +1,5 @@
 import React from 'react'
-import { useAllMMQuery } from "../../services/profileApis.jsx";
+import { useAllMMQuery } from "../../services/profileApis";
 import { useParams } from 'react-router-dom';
 import {  CircularProgress } from '@mui/material';
 

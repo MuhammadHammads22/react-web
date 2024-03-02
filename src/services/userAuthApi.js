@@ -2,9 +2,12 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 // Define a service using a base URL and expected endpoints
 export const userAuthApi = createApi({
+  
   reducerPath: 'userAuthApi',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://127.0.0.1:8000/user/' }),
+  
   endpoints: (builder) => ({
+  
     registerUser: builder.mutation({
       query: (user) => {
         console.log('user', user)
@@ -18,6 +21,7 @@ export const userAuthApi = createApi({
         }
       }
     }),
+
     loginUser: builder.mutation({
       query: (user) => {
         return {
@@ -32,18 +36,18 @@ export const userAuthApi = createApi({
     }),
 
     refreshToken: builder.mutation({
-      query:(access_token)=>{
+      query:(refresh_token)=>{
         return{
           url: "refresh/",
           method: "POST",
-          body: access_token,
+          body: refresh_token,
           headers:{
             'Content-type':'application/json'
           }
         }
       }
     }),
-
+    
     getLoggedUser: builder.query({
       query: () => {
         return {
@@ -55,6 +59,7 @@ export const userAuthApi = createApi({
         }
       }
     }),
+
     changeUserPassword: builder.mutation({
       query: ({ actualData, access_token }) => {
         return {
@@ -67,6 +72,7 @@ export const userAuthApi = createApi({
         }
       }
     }),
+
     sendPasswordResetEmail: builder.mutation({
       query: (user) => {
         return {
@@ -79,6 +85,7 @@ export const userAuthApi = createApi({
         }
       }
     }),
+    
     resetPassword: builder.mutation({
       query: ({ actualData, id, token }) => {
         return {
@@ -91,6 +98,7 @@ export const userAuthApi = createApi({
         }
       }
     }),
+
   }),
 })
 

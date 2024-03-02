@@ -93,14 +93,7 @@ export const profileApis = createApi({
         }
       }
     }),
-
-
-
-
-
-
   })
-
 });
 
 export const { useProfileQuery, useAllOrgsQuery, useAllProfilesQuery, useAllFollowersQuery, useAllFollowingQuery, useAllMMQuery, useNearMeQuery } = profileApis;
