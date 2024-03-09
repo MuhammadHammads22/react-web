@@ -1,19 +1,19 @@
 import React from 'react'
 import {getToken, removeToken} from '../../services/LocalStorageService';
 import { useGetFamHistoryQuery } from '../../services/famApis';
-import PostCard from '../../components/shared/postCard';
 
+import FamCard from '../components/fam-card';
 
 const FamHistory = () => {
   const {access_token} = getToken();
   const {data, isSuccess} = useGetFamHistoryQuery();
 
   return (
-    <div>
+    <div className='flex-col items-center size-70'>
       {isSuccess && data && (
         <>
           {data.map((post)=>(
-            <PostCard key={post.id} post={post}/>
+            <FamCard key={post.id} post={post}/>
           ))}
         </>
       )}

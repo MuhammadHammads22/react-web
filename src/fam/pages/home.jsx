@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getToken, removeToken, storeToken } from '../../services/LocalStorageService';
 import { useGetFamListQuery } from '../../services/famApis';
-import PostCard from '../../components/shared/postCard';
+import FamCard from '../components/fam-card';
 import { useRefreshTokenMutation } from '../../services/userAuthApi';
 
 const FAMHome = () => {
@@ -36,11 +36,12 @@ const FAMHome = () => {
 
   return (
     <>
-      <div>
+  <div className='flex-col items-center size-70'>
+
           {isSuccess && data && (
             <>
               {data.map((post) => (
-                <PostCard key={post.id} post={post}/>
+                <FamCard key={post.id} post={post}/>
               ))}
             </>
           )}

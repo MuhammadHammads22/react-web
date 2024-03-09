@@ -1,5 +1,5 @@
 import React from 'react';
-import PostCard from '../../components/shared/postCard';
+import FamCard from '../components/fam-card';
 import {getToken, removeToken} from '../../services/LocalStorageService';
 import { useGetFamSatisfiedQuery } from '../../services/famApis';
 
@@ -9,11 +9,11 @@ const FamSatisfied = () => {
   
 
   return (
-    <div>
+    <div className='flex-col items-center size-70'>
       {isSuccess && data && (
         <>
           {data.map((post)=>(
-            <PostCard key={post.id} post={post} />
+            <FamCard key={post.id} post={post} />
           ))}
         </>
       )}
