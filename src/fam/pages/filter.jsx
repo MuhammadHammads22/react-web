@@ -1,4 +1,3 @@
-import FamCard from '../components/fam-card';
 import React from 'react'
 
 const FamFilter = () => {

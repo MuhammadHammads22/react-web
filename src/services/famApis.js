@@ -65,8 +65,21 @@ export const famApis = createApi({
       },
     }),
 
+    getFamDetail: builder.query({
+      query: (postID) => {
+        return {
+          url: `detail/${postID}`,
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('access_token') }`,
+          }
+        }
+      },
+    }),
+
+
   }),
 })
 
-export const { useGetFamListQuery, useGetFamHistoryQuery, useGetFamSatisfiedQuery, useGetFamSavesQuery } = famApis
+export const { useGetFamListQuery, useGetFamHistoryQuery, useGetFamSatisfiedQuery, useGetFamSavesQuery, useGetFamDetailQuery } = famApis
 

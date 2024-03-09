@@ -18,6 +18,7 @@ import FamHistory from "./fam/pages/history.jsx";
 import FamSatisfied from "./fam/pages/satisfied.jsx";
 import FamSaves from "./fam/pages/saves.jsx";
 import FamFilter from "./fam/pages/filter.jsx";
+import FamDetailView from "./fam/components/fam-detail-view.jsx"; 
 
 //Org Pages
 import OrgHome from "./org/pages/home.jsx";
@@ -64,6 +65,7 @@ function App() {
             <Route path="history/" element={<FamHistory />} />
             <Route path="saves/" element={<FamSaves />} />
             <Route path="filters/" element={<FamFilter />} />
+            <Route path="detail/:postId" element={<FamDetailView />} />
           </Route>
 
           <Route path="/org" element={access_token ? <Layout /> : <Navigate to="/login" />}>

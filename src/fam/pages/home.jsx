@@ -36,12 +36,12 @@ const FAMHome = () => {
 
   return (
     <>
-  <div className='flex-col items-center size-70'>
+      <div className='flex-col items-center size-70'>
 
           {isSuccess && data && (
             <>
               {data.map((post) => (
-                <FamCard key={post.id} post={post}/>
+                  <FamCard key={post.id} post={post}/>
               ))}
             </>
           )}
