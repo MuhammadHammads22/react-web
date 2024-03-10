@@ -22,10 +22,10 @@ export const profileApis = createApi({
       }
     }),
 
-    allProfiles: builder.query({
+    Profiles: builder.query({
       query: ()=>{
         return {
-          url: 'allp/',
+          url: 'profiles/',
           method: 'GET',
           headers: {
             Authorization: `Bearer ${localStorage.getItem('access_token')}`, 
@@ -96,4 +96,4 @@ export const profileApis = createApi({
   })
 });
 
-export const { useProfileQuery, useAllOrgsQuery, useAllProfilesQuery, useAllFollowersQuery, useAllFollowingQuery, useAllMMQuery, useNearMeQuery } = profileApis;
+export const { useProfileQuery, useAllOrgsQuery,useAllFollowersQuery, useAllFollowingQuery, useAllMMQuery, useNearMeQuery, useProfilesQuery } = profileApis;

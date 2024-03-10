@@ -1,11 +1,12 @@
 import React from 'react'
-import { useAllProfilesQuery } from '../../services/profileApis'
+import { useProfilesQuery } from '../../services/profileApis'
 import {  CircularProgress } from '@mui/material';
 import ProfileCard from "../components/profileCard.jsx"
 
 
 const AllProfiles = () => {
-  const { data, isSuccess, isLoading, isError, error } = useAllProfilesQuery();
+  
+  const { data, isSuccess, isLoading, isError, error } = useProfilesQuery();
 
   if (isLoading){
     return <div><CircularProgress />Loading...</div>;
@@ -14,13 +15,11 @@ const AllProfiles = () => {
 
   return (
     <div>
-      Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis beatae odit fuga at et excepturi mollitia, consequatur ipsum modi, quaerat laudantium alias ab cumque necessitatibus, praesentium quo veniam porro ipsa?
       {isSuccess && data && (
         <>
-        {data.map((profile)=>{
-          // <ProfileCard key={profile.id} profileObject={profile} />
-          {profile.user.username}
-        })}
+          {data.map((profileObject) => (
+            <ProfileCard key={profileObject.id} profileObject={profileObject}/>
+          ))}
         </>
       )}
     </div>
