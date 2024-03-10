@@ -2,7 +2,7 @@ import React from 'react'
 import { useAllMMQuery } from "../../services/profileApis";
 import { useParams } from 'react-router-dom';
 import {  CircularProgress } from '@mui/material';
-
+import ProfileCard from "../components/profileCard.jsx"
 
 const MasjidMadrasa = () => {
   const { username } = useParams(); // Extract username from URL parameters
@@ -15,12 +15,12 @@ const MasjidMadrasa = () => {
   if (isError) return <div>Error: {error.message}</div>;
 
   return (
-    <div>
-      {username}
-
+    <div className='grid grid-cols-4 gap-4'>
       {isSuccess && data && (
         <>
-          <p>{data.intro}</p>
+          {data.map((profileObject) => (
+            <ProfileCard key={profileObject.id} profileObject={profileObject}/>
+          ))}
         </>
       )}
     </div>

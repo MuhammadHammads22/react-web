@@ -14,7 +14,7 @@ const AllProfiles = () => {
   if (isError) return <div>Error: {error.message}</div>;
 
   return (
-    <div>
+    <div className='grid grid-cols-4 gap-4'>
       {isSuccess && data && (
         <>
           {data.map((profileObject) => (

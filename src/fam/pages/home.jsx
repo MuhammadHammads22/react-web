@@ -3,6 +3,7 @@ import { getToken, removeToken, storeToken } from '../../services/LocalStorageSe
 import { useGetFamListQuery } from '../../services/famApis';
 import FamCard from '../components/fam-card';
 import { useRefreshTokenMutation } from '../../services/userAuthApi';
+import "../assets/css/fam.css"
 
 const FAMHome = () => {
   const [accessToken, setAccessToken] = useState('');
@@ -36,7 +37,7 @@ const FAMHome = () => {
 
   return (
     <>
-      <div className='flex-col items-center size-70'>
+    <div className="flex flex-col items-center fam-posts">
 
           {isSuccess && data && (
             <>

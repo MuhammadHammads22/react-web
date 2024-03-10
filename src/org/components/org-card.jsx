@@ -4,12 +4,12 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import "../assets/css/fam.css";
 
 
-const FamCard = ({ post }) => {
+const OrgCard = ({ post }) => {
   const navigate = useNavigate(); 
   const [username, setUsername] = React.useState('');
 
   const handleClick = () => {
-    navigate(`/fam/detail/${post.id}`);
+    navigate(`/org/detail/${post.id}`);
   };
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const FamCard = ({ post }) => {
   }, [post.creator]);
   
   return (
-<div onClick={handleClick} style={{ cursor: 'pointer' }} className='mb-5 ml-10 mt-5 FamCard'>
+<div onClick={handleClick} style={{ cursor: 'pointer' }} className='mb-5 ml-10 mt-5 OrgCard'>
     <div className='bg-slate-200 border border-gray-400 rounded-lg p-6'>
 
         <div className='grid gap-4'>
@@ -54,4 +54,4 @@ const FamCard = ({ post }) => {
   );
 }
 
-export default FamCard;
+export default OrgCard;

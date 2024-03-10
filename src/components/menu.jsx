@@ -31,7 +31,7 @@ export default function AccountMenu() {
 
 
   const handleProfileClick = () => {
-    const username = 'abuubaida01';
+    const username = '1';
     navigate(`/profiles/${username}`);
   };
 
