@@ -15,7 +15,7 @@ module.exports = {
       padding: '2rem',
       screens: {
         '2xl': '1400px',
-      
+
       },
     },
     extend: {
@@ -36,7 +36,7 @@ module.exports = {
       },
       screens: {
         'xs': '480px',
-      
+
       },
       width: {
         '420': '420px',
@@ -60,7 +60,19 @@ module.exports = {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            p: {
+              marginBottom: '1rem', // Apply mb-4
+            },
+          },
+        },
+      },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [
+    // require('@tailwindcss/typography'), // Include the typography plugin
+    require('tailwindcss-animate'), // Your existing plugins here
+  ],
 };
