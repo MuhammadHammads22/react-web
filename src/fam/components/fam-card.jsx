@@ -9,7 +9,7 @@ const FamCard = ({ post }) => {
   const [username, setUsername] = React.useState('');
 
   const handleClick = () => {
-    navigate(`/fam/detail/${post.id}`);
+    navigate(`/fam/detail/${post.slug}`);
   };
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const FamCard = ({ post }) => {
   }, [post.creator]);
   
   return (
-<div onClick={handleClick} style={{ cursor: 'pointer' }} className='mb-5 ml-10 mt-5 FamCard'>
+<div onClick={handleClick} style={{ cursor: 'pointer' }} className='mb-5 mt-5 FamCard'>
     <div className='bg-slate-200 border border-gray-400 rounded-lg p-6'>
 
         <div className='grid gap-4'>

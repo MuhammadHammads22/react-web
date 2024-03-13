@@ -37,7 +37,7 @@ const FAMHome = () => {
 
   return (
     <>
-    <div className="flex flex-col items-center fam-posts">
+    <div className="flex-col items-center size-70 fam-posts">
 
           {isSuccess && data && (
             <>

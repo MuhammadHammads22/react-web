@@ -26,6 +26,8 @@ import OrgFilters from "./org/pages/filter.jsx";
 import OrgHistory from "./org/pages/history.jsx";
 import OrgSaves from "./org/pages/saves.jsx";
 import OrgSatisfied from "./org/pages/satisfied.jsx";
+import OrgDetailView from "./org/components/org-detail-card.jsx";
+
 
 //profile Pages: 
 import ProfileLayout from "./components/profileLayout.jsx";
@@ -65,7 +67,7 @@ function App() {
             <Route path="history/" element={<FamHistory />} />
             <Route path="saves/" element={<FamSaves />} />
             <Route path="filters/" element={<FamFilter />} />
-            <Route path="detail/:postId" element={<FamDetailView />} />
+            <Route path="detail/:slug" element={<FamDetailView />} />
           </Route>
 
           <Route path="/org" element={access_token ? <Layout /> : <Navigate to="/login" />}>
@@ -74,6 +76,8 @@ function App() {
             <Route path="history/" element={<OrgHistory />} />
             <Route path="saves/" element={<OrgSaves />} />
             <Route path="satisfied/" element={<OrgSatisfied />} />
+            <Route path="detail/:slug" element={<OrgDetailView />} />
+
           </Route>
 
           <Route path="/profiles" element={access_token ? <ProfileLayout /> : <Navigate to="/login" />}>

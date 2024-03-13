@@ -1,21 +1,15 @@
 import { multiFormatDateString } from '../../lib/utils/DateConvertor';
 import React, { useState, useEffect } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import "../assets/css/fam.css";
+import "../assets/css/org.css";
 
 
 const OrgCard = ({ post }) => {
   const navigate = useNavigate(); 
-  const [username, setUsername] = React.useState('');
-
   const handleClick = () => {
-    navigate(`/org/detail/${post.id}`);
+    navigate(`/org/detail/${post.slug}`);
   };
 
-  useEffect(() => {
-    setUsername(post.creator?.user?.username);
-  }, [post.creator]);
-  
   return (
 <div onClick={handleClick} style={{ cursor: 'pointer' }} className='mb-5 ml-10 mt-5 OrgCard'>
     <div className='bg-slate-200 border border-gray-400 rounded-lg p-6'>
@@ -23,7 +17,7 @@ const OrgCard = ({ post }) => {
         <div className='grid gap-4'>
           <div className=''>
             <video className='video-frame-size' controls controlsList="nodownload">
-              <source src={post.seeker_vid} type="video/mp4" />
+              <source src={post.creator_vid} type="video/mp4" />
             </video>
           </div>
         </div>
@@ -31,7 +25,6 @@ const OrgCard = ({ post }) => {
         <div className='flex items-center mb-4'>
           <p className='text-lg font-bold'>{post.id}</p>
           <p className='text-lg font-bold'>{post.creator}</p>
-          <p className='text-lg font-bold'>{username}</p>
           <p className='ml-4 text-gray-600'>Seeker: {post.seeker}</p>
           <p className='ml-4 text-gray-600'>Need: {post.kind}</p>
           <p className='ml-4 text-gray-600'>From: {post.address}</p>

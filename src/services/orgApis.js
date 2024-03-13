@@ -54,9 +54,21 @@ export const orgApis = createApi({
           }
         }
       }
-    })
+    }),
+
+    orgDetailView: builder.query({
+      query: (slug) =>{
+        return {
+          url: `detail/${slug}`,
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('access_token') }`,
+          }
+        }
+      }
+    }),
 
   })
 })
 
-export const { useGetOrgHistoryQuery, useGetOrgListQuery, useGetOrgSatisfiedQuery, useGetOrgSavesQuery } = orgApis
+export const { useGetOrgHistoryQuery, useGetOrgListQuery, useGetOrgSatisfiedQuery, useGetOrgSavesQuery, useOrgDetailViewQuery } = orgApis

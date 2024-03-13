@@ -1,4 +1,4 @@
-.fam-posts{
+.org-posts{
   width: 5em;
   height: 5em;
   align-items: center;
@@ -16,6 +16,6 @@
   margin: 5px;
 }
 
-.FamCard{
+.orgCard{
   width: 500px;
 }
