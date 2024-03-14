@@ -35,15 +35,15 @@ const OrgHome = () => {
 
   return (
     <>
-    <div className="flex-col items-center size-70 fam-posts">
-      {isSuccess && data && (
-        <>
-          {data.map((post) => (
-              <OrgCard key={post.id} post={post}/>
-          ))}
-        </>
-      )}
-    </div>
+      <div className="flex-col items-center size-70 org-posts">
+        {isSuccess && data && (
+          <>
+            {data.map((post) => (
+                <OrgCard key={post.id} post={post}/>
+            ))}
+          </>
+        )}
+      </div>
     </>
   )
 }

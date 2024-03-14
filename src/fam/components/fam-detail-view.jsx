@@ -7,9 +7,9 @@ import { multiFormatDateString } from '../../lib/utils/DateConvertor';
 
 const FamDetailView = () => {
 
-  const { postId } = useParams(); // Extract username from URL parameters
+  const { slug } = useParams(); // Extract username from URL parameters
 
-  const { data, isSuccess, isError, error, isLoading } = useGetFamDetailQuery(postId);
+  const { data, isSuccess, isError, error, isLoading } = useGetFamDetailQuery(slug);
 
   if (isLoading){
     return <div><CircularProgress />Loading...</div>;

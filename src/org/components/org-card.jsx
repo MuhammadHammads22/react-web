@@ -11,13 +11,13 @@ const OrgCard = ({ post }) => {
   };
 
   return (
-<div onClick={handleClick} style={{ cursor: 'pointer' }} className='mb-5 ml-10 mt-5 OrgCard'>
+  <div onClick={handleClick} style={{ cursor: 'pointer' }} className='mb-5 ml-10 mt-5 OrgCard'>
     <div className='bg-slate-200 border border-gray-400 rounded-lg p-6'>
 
         <div className='grid gap-4'>
           <div className=''>
             <video className='video-frame-size' controls controlsList="nodownload">
-              <source src={post.creator_vid} type="video/mp4" />
+              <source src={post.org_vid} type="video/mp4" />
             </video>
           </div>
         </div>
@@ -25,7 +25,7 @@ const OrgCard = ({ post }) => {
         <div className='flex items-center mb-4'>
           <p className='text-lg font-bold'>{post.id}</p>
           <p className='text-lg font-bold'>{post.creator}</p>
-          <p className='ml-4 text-gray-600'>Seeker: {post.seeker}</p>
+          <p className='ml-4 text-gray-600'>org_name: {post.org_name}</p>
           <p className='ml-4 text-gray-600'>Need: {post.kind}</p>
           <p className='ml-4 text-gray-600'>From: {post.address}</p>
           <p className='ml-4 text-gray-600'>Satisfied: {post.satisfied} No</p>

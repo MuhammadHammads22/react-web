@@ -6,18 +6,14 @@ import "../assets/css/fam.css";
 
 const FamCard = ({ post }) => {
   const navigate = useNavigate(); 
-  const [username, setUsername] = React.useState('');
 
   const handleClick = () => {
     navigate(`/fam/detail/${post.slug}`);
   };
 
-  useEffect(() => {
-    setUsername(post.creator?.user?.username);
-  }, [post.creator]);
   
   return (
-<div onClick={handleClick} style={{ cursor: 'pointer' }} className='mb-5 mt-5 FamCard'>
+    <div onClick={handleClick} style={{ cursor: 'pointer' }} className='mb-5 mt-5 FamCard'>
     <div className='bg-slate-200 border border-gray-400 rounded-lg p-6'>
 
         <div className='grid gap-4'>
@@ -31,7 +27,6 @@ const FamCard = ({ post }) => {
         <div className='flex items-center mb-4'>
           <p className='text-lg font-bold'>{post.id}</p>
           <p className='text-lg font-bold'>{post.creator}</p>
-          <p className='text-lg font-bold'>{username}</p>
           <p className='ml-4 text-gray-600'>Seeker: {post.seeker}</p>
           <p className='ml-4 text-gray-600'>Need: {post.kind}</p>
           <p className='ml-4 text-gray-600'>From: {post.address}</p>

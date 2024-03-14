@@ -1,7 +1,4 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { handleTokenRefresh } from './LocalStorageService';
-import { useRefreshTokenMutation, userAuthApi } from './userAuthApi';
-import { getToken, storeToken } from "./LocalStorageService";
 
 
 // Define a service using a base URL and expected endpoints
@@ -22,10 +19,6 @@ export const famApis = createApi({
             'Authorization': `Bearer ${localStorage.getItem('access_token') }`,
           }
         }
-      },
-      
-      onError: async (error) => {
-        console.log("get error")
       },
     }),
 
@@ -66,9 +59,9 @@ export const famApis = createApi({
     }),
 
     getFamDetail: builder.query({
-      query: (postID) => {
+      query: (slug) => {
         return {
-          url: `detail/${postID}`,
+          url: `detail/${slug}`,
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('access_token') }`,

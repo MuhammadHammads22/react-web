@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { getToken } from '../../services/LocalStorageService';
 import { useGetOrgHistoryQuery } from '../../services/orgApis';
 import { useRefreshTokenMutation } from '../../services/userAuthApi';
-import PostCard from '../../components/shared/postCard';
+import OrgCard from '../components/org-card';
 
 
 const OrgHistory = () => {
@@ -34,15 +34,17 @@ const OrgHistory = () => {
   }
 
   return (
-    <div>
-      {isSuccess && data &&(
-        <>
-          {data.map((post)=>(
-            <PostCard key={post.id} post={post} />
-          ))}
-        </>
-      )}
-    </div>
+    <>
+      <div className="flex-col items-center size-70 org-posts">
+        {isSuccess && data && (
+          <>
+            {data.map((post) => (
+                <OrgCard key={post.id} post={post}/>
+            ))}
+          </>
+        )}
+      </div>
+    </>
   )
 }
 
