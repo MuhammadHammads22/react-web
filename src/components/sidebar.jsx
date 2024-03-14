@@ -1,7 +1,7 @@
 // Sidebar.jsx
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import "./sidebar.module.css";
+import "./sidebar.css";
 
 
 const Sidebar = () => {
@@ -31,39 +31,33 @@ const Sidebar = () => {
 
 
   return (
-    <div className="sidebar-dev">
+    <div className={`sidebar-dev ${darkMode}`}>
       <ul className="list-none p-4">
         <Link to={`${appPrefix}`}>
-          <li className="text-xl py-4 my-2 hover:bg-slate-800 font-bold text-center text-yellow-300 bg-slate-700 rounded-lg">
+          <li className="text-xl hover:bg-slate-800 font-bold text-center text-yellow-300">
             Home
           </li>
         </Link>
-
         <Link to={`${appPrefix}/satisfied`}>
-          <li className="text-xl py-4 my-2 hover:bg-slate-800 font-bold text-center text-yellow-300 bg-slate-700 rounded-lg">
+          <li className="text-xl py-4 my-2 hover:bg-slate-800 font-bold text-center text-yellow-300">
             Satisfied People
           </li>
         </Link>
-
         <Link to={`${appPrefix}/saves`}>
-          <li className="text-xl py-4 my-2 hover:bg-slate-800 font-bold text-center text-yellow-300 bg-slate-700 rounded-lg">
+          <li className="text-xl py-4 my-2 hover:bg-slate-800 font-bold text-center text-yellow-300">
             Save Posts
           </li>
         </Link>
-
         <Link to={`${appPrefix}/history`}>
-          <li className="text-xl py-4 my-2 hover:bg-slate-800 font-bold text-center text-yellow-300 bg-slate-700 rounded-lg">
+          <li className="text-xl py-4 my-2 hover:bg-slate-800 font-bold text-center text-yellow-300">
             History
           </li>
         </Link>
-
-        
         <Link to={`${appPrefix}/filters`}>
-          <li className="text-xl py-4 my-2 hover:bg-slate-800 font-bold text-center text-yellow-300 bg-slate-700 rounded-lg">
+          <li className="text-xl py-4 my-2 hover:bg-slate-800 font-bold text-center text-yellow-300">
             Filter Posts
           </li>
         </Link>
-
         <li className="text-xl py-4 my-2 hover:bg-slate-800 font-bold text-center text-yellow-300 bg-slate-700 rounded-lg">
           <button onClick={() => {
             setDarkMode(!darkMode)
@@ -71,9 +65,7 @@ const Sidebar = () => {
             {!darkMode ? "Light" : "Dark"} Mode
           </button>
         </li>
-
       </ul>
-
     </div>
   );
 };

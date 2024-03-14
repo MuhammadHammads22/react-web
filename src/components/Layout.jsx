@@ -1,22 +1,23 @@
 
-import { CssBaseline } from "@mui/material";
 import { Outlet } from "react-router-dom";
 import Navbar from "./Navbar";
 import Sidebar from "./sidebar";
-import styles from './Layout.module.css'; // Import CSS module
+import './layout.css'; // Import CSS module
 
 const Layout = () => {
   return (
     <div >
-      <CssBaseline />
       <Navbar />
-      <div className={styles.flex}> 
-        <div className={styles.sidebar}>
+      <div className='flex '> 
+        
+        <div className='sidebar'>
           <Sidebar />
         </div>
-        <div className={styles.content}> 
+
+        <div className='content'> 
           <Outlet />
         </div>
+
       </div>
     </div>
   );
