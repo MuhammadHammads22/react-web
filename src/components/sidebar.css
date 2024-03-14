@@ -1,0 +1,30 @@
+.sidebar-dev {
+  height: 100vh; /* Full viewport height */
+  position: fixed; /* Fixed positioning */
+  left: 0; /* Positioned at the left edge */
+  top: 0; /* Positioned at the top */
+  width: 200px; /* Adjust width as needed */
+  background-color: #2d3740; /* Adjust background color */
+  color: #fff; /* Adjust text color */
+  transition: background-color 0.3s ease-in-out; /* Smooth color transition */
+}
+
+.sidebar-dev.dark {
+  background-color: #1a2027; /* Dark mode background color */
+}
+
+.list-none {
+  padding: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+}
+
+.list-none li {
+  list-style-type: none; /* Remove bullet points */
+  margin-bottom: 10px; /* Add spacing between list items */
+}
+
+.list-none li a {
+  text-decoration: none; /* Remove link underline */
+  color: inherit; /* Inherit text color from parent */
+}
+

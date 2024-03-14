@@ -1,0 +1,7 @@
+.flex {
+  display: flex;
+}
+
+.sidebar {
+  width: 250px; /* Set the width of the sidebar */
+}
