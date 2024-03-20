@@ -2,18 +2,18 @@ import { CssBaseline } from "@mui/material";
 import { Outlet } from "react-router-dom";
 import Navbar from "./Navbar";
 import ProfileSidebar from "./ProfileSidebar";
-import styles from './Layout.module.css'; // Import CSS module
+import './layout.css'; // Import CSS module
 
 const ProfileLayout = () => {
   return (
     <div >
       <CssBaseline />
       <Navbar />
-      <div className={styles.flex}> 
-        <div className={styles.sidebar}>
+      <div className='flex'> 
+        <div className='sidebar'>
           <ProfileSidebar /> 
         </div>
-        <div className={styles.content}> 
+        <div className='content'> 
           <Outlet />
         </div>
       </div>
