@@ -7,7 +7,6 @@ import './layout.css'; // Import CSS module
 const ProfileLayout = () => {
   return (
     <div >
-      <CssBaseline />
       <Navbar />
       <div className='flex'> 
         <div className='sidebar'>

@@ -7,7 +7,6 @@ import  './layout.css'; // Import CSS module
 const AuthLayout = () => {
   return (
     <div >
-      <CssBaseline />
       <Navbar />
       <div className='flex'> 
         <div className='content'> 
