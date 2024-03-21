@@ -34,7 +34,7 @@ const Sidebar = () => {
     <div className={`sidebar-dev ${darkMode}`}>
       <ul className="list-none p-4">
         <Link to={`${appPrefix}`}>
-          <li className="text-xl hover:bg-slate-800 font-bold text-center text-yellow-300">
+          <li className="text-xl py-4 my-2 hover:bg-slate-800 font-bold text-center text-yellow-300">
             Home
           </li>
         </Link>

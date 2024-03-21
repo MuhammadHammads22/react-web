@@ -8,7 +8,7 @@ const Navbar = () => {
   const { access_token } = getToken()
   return <>
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" color="info">
+    <AppBar position="fixed" color="info" style={{ backgroundColor: '#2d3740'}}>
         <Toolbar>
           <Typography variant='h5' component="div" sx={{ flexGrow: 1 }}>AdaZakat</Typography>
 
