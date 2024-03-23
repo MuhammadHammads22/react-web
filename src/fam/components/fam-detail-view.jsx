@@ -18,7 +18,7 @@ const FamDetailView = () => {
 
   return (
     
-    <div className='border border-gray-400 rounded-lg p-6 mb-6 mr-10 mt-10 ml-10'>
+    <div className='border rounded-lg p-6 mb-6 mr-10 mt-10 ml-10'>
       <div className='flex items-center mb-4'>
         <p className='text-lg font-bold'>{data.creator}</p>
         <p className='ml-4 text-gray-600'>Seeker: {data.seeker}</p>

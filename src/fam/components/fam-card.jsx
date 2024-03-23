@@ -1,49 +1,89 @@
 import { multiFormatDateString } from '../../lib/utils/DateConvertor';
 import React, { useState, useEffect } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import "../assets/css/fam.css";
+
+import { BiUpvote } from "react-icons/bi";
+import { BiDownvote } from "react-icons/bi";
+import { GoReport } from "react-icons/go";
+import { FcDonate } from "react-icons/fc";
+
+import PopupComponent from './PopupComponent';
 
 
 const FamCard = ({ post }) => {
+  
   const navigate = useNavigate(); 
+  
+  const [showDonorPopup, setShowDonorPopup] = useState(false);
+  const [showReportPopup, setShowReportPopup] = useState(false);
+
 
   const handleClick = () => {
     navigate(`/fam/detail/${post.slug}`);
   };
 
-  
+  const toggleDonorsPopup = (e) => {
+    e.stopPropagation(); 
+    setShowDonorPopup(!showDonorPopup);
+  };
+
+  const toggleReportPopup = (e) => {
+    e.stopPropagation(); 
+    setShowReportPopup(!showReportPopup);
+  };
+
   return (
     <div onClick={handleClick} style={{ cursor: 'pointer' }} className='mb-5 mt-5 FamCard'>
-    <div className='bg-slate-200 border border-gray-400 rounded-lg p-6'>
+      <div className='border border-gray-400 rounded-lg p-6'>
 
         <div className='grid gap-4'>
-          <div className=''>
+          <div>
             <video className='video-frame-size' controls controlsList="nodownload">
               <source src={post.seeker_vid} type="video/mp4" />
             </video>
           </div>
         </div>
 
-        <div className='flex items-center mb-4'>
-          <p className='text-lg font-bold'>{post.id}</p>
-          <p className='text-lg font-bold'>{post.creator}</p>
-          <p className='ml-4 text-gray-600'>Seeker: {post.seeker}</p>
-          <p className='ml-4 text-gray-600'>Need: {post.kind}</p>
-          <p className='ml-4 text-gray-600'>From: {post.address}</p>
-          <p className='ml-4 text-gray-600'>Satisfied: {post.satisfied} No</p>
-          <p className='ml-4 text-gray-600'>verified: {post.verified}%</p>
-          <p className='ml-4 text-gray-600'>Without House: {post.without_house}yes</p>
-          <p className='ml-auto text-gray-600'>{multiFormatDateString(post.created)}</p>
-        </div>
+        <div className='flex justify-between py-4'>
+          <div className='flex'>
+            <Link className='icon-container' rel="stylesheet" href="">
+              <BiUpvote className='text-xl'></BiUpvote>
+              <p className='text-xs font-bold text-blue-500'>{post.upvote}</p>
+            </Link>
+            <Link className='icon-container' rel="stylesheet" href="">
+              <BiDownvote className='text-xl'></BiDownvote>
+              <p className='text-xs font-bold text-blue-500'>{post.downvote}</p>
+            </Link>
+          </div>
 
-        <div className='mt-4'>
-          <div className='flex flex-col'>
-            <p className='text-gray-600'>Donors Count: {post.donor}</p>
-            <p className='ml-4 text-gray-600'>Reports Count: {post.reported}</p>
-            <p className='ml-4 text-gray-600'>Total upvote So Far: {post.upvote}</p>
-            <p className='ml-4 text-gray-600'>Total downvote So Far: {post.downvote}</p>
+          <div className='flex'>
+            <a className='float-right m-2 border border-gray-400 p-1' onClick={toggleDonorsPopup}>
+              <p className='text-sm rounded-full'>Donors {Object.keys(post.donor).length}</p>
+            </a>
+
+            <button className='float-right m-2 border border-gray-400 p-1' onClick={toggleReportPopup}>
+              <p className='text-sm rounded-full'>Reports {Object.keys(post.reported).length}</p>
+            </button>
           </div>
         </div>
+
+        {showDonorPopup && ( 
+          <PopupComponent 
+            title="Donors" 
+            items={Object.keys(post.donor)} 
+            onClose={toggleDonorsPopup} 
+          />
+        )}
+
+        {showReportPopup && (
+          <PopupComponent 
+            title="Reports" 
+            items={Object.keys(post.reported)} 
+            onClose={toggleReportPopup} 
+          />
+        )}
+        
       </div>
     </div>
   );

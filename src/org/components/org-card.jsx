@@ -12,7 +12,7 @@ const OrgCard = ({ post }) => {
 
   return (
   <div onClick={handleClick} style={{ cursor: 'pointer' }} className='mb-5 ml-10 mt-5 OrgCard'>
-    <div className='bg-slate-200 border border-gray-400 rounded-lg p-6'>
+    <div className='border border-gray-400 rounded-lg p-6'>
 
         <div className='grid gap-4'>
           <div className=''>
