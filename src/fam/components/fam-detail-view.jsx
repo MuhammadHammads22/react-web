@@ -3,6 +3,11 @@ import { useGetFamDetailQuery } from '../../services/famApis';
 import { useParams } from 'react-router-dom';
 import {  CircularProgress } from '@mui/material';
 import { multiFormatDateString } from '../../lib/utils/DateConvertor';
+import "../assets/css/fam.css";
+import { Link } from 'react-router-dom';
+
+import { BiUpvote } from "react-icons/bi";
+import { BiDownvote } from "react-icons/bi";
 
 
 const FamDetailView = () => {
@@ -18,7 +23,7 @@ const FamDetailView = () => {
 
   return (
     
-    <div className='border rounded-lg p-6 mb-6 mr-10 mt-10 ml-10'>
+    <div className='PostDetailView'>
       <div className='flex items-center mb-4'>
         <p className='text-lg font-bold'>{data.creator}</p>
         <p className='ml-4 text-gray-600'>Seeker: {data.seeker}</p>
@@ -32,16 +37,36 @@ const FamDetailView = () => {
 
       <div className='grid grid-cols-2 gap-4'>
         <div className=''>
-            <video className='w-full h-auto size-100' controls>
+            <video className='detail-video-size' controls controlsList="nodownload">
               <source src={data.seeker_vid} type="video/mp4" />
             </video>
         </div>
 
         <div className=''>
-          <video className='w-full h-auto size-100' controls>
-            <source src={data.house_vid} type="video/mp4" />
-          </video>
+            <video className='detail-video-size' controls controlsList="nodownload">
+              <source src={data.seeker_vid} type="video/mp4" />
+            </video>
         </div>
+      </div>
+
+      <div className='flex justify-between py-4'>
+        
+        <div className='flex'>
+          <Link className='icon-container' rel="stylesheet" href="">
+            <BiUpvote className='text-xl'></BiUpvote>
+            <p className='text-xs font-bold text-blue-500'>{data.upvote}</p>
+          </Link>
+          <Link className='icon-container' rel="stylesheet" href="">
+            <BiDownvote className='text-xl'></BiDownvote>
+            <p className='text-xs font-bold text-blue-500'>{data.downvote}</p>
+          </Link>
+        </div>
+
+        <div className='flex'>
+          <p className='text-sm rounded-full'>Donors {Object.keys(data.donor).length}</p>
+          <p className='text-sm rounded-full'>Reports {Object.keys(data.reported).length}</p>
+        </div>
+
       </div>
 
       <div className='mt-4'>
