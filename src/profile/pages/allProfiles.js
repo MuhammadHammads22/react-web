@@ -1,14 +1,12 @@
 import React from 'react'
-import {useAllFollowersQuery} from "../../services/profileApis";
-import { useParams } from 'react-router-dom';
+import { useProfilesQuery } from '../../services/profileApis.js'
 import {  CircularProgress } from '@mui/material';
-import ProfileCard from "../components/profileCard.jsx"
+import ProfileCard from "../components/profileCard.js"
 
 
-const Followers = () => {
-  const { username } = useParams(); // Extract username from URL parameters
-
-  const { data, isSuccess, isError, error, isLoading } = useAllFollowersQuery(username);
+const AllProfiles = () => {
+  
+  const { data, isSuccess, isLoading, isError, error } = useProfilesQuery();
 
   if (isLoading){
     return <div><CircularProgress />Loading...</div>;
@@ -25,8 +23,7 @@ const Followers = () => {
         </>
       )}
     </div>
-  );
-};
+  )
+}
 
-
-export default Followers
+export default AllProfiles

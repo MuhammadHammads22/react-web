@@ -1,13 +1,13 @@
 import React from 'react'
-import {useNearMeQuery} from "../../services/profileApis";
+import {useAllFollowingQuery} from "../../services/profileApis.js"
 import { useParams } from 'react-router-dom';
 import {  CircularProgress } from '@mui/material';
-import ProfileCard from "../components/profileCard.jsx"
+import ProfileCard from "../components/profileCard.js"
 
-const NearMe = () => {
+const Following = () => {
   const { username } = useParams(); // Extract username from URL parameters
 
-  const { data, isSuccess, isError, error, isLoading } = useNearMeQuery(username);
+  const { data, isSuccess, isError, error, isLoading } = useAllFollowingQuery(username);
 
   if (isLoading){
     return <div><CircularProgress />Loading...</div>;
@@ -15,7 +15,7 @@ const NearMe = () => {
   if (isError) return <div>Error: {error.message}</div>;
 
   return (
-<div className='grid grid-cols-4 gap-4'>
+    <div className='grid grid-cols-4 gap-4'>
       {isSuccess && data && (
         <>
           {data.map((profileObject) => (
@@ -27,5 +27,4 @@ const NearMe = () => {
   );
 };
 
-
-export default NearMe
+export default Following

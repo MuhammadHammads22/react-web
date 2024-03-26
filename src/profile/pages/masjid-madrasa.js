@@ -1,13 +1,13 @@
 import React from 'react'
-import {useAllFollowingQuery} from "../../services/profileApis"
+import { useAllMMQuery } from "../../services/profileApis.js";
 import { useParams } from 'react-router-dom';
 import {  CircularProgress } from '@mui/material';
-import ProfileCard from "../components/profileCard.jsx"
+import ProfileCard from "../components/profileCard.js"
 
-const Following = () => {
+const MasjidMadrasa = () => {
   const { username } = useParams(); // Extract username from URL parameters
 
-  const { data, isSuccess, isError, error, isLoading } = useAllFollowingQuery(username);
+  const { data, isSuccess, isError, error, isLoading } = useAllMMQuery();
 
   if (isLoading){
     return <div><CircularProgress />Loading...</div>;
@@ -27,4 +27,5 @@ const Following = () => {
   );
 };
 
-export default Following
+
+export default MasjidMadrasa

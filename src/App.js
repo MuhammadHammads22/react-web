@@ -3,41 +3,41 @@ import LoginReg from "./auth/LoginReg";
 import ResetPassword from "./auth/ResetPassword";
 import SendPasswordResetEmail from "./auth/SendPasswordResetEmail";
 import PrivacyPolicy from "./auth/privacy_policy";
-import TermsAndConditions from "./auth/terms&conditions.jsx";
+import TermsAndConditions from "./auth/terms&conditions.js";
 
-import Layout from "./components/Layout.jsx";
-import AuthLayout from "./components/authLayout.jsx";
-import VerifyEmail from "./auth/verifyEmail.jsx";
+import Layout from "./components/Layout.js";
+import AuthLayout from "./components/authLayout.js";
+import VerifyEmail from "./auth/verifyEmail.js";
 import { useSelector } from "react-redux";
-import ChangePassword from "./auth/ChangePassword.jsx";
-import Settings from "./auth/settings.jsx";
+import ChangePassword from "./auth/ChangePassword.js";
+import Settings from "./auth/settings.js";
 
 // Fam Pages 
-import FAMHome from "./fam/pages/home.jsx";
-import FamHistory from "./fam/pages/history.jsx";
-import FamSatisfied from "./fam/pages/satisfied.jsx";
-import FamSaves from "./fam/pages/saves.jsx";
-import FamFilter from "./fam/pages/filter.jsx";
-import FamDetailView from "./fam/components/fam-detail-view.jsx"; 
+import FAMHome from "./fam/pages/home.js";
+import FamHistory from "./fam/pages/history.js";
+import FamSatisfied from "./fam/pages/satisfied.js";
+import FamSaves from "./fam/pages/saves.js";
+import FamFilter from "./fam/pages/filter.js";
+import FamDetailView from "./fam/components/fam-detail-view.js"; 
 
 //Org Pages
-import OrgHome from "./org/pages/home.jsx";
-import OrgFilters from "./org/pages/filter.jsx";
-import OrgHistory from "./org/pages/history.jsx";
-import OrgSaves from "./org/pages/saves.jsx";
-import OrgSatisfied from "./org/pages/satisfied.jsx";
-import OrgDetailView from "./org/components/org-detail-card.jsx";
+import OrgHome from "./org/pages/home.js";
+import OrgFilters from "./org/pages/filter.js";
+import OrgHistory from "./org/pages/history.js";
+import OrgSaves from "./org/pages/saves.js";
+import OrgSatisfied from "./org/pages/satisfied.js";
+import OrgDetailView from "./org/components/org-detail-card.js";
 
 
 //profile Pages: 
-import ProfileLayout from "./components/profileLayout.jsx";
-import ProfileDetail from "./profile/pages/profile.jsx";
-import AllProfiles from "./profile/pages/allProfiles.jsx";
-import AllOrgs from "./profile/pages/allOrgs.jsx";
-import NearMe from "./profile/pages/near-me.jsx";
-import MasjidMadrasa from "./profile/pages/masjid-madrasa.jsx";
-import Following from "./profile/pages/following.jsx";
-import Followers from "./profile/pages/followers.jsx";
+import ProfileLayout from "./components/profileLayout.js";
+import ProfileDetail from "./profile/pages/profile.js";
+import AllProfiles from "./profile/pages/allProfiles.js";
+import AllOrgs from "./profile/pages/allOrgs.js";
+import NearMe from "./profile/pages/near-me.js";
+import MasjidMadrasa from "./profile/pages/masjid-madrasa.js";
+import Following from "./profile/pages/following.js";
+import Followers from "./profile/pages/followers.js";
 
 
 import "./globals.css";

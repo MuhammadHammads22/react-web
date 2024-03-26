@@ -1,12 +1,13 @@
 import React from 'react'
-import { useProfilesQuery } from '../../services/profileApis'
+import {useNearMeQuery} from "../../services/profileApis.js";
+import { useParams } from 'react-router-dom';
 import {  CircularProgress } from '@mui/material';
-import ProfileCard from "../components/profileCard.jsx"
+import ProfileCard from "../components/profileCard.js"
 
+const NearMe = () => {
+  const { username } = useParams(); // Extract username from URL parameters
 
-const AllProfiles = () => {
-  
-  const { data, isSuccess, isLoading, isError, error } = useProfilesQuery();
+  const { data, isSuccess, isError, error, isLoading } = useNearMeQuery(username);
 
   if (isLoading){
     return <div><CircularProgress />Loading...</div>;
@@ -14,7 +15,7 @@ const AllProfiles = () => {
   if (isError) return <div>Error: {error.message}</div>;
 
   return (
-    <div className='grid grid-cols-4 gap-4'>
+<div className='grid grid-cols-4 gap-4'>
       {isSuccess && data && (
         <>
           {data.map((profileObject) => (
@@ -23,7 +24,8 @@ const AllProfiles = () => {
         </>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default AllProfiles
+
+export default NearMe

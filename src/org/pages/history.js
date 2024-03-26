@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { getToken } from '../../services/LocalStorageService';
 import { useGetOrgHistoryQuery } from '../../services/orgApis';
-import { useRefreshTokenMutation } from '../../services/userAuthApi';
 import OrgCard from '../components/org-card';
 
 
@@ -17,21 +16,6 @@ const OrgHistory = () => {
 
   const { data, isSuccess, isFetching, isError, error, refetch } = useGetOrgHistoryQuery()
 
-  useEffect(()=>{
-    if(isError && error.status===401){
-      refreshAccessToken();
-    }
-  }, [isError]);
-
-  const refreshAccessToken = async()=>{
-    try{
-      const {data, isSuccess, isFetching, isError, error, refetch } = useRefreshTokenMutation(accessToken);
-      storeToken({ access_token: data.access_token });
-      setAccessToken( data.access_token );
-    } catch (error){
-      console.error("Failed to refresh access token:", error);
-    }
-  }
 
   return (
     <>

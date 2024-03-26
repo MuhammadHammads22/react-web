@@ -1,8 +1,8 @@
 import React from 'react';
-import App from './App.jsx';
-import reportWebVitals from './reportWebVitals.jsx';
+import App from './App.js';
+import reportWebVitals from './reportWebVitals.js';
 import { Provider } from 'react-redux'
-import { store } from './app/store.jsx'
+import { store } from './app/store.js'
 import { createRoot } from 'react-dom/client';
 
 

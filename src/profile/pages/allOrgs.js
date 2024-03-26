@@ -1,6 +1,6 @@
 import React from 'react'
-import { useAllOrgsQuery } from '../../services/profileApis';
-import ProfileCard from "../components/profileCard.jsx"
+import { useAllOrgsQuery } from '../../services/profileApis.js';
+import ProfileCard from "../components/profileCard.js"
 
 import { useParams } from 'react-router-dom';
 import {  CircularProgress } from '@mui/material';
