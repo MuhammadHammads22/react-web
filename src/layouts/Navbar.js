@@ -1,7 +1,7 @@
 import { AppBar, Box, Toolbar, Typography, Button } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import { getToken } from '../services/LocalStorageService';
-import LogoutButton from '../auth/Logout_btn';
+import LogoutButton from '../main/authPages/Logout_btn';
 import AccountMenu from './menu';
 
 const Navbar = () => {

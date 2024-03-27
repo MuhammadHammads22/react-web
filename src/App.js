@@ -1,16 +1,16 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import LoginReg from "./auth/LoginReg";
-import ResetPassword from "./auth/ResetPassword";
-import SendPasswordResetEmail from "./auth/SendPasswordResetEmail";
-import PrivacyPolicy from "./auth/privacy_policy";
-import TermsAndConditions from "./auth/terms&conditions.js";
+import LoginReg from "./main/authPages/LoginReg.js";
+import ResetPassword from "./main/authPages/ResetPassword.js";
+import SendPasswordResetEmail from "./main/authPages/SendPasswordResetEmail.js";
+import PrivacyPolicy from "./main/policyPages/privacy_policy.js";
+import TermsAndConditions from "./main/policyPages/terms&conditions.js";
 
-import Layout from "./components/Layout.js";
-import AuthLayout from "./components/authLayout.js";
-import VerifyEmail from "./auth/verifyEmail.js";
+import Layout from "./layouts/Layout.js";
+import AuthLayout from "./layouts/authLayout.js";
+import VerifyEmail from "./main/authPages/verifyEmail.js";
 import { useSelector } from "react-redux";
-import ChangePassword from "./auth/ChangePassword.js";
-import Settings from "./auth/settings.js";
+import ChangePassword from "./main/authPages/ChangePassword.js";
+import Settings from "./main/settings.js";
 
 // Fam Pages 
 import FAMHome from "./fam/pages/home.js";
@@ -30,7 +30,7 @@ import OrgDetailView from "./org/components/org-detail-card.js";
 
 
 //profile Pages: 
-import ProfileLayout from "./components/profileLayout.js";
+import ProfileLayout from "./layouts/profileLayout.js";
 import ProfileDetail from "./profile/pages/profile.js";
 import AllProfiles from "./profile/pages/allProfiles.js";
 import AllOrgs from "./profile/pages/allOrgs.js";

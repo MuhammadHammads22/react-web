@@ -2,9 +2,9 @@ import { TextField, Button, Box, Alert, Typography, CircularProgress } from '@mu
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { setUserToken } from '../features/authSlice';
-import { getToken, storeToken } from '../services/LocalStorageService';
-import { useLoginUserMutation } from '../services/userAuthApi';
+import { setUserToken } from '../../features/authSlice';
+import { getToken, storeToken } from '../../services/LocalStorageService';
+import { useLoginUserMutation } from '../../services/userAuthApi';
 
 const UserLogin = () => {
   const [server_error, setServerError] = useState({})

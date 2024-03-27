@@ -2,9 +2,9 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Button } from '@mui/material';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { unSetUserToken } from '../features/authSlice';
-import { setUserInfo, unsetUserInfo } from '../features/userSlice';
-import { getToken, removeToken } from '../services/LocalStorageService';
+import { unSetUserToken } from '../../features/authSlice';
+import { setUserInfo, unsetUserInfo } from '../../features/userSlice';
+import { getToken, removeToken } from '../../services/LocalStorageService';
 
 
 const LogoutButton = () => {

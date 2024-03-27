@@ -12,10 +12,10 @@ import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Logout from '@mui/icons-material/Logout';
-import LogoutButton from '../auth/Logout_btn';
+import LogoutButton from '../main/authPages/Logout_btn.js';
 import { Button } from '@mui/material';
 import { Link } from "react-router-dom";
-import ProfileDetail from "../profile/pages/profile.jsx"
+import ProfileDetail from "../profile/pages/profile.js"
 
 
 export default function AccountMenu() {
