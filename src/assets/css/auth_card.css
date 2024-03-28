@@ -1,14 +1,11 @@
 /* Styling for the login card */
 .LoginCard {
-  margin-left: 75%;
-  margin-top: 1em;
-  align-items: center;
-  padding: 10px;
-  padding-bottom: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
-  width: 80%;
-  height: 90%
+  margin-top: 15em;
+  margin-left: 30em;
+  max-width: 400px;
+  margin-bottom: 40px;
 }
 
+.registerCard{
+  width: 100%;
+}

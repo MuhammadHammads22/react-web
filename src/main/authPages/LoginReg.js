@@ -20,8 +20,8 @@ const LoginReg = () => {
 
   return (
     <>
-      <div className="flex justify-center items-center h-screen">
-        <div className="bg-white rounded-lg shadow-lg p-8 max-w-md w-full">
+      <div className="flex justify-center items-center h-screen LoginCard">
+        <div className="bg-white rounded-lg shadow-lg p-8  w-full">
           <div className="border-b">
             <div className="flex justify-between items-center pb-4">
               <button

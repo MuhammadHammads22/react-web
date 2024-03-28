@@ -40,22 +40,22 @@ const Registration = () => {
 
   return (
     <>
-      <form className="max-w-md mx-auto mt-4 p-6 bg-white rounded-lg shadow-lg" id="registration-form" onSubmit={handleSubmit}>
+      <form className="bg-white rounded-lg shadow-lg registerCard" id="registration-form" onSubmit={handleSubmit}>
         <div className="mb-4">
           <label htmlFor="fullname" className="block text-gray-700 font-bold mb-2">Full Name</label>
-          <input type="text" id="fullname" name="fullname" required className="px-3 py-2 w-full rounded border focus:outline-none focus:border-blue-500" />
+          <input type="text" id="fullname" name="fullname" required className="px-3 py-2 w-full rounded border focus:outline-none focus:border-blue-500 text-black" />
           {server_error.full_name && <p className="text-red-500 text-xs mt-1">{server_error.full_name[0]}</p>}
         </div>
 
         <div className="mb-4">
           <label htmlFor="username" className="block text-gray-700 font-bold mb-2">Username</label>
-          <input type="text" id="username" name="username" required className="px-3 py-2 w-full rounded border focus:outline-none focus:border-blue-500" />
+          <input type="text" id="username" name="username" required className="px-5 py-2 w-full rounded border focus:outline-none focus:border-blue-500 text-black" />
           {server_error.username && <p className="text-red-500 text-xs mt-1">{server_error.username[0]}</p>}
         </div>
 
         <div className="mb-4">
           <label htmlFor="religion" className="block text-gray-700 font-bold mb-2">Religion</label>
-          <input type="text" id="religion" name="religion" required className="px-3 py-2 w-full rounded border focus:outline-none focus:border-blue-500" />
+          <input type="text" id="religion" name="religion" required className="px-5 py-2 w-full rounded border focus:outline-none focus:border-blue-500 text-black" />
           {server_error.religion && <p className="text-red-500 text-xs mt-1">{server_error.religion[0]}</p>}
         </div>
 
@@ -70,7 +70,7 @@ const Registration = () => {
             </button>
             <button
               onClick={() => setGender('male')}
-              className={`px-4 py-2 rounded ${gender === 'male' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}
+              className={`px-5 py-2 rounded ${gender === 'male' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-700'}`}
             >
               Male
             </button>
@@ -81,24 +81,24 @@ const Registration = () => {
           
           <label className="block text-gray-700 font-bold mb-2">Birthday</label>
           <DatePicker selected={dob} onChange={(date) => setdob(date)} />
-          {server_error.date_of_birth && <p className="text-red-500 text-xs mt-1">{server_error.date_of_birth[0]}</p>}
+          {server_error.date_of_birth && <p className="text-red-500 text-xs mt-1 text-black">{server_error.date_of_birth[0]}</p>}
         </div>
 
         <div className="mb-4">
           <label htmlFor="email" className="block text-gray-700 font-bold mb-2">Email Address</label>
-          <input type="email" id="email" name="email" required className="px-3 py-2 w-full rounded border focus:outline-none focus:border-blue-500" />
+          <input type="email" id="email" name="email" required className="px-3 py-2 w-full rounded border focus:outline-none focus:border-blue-500 text-black" />
           {server_error.email && <p className="text-red-500 text-xs mt-1">{server_error.email[0]}</p>}
         </div>
 
         <div className="mb-4">
           <label htmlFor="password" className="block text-gray-700 font-bold mb-2">Password</label>
-          <input type="password" id="password" name="password" required className="px-3 py-2 w-full rounded border focus:outline-none focus:border-blue-500" />
+          <input type="password" id="password" name="password" required className="px-3 py-2 w-full rounded border focus:outline-none focus:border-blue-500 text-black" />
           {server_error.password && <p className="text-red-500 text-xs mt-1">{server_error.password[0]}</p>}
         </div>
 
         <div className="mb-4">
           <label htmlFor="password2" className="block text-gray-700 font-bold mb-2">Confirm Password</label>
-          <input type="password" id="password2" name="password2" required className="px-3 py-2 w-full rounded border focus:outline-none focus:border-blue-500" />
+          <input type="password" id="password2" name="password2" required className="px-3 py-2 w-full rounded border focus:outline-none focus:border-blue-500 text-black" />
           {server_error.password2 && <p className="text-red-500 text-xs mt-1">{server_error.password2[0]}</p>}
         </div>
 

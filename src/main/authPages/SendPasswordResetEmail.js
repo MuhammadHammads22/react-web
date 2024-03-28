@@ -1,12 +1,11 @@
-import { Grid, TextField, Button, Box, Alert, Typography } from "@mui/material";
 import { useState } from 'react';
 import { useSendPasswordResetEmailMutation } from "../../services/userAuthApi";
-
 
 const SendPasswordResetEmail = () => {
   const [server_error, setServerError] = useState({})
   const [server_msg, setServerMsg] = useState({})
   const [sendPasswordResetEmail, { isLoading }] = useSendPasswordResetEmailMutation()
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
@@ -15,35 +14,41 @@ const SendPasswordResetEmail = () => {
     }
     const res = await sendPasswordResetEmail(actualData)
     if (res.error) {
-      console.log(typeof (res.error.data.errors))
-      console.log(res.error.data.errors)
       setServerMsg({})
       setServerError(res.error.data.errors)
     }
     if (res.data) {
-      console.log(typeof (res.data))
-      console.log(res.data)
       setServerError({})
       setServerMsg(res.data)
       document.getElementById('password-reset-email-form').reset()
     }
   }
-  return <>
-    <Grid container justifyContent='center'>
-      <Grid item sm={6} xs={12}>
-        <h1>Reset Password</h1>
-        <Box component='form' noValidate sx={{ mt: 1 }} id='password-reset-email-form' onSubmit={handleSubmit}>
-          <TextField margin='normal' required fullWidth id='email' name='email' label='Email Address' />
-          {server_error.email ? <Typography style={{ fontSize: 12, color: 'red', paddingLeft: 10 }}>{server_error.email[0]}</Typography> : ""}
-          <Box textAlign='center'>
-            <Button type='submit' variant='contained' sx={{ mt: 3, mb: 2, px: 5 }}>Send</Button>
-          </Box>
-          {server_error.non_field_errors ? <Alert severity='error'>{server_error.non_field_errors[0]}</Alert> : ''}
-          {server_msg.msg ? <Alert severity='success'>{server_msg.msg}</Alert> : ''}
-        </Box>
-      </Grid>
-    </Grid>
-  </>;
+
+  return (
+    <div className="flex justify-center">
+      <div className="w-full sm:w-1/2 p-4">
+        <h1 className="text-center">Reset Password</h1>
+        <form className="mt-4" id="password-reset-email-form" onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <label className="block text-gray-700 font-bold mb-2" htmlFor="email">Email Address</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              className="px-3 py-2 w-full rounded border focus:outline-none focus:border-blue-500 text-black"
+            />
+            {server_error.email && <p className="text-red-500 text-xs mt-1">{server_error.email[0]}</p>}
+          </div>
+          <div className="text-center">
+            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded focus:outline-none hover:bg-blue-600">Send</button>
+          </div>
+          {server_error.non_field_errors && <div className="text-red-500 text-xs mt-2">{server_error.non_field_errors[0]}</div>}
+          {server_msg.msg && <div className="text-green-500 text-xs mt-2">{server_msg.msg}</div>}
+        </form>
+      </div>
+    </div>
+  );
 };
 
 export default SendPasswordResetEmail;
