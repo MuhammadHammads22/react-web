@@ -4,6 +4,8 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { setUserToken } from '../../features/authSlice';
 import { getToken, storeToken } from '../../services/LocalStorageService';
 import { useLoginUserMutation } from '../../services/userAuthApi';
+import "./assets/css/auth_card.css";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const UserLogin = () => {
   const [server_error, setServerError] = useState({});
@@ -12,22 +14,29 @@ const UserLogin = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
+    
     e.preventDefault();
+    
     const data = new FormData(e.currentTarget);
+    
     const actualData = {
       email: data.get('email'),
       password: data.get('password'),
     };
+    
     const res = await loginUser(actualData);
+    
     if (res.error) {
-      setServerError(res.error.data.errors);
+      setServerError(res.error.status);
     }
+    
     if (res.data) {
       storeToken(res.data.token);
       let { access_token } = getToken();
       dispatch(setUserToken({ access_token: access_token }));
       navigate('/fam');
     }
+
   };
 
   let { access_token } = getToken();
@@ -36,7 +45,7 @@ const UserLogin = () => {
   }, [access_token, dispatch]);
 
   return (
-    <div className="max-w-md mx-auto">
+    <div className="max-w-md mx-auto AuthCard">
       <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
         <div>
           <label htmlFor="email" className="sr-only">
@@ -76,8 +85,8 @@ const UserLogin = () => {
 
         <div className="text-center">
           {isLoading ? (
-            <div className="inline-block">
-              <svg className="animate-spin h-5 w-5 mr-3 text-black" viewBox="0 0 24 24"></svg>
+            <div className="inline-block loading-icon">
+              <AiOutlineLoading3Quarters />
             </div>
           ) : (
             <button

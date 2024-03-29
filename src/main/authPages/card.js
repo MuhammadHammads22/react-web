@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Registration from './Registration';
-import UserLogin from './UserLogin';
-import '../../assets/css/auth_card.css';
+import UserLogin from './Login';
+import './assets/css/auth_card.css';
 
 const TabPanel = (props) => {
   const { children, value, index } = props;
@@ -12,7 +12,8 @@ const TabPanel = (props) => {
   );
 };
 
-const LoginReg = () => {
+const AuthCard = () => {
+  
   const [value, setValue] = useState(0);
   const handleChange = (newValue) => {
     setValue(newValue);
@@ -20,8 +21,8 @@ const LoginReg = () => {
 
   return (
     <>
-      <div className="flex justify-center items-center h-screen LoginCard">
-        <div className="bg-white rounded-lg shadow-lg p-8  w-full">
+      <div className="flex justify-center items-center h-screen mt-10 AuthCard">
+        <div className="bg-white rounded-lg shadow-lg p-8 w-full">
           <div className="border-b">
             <div className="flex justify-between items-center pb-4">
               <button
@@ -30,7 +31,7 @@ const LoginReg = () => {
               >
                 Login
               </button>
-              <button
+              <button 
                 className={`text-lg font-bold focus:outline-none ${value === 1 ? 'text-blue-500' : 'text-gray-500'}`}
                 onClick={() => handleChange(1)}
               >
@@ -38,6 +39,7 @@ const LoginReg = () => {
               </button>
             </div>
           </div>
+
           <div className="mt-4">
             <TabPanel value={value} index={0}>
               <UserLogin />
@@ -52,4 +54,4 @@ const LoginReg = () => {
   );
 };
 
-export default LoginReg;
+export default AuthCard;

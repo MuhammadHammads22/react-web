@@ -4,6 +4,7 @@ import reportWebVitals from './reportWebVitals.js';
 import { Provider } from 'react-redux'
 import { store } from './app/store.js'
 import { createRoot } from 'react-dom/client';
+import "./globals.css";
 
 
 const root = createRoot(document.getElementById('root'));

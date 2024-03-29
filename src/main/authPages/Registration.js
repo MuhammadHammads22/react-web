@@ -4,13 +4,14 @@ import { useRegisterUserMutation } from '../../services/userAuthApi';
 import { storeToken } from '../../services/LocalStorageService';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import "./assets/css/auth_card.css";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const Registration = () => {
   const [server_error, setServerError] = useState({});
   const navigate = useNavigate();  
-  const [dob, setdob] = useState(new Date());
   const [gender, setGender] = useState('');
-  const [dateOfBirth, setDateOfBirth] = useState(null);
+  const [dateOfBirth, setDateOfBirth] = useState();
   const [registerUser, { isLoading }] = useRegisterUserMutation();
 
   const handleSubmit = async (e) => {
@@ -22,17 +23,20 @@ const Registration = () => {
       username: data.get('username'),
       religion: data.get('religion'),
       gender: gender,
-      date_of_birth: dob,
+      date_of_birth: data.get('dob'),
       password: data.get('password'),
       password2: data.get('password2'),
     };
 
+
     const res = await registerUser(actualData);
 
     if (res.error) {
-      setServerError(res.error.data.errors);
+      console.log(res.error)
+      setServerError(res.error);
     }
     if (res.data) {
+      console.log(res.data)
       storeToken(res.data.token);
       navigate('/fam');
     }
@@ -40,7 +44,8 @@ const Registration = () => {
 
   return (
     <>
-      <form className="bg-white rounded-lg shadow-lg registerCard" id="registration-form" onSubmit={handleSubmit}>
+      <form className="bg-white RegisterCard" id="registration-form" onSubmit={handleSubmit}>
+        
         <div className="mb-4">
           <label htmlFor="fullname" className="block text-gray-700 font-bold mb-2">Full Name</label>
           <input type="text" id="fullname" name="fullname" required className="px-3 py-2 w-full rounded border focus:outline-none focus:border-blue-500 text-black" />
@@ -78,9 +83,8 @@ const Registration = () => {
         </div>
 
         <div className="mb-4">
-          
           <label className="block text-gray-700 font-bold mb-2">Birthday</label>
-          <DatePicker selected={dob} onChange={(date) => setdob(date)} />
+          <input type="text" id="dob" name="dob" required className="px-5 py-2 w-full rounded border focus:outline-none focus:border-blue-500 text-black" />
           {server_error.date_of_birth && <p className="text-red-500 text-xs mt-1 text-black">{server_error.date_of_birth[0]}</p>}
         </div>
 
@@ -104,12 +108,16 @@ const Registration = () => {
 
         <div className="text-center">
           {isLoading ? (
-            <div className="inline-block">
-              <svg className="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24"></svg>
-              <span>Loading...</span>
+            <div className="inline-block loading-icon">
+              <AiOutlineLoading3Quarters />
             </div>
           ) : (
-            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded focus:outline-none hover:bg-blue-600">Register</button>
+            <button
+              type="submit"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+            >
+              Register
+            </button>
           )}
         </div>
 

@@ -1,0 +1,9 @@
+.AuthCard{
+  margin-left: 35em;
+}
+
+.RegisterCard{
+  max-height: 350px;
+  overflow-y: scroll;
+  width: 300px;
+}

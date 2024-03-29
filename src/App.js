@@ -1,5 +1,5 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import LoginReg from "./main/authPages/LoginReg.js";
+import AuthCard from "./main/authPages/card.js";
 import ResetPassword from "./main/authPages/ResetPassword.js";
 import SendPasswordResetEmail from "./main/authPages/SendPasswordResetEmail.js";
 import PrivacyPolicy from "./main/policyPages/privacy_policy.js";
@@ -53,7 +53,7 @@ function App() {
             <Route path="policy" element={<PrivacyPolicy />} />
             <Route path="terms" element={<TermsAndConditions />} />
 
-            <Route path="login" element={!access_token ? <LoginReg /> : <Navigate to="/fam" />} />
+            <Route path="login" element={!access_token ? <AuthCard /> : <Navigate to="/fam" />} />
             <Route path="sendpasswordresetemail" element={<SendPasswordResetEmail />} />
             <Route path="user/reset/:id/:token" element={<ResetPassword />} />
             <Route path="user/verify/:token/" element={<VerifyEmail />} />
