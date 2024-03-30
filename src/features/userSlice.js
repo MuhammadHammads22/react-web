@@ -8,6 +8,7 @@ const initialState = {
 export const userSlice = createSlice({
   name: 'user_info',
   initialState,
+  
   reducers: {
     setUserInfo: (state, action) => {
       state.email = action.payload.email
@@ -18,6 +19,7 @@ export const userSlice = createSlice({
       state.name = action.payload.name
     },
   }
+  
 })
 
 export const { setUserInfo, unsetUserInfo } = userSlice.actions

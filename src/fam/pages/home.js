@@ -14,7 +14,6 @@ const FAMHome = () => {
     setRefreshToken(refresh_token);
   }, []);
 
-  console.log("Home Page")
   const { data, isSuccess, isFetching, isError, error, refetch } = useGetFamListQuery();
 
   return (
