@@ -1,4 +1,3 @@
-import { multiFormatDateString } from '../../lib/utils/DateConvertor';
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import "../assets/css/post.css";
@@ -8,30 +7,19 @@ import { BiDownvote } from "react-icons/bi";
 import { GoReport } from "react-icons/go";
 import { FcDonate } from "react-icons/fc";
 
-import PopupComponent from './PopupComponent';
 
 
 const PostCard = ({ post }) => {
   
+  console.log(post)
   const navigate = useNavigate(); 
   
-  const [showDonorPopup, setShowDonorPopup] = useState(false);
-  const [showReportPopup, setShowReportPopup] = useState(false);
 
 
   const handleClick = () => {
     navigate(`/post/detail/${post.slug}`);
   };
 
-  const toggleDonorsPopup = (e) => {
-    e.stopPropagation(); 
-    setShowDonorPopup(!showDonorPopup);
-  };
-
-  const toggleReportPopup = (e) => {
-    e.stopPropagation(); 
-    setShowReportPopup(!showReportPopup);
-  };
 
   return (
     <div onClick={handleClick} style={{ cursor: 'pointer' }} className='mb-5 mt-5 PostCard'>
@@ -49,40 +37,24 @@ const PostCard = ({ post }) => {
           <div className='flex'>
             <Link className='icon-container' rel="stylesheet" href="">
               <BiUpvote className='text-xl'></BiUpvote>
-              <p className='text-xs font-bold text-blue-500'>{post.upvote}</p>
+              <p className='text-xs font-bold text-blue-500'>55</p>
             </Link>
             <Link className='icon-container' rel="stylesheet" href="">
               <BiDownvote className='text-xl'></BiDownvote>
-              <p className='text-xs font-bold text-blue-500'>{post.downvote}</p>
+              <p className='text-xs font-bold text-blue-500'>5</p>
             </Link>
           </div>
 
           <div className='flex'>
-            <a className='float-right m-2 border border-gray-400 p-1' onClick={toggleDonorsPopup}>
-              <p className='text-sm rounded-full'>Donors {Object.keys(post.donor).length}</p>
+            <a className='float-right m-2 border border-gray-400 p-1'>
+              <p className='text-sm rounded-full'>Donors 1</p>
             </a>
 
-            <button className='float-right m-2 border border-gray-400 p-1' onClick={toggleReportPopup}>
-              <p className='text-sm rounded-full'>Reports {Object.keys(post.reported).length}</p>
+            <button className='float-right m-2 border border-gray-400 p-1'>
+              <p className='text-sm rounded-full'>Reports 2</p>
             </button>
           </div>
         </div>
-
-        {showDonorPopup && ( 
-          <PopupComponent 
-            title="Donors" 
-            items={Object.keys(post.donor)} 
-            onClose={toggleDonorsPopup} 
-          />
-        )}
-
-        {showReportPopup && (
-          <PopupComponent 
-            title="Reports" 
-            items={Object.keys(post.reported)} 
-            onClose={toggleReportPopup} 
-          />
-        )}
         
       </div>
     </div>

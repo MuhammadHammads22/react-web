@@ -15,10 +15,6 @@ const PostHome = () => {
   }, []);
 
   const { data, isSuccess } = useGetPostListQuery();
-  
-  {data.map((post) => (
-    console.log('*** data', data)
-  ))}
 
   return (
     <>

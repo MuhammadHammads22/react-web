@@ -1,5 +1,5 @@
 import React from 'react'
-import { useGetFamDetailQuery } from '../../services/famApis';
+import { useGetPostDetailQuery } from '../../services/postApis';
 import { useParams } from 'react-router-dom';
 import {  CircularProgress } from '@mui/material';
 import { multiFormatDateString } from '../../lib/utils/DateConvertor';
@@ -14,7 +14,7 @@ const PostDetailView = () => {
 
   const { slug } = useParams(); // Extract username from URL parameters
 
-  const { data, isSuccess, isError, error, isLoading } = useGetFamDetailQuery(slug);
+  const { data, isError, error, isLoading } = useGetPostDetailQuery(slug);
 
   if (isLoading){
     return <div><CircularProgress />Loading...</div>;
@@ -54,23 +54,23 @@ const PostDetailView = () => {
         <div className='flex'>
           <Link className='icon-container' rel="stylesheet" href="">
             <BiUpvote className='text-xl'></BiUpvote>
-            <p className='text-xs font-bold text-blue-500'>{data.upvote}</p>
+            <p className='text-xs font-bold text-blue-500'>1</p>
           </Link>
           <Link className='icon-container' rel="stylesheet" href="">
             <BiDownvote className='text-xl'></BiDownvote>
-            <p className='text-xs font-bold text-blue-500'>{data.downvote}</p>
+            <p className='text-xs font-bold text-blue-500'>2</p>
           </Link>
         </div>
 
         <div className='flex'>
-          <p className='text-sm rounded-full'>Donors {Object.keys(data.donor).length}</p>
-          <p className='text-sm rounded-full'>Reports {Object.keys(data.reported).length}</p>
+          <p className='text-sm rounded-full'>Donors 3</p>
+          <p className='text-sm rounded-full'>Reports 55</p>
         </div>
 
       </div>
 
       <div className='mt-4'>
-        <p className='text-gray-700'>{data.content}</p>
+        <p className='text-gray-700'>{data.description}</p>
       </div>
 
       <div className='flex items-center mt-4'>
@@ -84,20 +84,14 @@ const PostDetailView = () => {
 
       <div className='mt-4'>
         <div className='flex flex-row'>
-          <p className='bg-blue-500 text-white py-2 px-4  rounded-lg'>All Donors ID: {data.donor}</p>
-          <p className='bg-blue-500 text-white py-2 px-4 ml-2 rounded-lg'>All Reported ID: {data.reported}</p>
+          <p className='bg-blue-500 text-white py-2 px-4  rounded-lg'>All Donors ID: 55</p>
+          <p className='bg-blue-500 text-white py-2 px-4 ml-2 rounded-lg'>All Reported ID: 5</p>
           <p className='bg-blue-500 text-white py-2 px-4 ml-2 rounded-lg'>Total Paid Amount So Far: {data.paid}</p>
-          <p className='bg-blue-500 text-white py-2 px-4 ml-2 rounded-lg'>Total upvote So Far: {data.upvote}</p>
-          <p className='bg-blue-500 text-white py-2 px-4 ml-2 rounded-lg'>Total downvote So Far: {data.downvote}</p>
+          <p className='bg-blue-500 text-white py-2 px-4 ml-2 rounded-lg'>Total upvote So Far: 6</p>
+          <p className='bg-blue-500 text-white py-2 px-4 ml-2 rounded-lg'>Total downvote So Far: 75</p>
         </div>
       </div>
 
-      <div className='mt-4 flex'>
-        <a href={data.doc1} className='text-blue-500 mr-2'>Document 1</a>
-        <a href={data.doc2} className='text-blue-500 mr-2'>Document 2</a>
-        <a href={data.doc3} className='text-blue-500 mr-2'>Document 3</a>
-        <a href={data.doc4} className='text-blue-500'>Document 4</a>
-      </div>
 
       <div className='mt-4'>
         <button className='bg-blue-500 text-white py-2 px-4 rounded-lg'>total Saved {data.saved}</button>
