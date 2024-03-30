@@ -28,6 +28,14 @@ import OrgSaves from "./org/pages/saves.js";
 import OrgSatisfied from "./org/pages/satisfied.js";
 import OrgDetailView from "./org/components/org-detail-card.js";
 
+//Post pages 
+import PostHome from "./post/pages/home.js";
+import PostHistory from "./post/pages/history.js";
+import PostSatisfied from "./post/pages/satisfied.js";
+import PostSaves from "./post/pages/saves.js";
+import PostFilter from "./post/pages/filter.js";
+import PostDetailView from "./post/components/post-detail-view.js"; 
+
 
 //profile Pages: 
 import ProfileLayout from "./layouts/profileLayout.js";
@@ -53,7 +61,7 @@ function App() {
             <Route path="policy" element={<PrivacyPolicy />} />
             <Route path="terms" element={<TermsAndConditions />} />
 
-            <Route path="login" element={!access_token ? <AuthCard /> : <Navigate to="/fam" />} />
+            <Route path="login" element={!access_token ? <AuthCard /> : <Navigate to="/post" />} />
             <Route path="sendpasswordresetemail" element={<SendPasswordResetEmail />} />
             <Route path="user/reset/:id/:token" element={<ResetPassword />} />
             <Route path="user/verify/:token/" element={<VerifyEmail />} />
@@ -78,6 +86,15 @@ function App() {
             <Route path="satisfied/" element={<OrgSatisfied />} />
             <Route path="detail/:slug" element={<OrgDetailView />} />
 
+          </Route>
+
+          <Route path="/post" element={access_token ? <Layout /> : <Navigate to="/login" />}>
+            <Route index element={access_token ? <PostHome /> : <Navigate to="/login" />} />
+            <Route path="satisfied/" element={<PostSatisfied />} />
+            <Route path="history/" element={<PostHistory />} />
+            <Route path="saves/" element={<PostSaves />} />
+            <Route path="filters/" element={<PostFilter />} />
+            <Route path="detail/:slug" element={<PostDetailView />} />
           </Route>
 
           <Route path="/profiles" element={access_token ? <ProfileLayout /> : <Navigate to="/login" />}>

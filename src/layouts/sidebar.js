@@ -8,7 +8,7 @@ const Sidebar = () => {
 
   const location = useLocation();
   const isOrgApp = location.pathname.startsWith("/org");
-  const appPrefix = isOrgApp ? "/org": "/fam";
+  const appPrefix = isOrgApp ? "/org": "/post";
   
   const [darkMode, setDarkMode] = useState(null);
 

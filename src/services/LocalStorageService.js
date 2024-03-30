@@ -1,29 +1,19 @@
 import { userAuthApi } from './userAuthApi';
-import CryptoJS from 'crypto-js';
 
 const storeToken = (value) => {
   if (value) {
-    const { access, refresh } = value;
-    const encryptedAccess = CryptoJS.AES.encrypt(access, 'secretKey').toString();
-    const encryptedRefresh = CryptoJS.AES.encrypt(refresh, 'secretKey').toString();
-    localStorage.setItem('access_token', encryptedAccess);
-    localStorage.setItem('refresh_token', encryptedRefresh);
+    console.log("Store Token")
+    const { access, refresh } = value
+    localStorage.setItem('access_token', access)
+    localStorage.setItem('refresh_token', refresh)
   }
-};
+}
 
 const getToken = () => {
-  let encryptedAccess = localStorage.getItem('access_token');
-  let encryptedRefresh = localStorage.getItem('refresh_token');
-
-  if (encryptedAccess && encryptedRefresh) {
-    const access_token = CryptoJS.AES.decrypt(encryptedAccess, 'secretKey').toString(CryptoJS.enc.Utf8);
-    const refresh_token = CryptoJS.AES.decrypt(encryptedRefresh, 'secretKey').toString(CryptoJS.enc.Utf8);
-    return { access_token, refresh_token };
-  } else {
-    return { access_token: null, refresh_token: null };
-  }
-};
-
+  let access_token = localStorage.getItem('access_token')
+  let refresh_token = localStorage.getItem('refresh_token')
+  return { access_token, refresh_token }
+}
 
 const removeToken = () => {
   localStorage.removeItem('access_token')
@@ -33,7 +23,6 @@ const removeToken = () => {
 
 const handleTokenRefresh = async () => {
   try {
-    console.log("I am called handleTokenRefresh")
     const { data } = await userAuthApi.endpoints.refreshToken.fetch(localStorage.getItem('refresh_token'));
     storeToken(data); // Assuming you have storeToken function defined
     return data.access;

@@ -4,6 +4,7 @@ import { setupListeners } from '@reduxjs/toolkit/query'
 import { userAuthApi } from '../services/userAuthApi'
 import { famApis } from '../services/famApis'
 import { orgApis } from '../services/orgApis'
+import { postApis } from '../services/postApis'
 import { profileApis } from '../services/profileApis'
 
 import authReducer from '../features/authSlice'
@@ -14,6 +15,7 @@ export const store = configureStore({
   reducer: {
     [userAuthApi.reducerPath]: userAuthApi.reducer,
     [famApis.reducerPath]: famApis.reducer,
+    [postApis.reducerPath]: postApis.reducer,
     [orgApis.reducerPath]: orgApis.reducer,
     [profileApis.reducerPath]: profileApis.reducer,
 
@@ -26,6 +28,7 @@ export const store = configureStore({
   getDefaultMiddleware()
     .concat(userAuthApi.middleware)
     .concat(famApis.middleware)
+    .concat(postApis.middleware)
     .concat(orgApis.middleware)
     .concat(profileApis.middleware),
 
