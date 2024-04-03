@@ -12,22 +12,6 @@ import { useSelector } from "react-redux";
 import ChangePassword from "./main/authPages/ChangePassword.js";
 import Settings from "./main/settings.js";
 
-// Fam Pages 
-import FAMHome from "./fam/pages/home.js";
-import FamHistory from "./fam/pages/history.js";
-import FamSatisfied from "./fam/pages/satisfied.js";
-import FamSaves from "./fam/pages/saves.js";
-import FamFilter from "./fam/pages/filter.js";
-import FamDetailView from "./fam/components/fam-detail-view.js"; 
-
-//Org Pages
-import OrgHome from "./org/pages/home.js";
-import OrgFilters from "./org/pages/filter.js";
-import OrgHistory from "./org/pages/history.js";
-import OrgSaves from "./org/pages/saves.js";
-import OrgSatisfied from "./org/pages/satisfied.js";
-import OrgDetailView from "./org/components/org-detail-card.js";
-
 //Post pages 
 import PostHome from "./post/pages/home.js";
 import PostHistory from "./post/pages/history.js";
@@ -67,26 +51,7 @@ function App() {
             <Route path="user/verify/:token/" element={<VerifyEmail />} />
             <Route path="change_password" element={<ChangePassword />} />
             <Route path="/settings" element={<Settings />} />
-          </Route>
-
-          <Route path="/fam" element={access_token ? <Layout /> : <Navigate to="/login" />}>
-            <Route index element={access_token ? <FAMHome /> : <Navigate to="/login" />} />
-            <Route path="satisfied/" element={<FamSatisfied />} />
-            <Route path="history/" element={<FamHistory />} />
-            <Route path="saves/" element={<FamSaves />} />
-            <Route path="filters/" element={<FamFilter />} />
-            <Route path="detail/:slug" element={<FamDetailView />} />
-          </Route>
-
-          <Route path="/org" element={access_token ? <Layout /> : <Navigate to="/login" />}>
-            <Route index element={access_token ? <OrgHome /> : <Navigate to="/login" />} />
-            <Route path="filters/" element={<OrgFilters />} />
-            <Route path="history/" element={<OrgHistory />} />
-            <Route path="saves/" element={<OrgSaves />} />
-            <Route path="satisfied/" element={<OrgSatisfied />} />
-            <Route path="detail/:slug" element={<OrgDetailView />} />
-
-          </Route>
+          </Route>          
 
           <Route path="/post" element={access_token ? <Layout /> : <Navigate to="/login" />}>
             <Route index element={access_token ? <PostHome /> : <Navigate to="/login" />} />

@@ -27,7 +27,8 @@ const UserLogin = () => {
     const res = await loginUser(actualData);
     
     if (res.error) {
-      setServerError(res.error.status);
+      console.log(res.error.data.errors['non_field_errors'][0])
+      setServerError(res.error.data.errors['non_field_errors'][0]);
     }
     
     if (res.data) {
@@ -113,7 +114,7 @@ const UserLogin = () => {
         </div>
 
         {server_error.non_field_errors && (
-          <div className="text-red-500 text-xs italic">{server_error.non_field_errors[0]}</div>
+          <div className="text-red-500 text-xs italic">{server_error.non_field_errors}</div>
         )}
       </form>
     </div>
