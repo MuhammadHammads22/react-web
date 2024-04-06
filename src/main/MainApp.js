@@ -23,7 +23,7 @@ function MainApp() {
           <Route path="/" element={<AuthLayout />}>
             <Route path="policy" element={<PrivacyPolicy />} />
             <Route path="terms" element={<TermsAndConditions />} />
-            <Route path="login" element={!access_token ? <AuthCard /> : <Navigate to="/fam" />} />
+            <Route path="login" element={!access_token ? <AuthCard /> : <Navigate to="/post" />} />
             <Route path="sendpasswordresetemail" element={<SendPasswordResetEmail />} />
             <Route path="user/reset/:id/:token" element={<ResetPassword />} />
             <Route path="user/verify/:token/" element={<VerifyEmail />} />

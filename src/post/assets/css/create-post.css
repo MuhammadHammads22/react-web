@@ -1,0 +1,12 @@
+
+.page { 
+  margin-top: 5em;
+  width: 1070px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 15px;
+  border: 2px solid black;
+  background-color: rgb(255, 254, 252);
+}

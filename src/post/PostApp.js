@@ -9,7 +9,7 @@ import PostHistory from "./pages/history.js";
 import PostSatisfied from "./pages/satisfied.js";
 import PostSaves from "./pages/saves.js";
 import PostFilter from "./pages/filter.js";
-import PostDetailView from "./components/fam-detail-view.js"; 
+import PostDetailView from "./components/post-detail-view.js"; 
 
 
 function PostApp() {

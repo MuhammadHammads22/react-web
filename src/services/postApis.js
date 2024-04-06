@@ -46,6 +46,18 @@ export const postApis = createApi({
       }, 
     }),
 
+    getPostDocFiles: builder.query({
+      query: (slug) => {
+        return {
+          url: `get-post-doc-files/${slug}`,
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('access_token') }`,
+          }
+        }
+      }, 
+    }),
+
     getPostSaves: builder.query({
       query: () => {
         return {
@@ -70,9 +82,22 @@ export const postApis = createApi({
       },
     }),
 
+    createPost: builder.mutation({
+      query: (data) => {
+        return {
+          url: 'create/',
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('access_token') }`,
+          },
+          body: data
+        }
+      },
 
+    }),
+    
   }),
 })
 
-export const { useGetPostListQuery, useGetPostHistoryQuery, useGetPostSatisfiedQuery, useGetPostSavesQuery, useGetPostDetailQuery } = postApis
+export const { useGetPostListQuery, useGetPostHistoryQuery, useGetPostSatisfiedQuery, useGetPostSavesQuery, useGetPostDetailQuery, useGetPostDocFilesQuery, useCreatePostMutation } = postApis
 

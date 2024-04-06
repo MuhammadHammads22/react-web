@@ -21,7 +21,7 @@ const LogoutButton = () => {
   return (
     <Button
       component={NavLink}
-      to='/fam'
+      to='/post'
       onClick={handleLogout}
     >
       Logout

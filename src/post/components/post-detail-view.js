@@ -1,5 +1,5 @@
 import React from 'react'
-import { useGetPostDetailQuery } from '../../services/postApis';
+import { useGetPostDetailQuery, useGetPostDocFilesQuery } from '../../services/postApis';
 import { useParams } from 'react-router-dom';
 import {  CircularProgress } from '@mui/material';
 import { multiFormatDateString } from '../../lib/utils/DateConvertor';
@@ -15,6 +15,7 @@ const PostDetailView = () => {
   const { slug } = useParams(); // Extract username from URL parameters
 
   const { data, isError, error, isLoading } = useGetPostDetailQuery(slug);
+  const { docfiles, docfileIsLoading} = useGetPostDocFilesQuery(slug);
 
   if (isLoading){
     return <div><CircularProgress />Loading...</div>;
@@ -44,7 +45,7 @@ const PostDetailView = () => {
 
         <div className=''>
             <video className='detail-video-size' controls controlsList="nodownload">
-              <source src={data.seeker_vid} type="video/mp4" />
+              <source src={data.place_vid} type="video/mp4" />
             </video>
         </div>
       </div>
@@ -95,6 +96,16 @@ const PostDetailView = () => {
 
       <div className='mt-4'>
         <button className='bg-blue-500 text-white py-2 px-4 rounded-lg'>total Saved {data.saved}</button>
+      </div>
+
+      <div className='mt-4'>
+        {docfileIsLoading && docfiles && (
+              <>
+                {docfiles.map((post) => (
+                  <p>{post}</p>
+                ))}
+              </>
+            )}
       </div>
     </div>
   );

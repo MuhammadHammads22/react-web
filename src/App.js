@@ -19,6 +19,7 @@ import PostSatisfied from "./post/pages/satisfied.js";
 import PostSaves from "./post/pages/saves.js";
 import PostFilter from "./post/pages/filter.js";
 import PostDetailView from "./post/components/post-detail-view.js"; 
+import CreatePost from "./post/pages/create-post.js";
 
 
 //profile Pages: 
@@ -60,6 +61,7 @@ function App() {
             <Route path="saves/" element={<PostSaves />} />
             <Route path="filters/" element={<PostFilter />} />
             <Route path="detail/:slug" element={<PostDetailView />} />
+            <Route path="create/" element={<CreatePost />} />
           </Route>
 
           <Route path="/profiles" element={access_token ? <ProfileLayout /> : <Navigate to="/login" />}>

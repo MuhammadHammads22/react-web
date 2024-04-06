@@ -14,7 +14,7 @@ const Navbar = () => {
 
           <Button component={NavLink} to='/post' style={({ isActive }) => { return { backgroundColor: isActive ? '#6d1b7b' : '' } }} sx={{ color: 'white', textTransform: 'none' }}>Post</Button>
 
-          <Button component={NavLink} to="/createpost" sx={{color: 'white', textTransform: 'none', '&:hover': { backgroundColor: '#5c1566',},}}>
+          <Button component={NavLink} to="/post/create" sx={{color: 'white', textTransform: 'none', '&:hover': { backgroundColor: '#5c1566',},}}>
             <GrAdd /> Create Post
           </Button>
 
