@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { setUserToken } from '../../features/authSlice';
-import { getToken, storeToken } from '../../services/LocalStorageService';
+import { setUserToken } from '../../storage/features/authSlice';
+import { getToken, storeToken } from '../../storage/LocalStorageService';
 import { useLoginUserMutation } from '../../services/userAuthApi';
 import "./assets/css/auth_card.css";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";

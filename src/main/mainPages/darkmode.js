@@ -1,6 +1,6 @@
 // darkmode.js
 import React from 'react';
-import useDarkSide from '../hooks/display-mode-switcher';
+import useDarkSide from '../../hooks/display-mode-switcher';
 
 export default function Switcher() {
   const [theme, setTheme] = useDarkSide();

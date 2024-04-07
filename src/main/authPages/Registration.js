@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useRegisterUserMutation } from '../../services/userAuthApi';
-import { storeToken } from '../../services/LocalStorageService';
+import { storeToken } from '../../storage/LocalStorageService';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./assets/css/auth_card.css";

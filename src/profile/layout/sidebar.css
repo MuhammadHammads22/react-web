@@ -1,0 +1,30 @@
+.sidebar-dev {
+  height: 100vh;
+  position: fixed; 
+  left: 0; 
+  top: 0; 
+  width: 200px; 
+  background-color: #2d3740;
+  color: #fff; 
+  transition: background-color 0.3s ease-in-out; 
+}
+
+.sidebar-dev.dark {
+  background-color: #1a2027; 
+}
+
+.list-none {
+  padding: 0; 
+  margin-top: 70px; 
+}
+
+.list-none li {
+  list-style-type: none; 
+  margin-bottom: 10px; 
+}
+
+.list-none li a {
+  text-decoration: none; 
+  color: inherit; 
+}
+

@@ -1,5 +1,5 @@
 import React from 'react'
-import {getToken, removeToken} from '../../services/LocalStorageService';
+import {getToken, removeToken} from '../../storage/LocalStorageService';
 import { useGetPostHistoryQuery } from '../../services/postApis';
 import "../assets/css/post.css"
 import PostCard from '../components/post-card';

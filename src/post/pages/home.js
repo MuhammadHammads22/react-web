@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getToken, removeToken, storeToken } from '../../services/LocalStorageService';
+import { getToken, removeToken, storeToken } from '../../storage/LocalStorageService';
 import { useGetPostListQuery } from '../../services/postApis';
 import PostCard from '../components/post-card';
 import "../assets/css/post.css"

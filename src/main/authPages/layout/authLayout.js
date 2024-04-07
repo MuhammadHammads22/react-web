@@ -1,6 +1,7 @@
 
 import { Outlet } from "react-router-dom";
-import Navbar from "./Navbar";
+import Navbar from "../../mainPages/Navbar";
+
 import  './layout.css'; // Import CSS module
 
 const AuthLayout = () => {

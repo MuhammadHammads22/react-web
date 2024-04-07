@@ -1,4 +1,4 @@
-import { userAuthApi } from './userAuthApi';
+import { userAuthApi } from '../services/userAuthApi';
 
 const storeToken = (value) => {
   if (value) {
@@ -41,17 +41,4 @@ const removeToken = () => {
 }
 
 
-const handleTokenRefresh = async () => {
-  try {
-    const { data } = await userAuthApi.endpoints.refreshToken.fetch(localStorage.getItem('refresh_token'));
-    storeToken(data); // Assuming you have storeToken function defined
-    return data.access;
-  } catch (error) {
-    // Handle refresh token failure here (e.g., logout user)
-    console.error('Failed to refresh token:', error);
-    // Throw error for UI to handle if needed
-    throw error;
-  }
-};
-
-export { storeToken, getToken, removeToken, handleTokenRefresh, getTheme, setTheme }
+export { storeToken, getToken, removeToken, getTheme, setTheme }

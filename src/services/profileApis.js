@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { getToken } from "./LocalStorageService";
+import { getToken } from "../storage/LocalStorageService";
 
 export const profileApis = createApi({
   reducerPath: 'profileApis',

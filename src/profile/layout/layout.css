@@ -1,0 +1,12 @@
+.flex {
+  display: flex;
+}
+
+.sidebar {
+  width: 250px; /* Set the width of the sidebar */
+}
+
+.content{
+  margin-left: 5em;
+  margin-top: 5em;
+}

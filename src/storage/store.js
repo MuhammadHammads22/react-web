@@ -5,8 +5,8 @@ import { userAuthApi } from '../services/userAuthApi'
 import { postApis } from '../services/postApis'
 import { profileApis } from '../services/profileApis'
 
-import authReducer from '../features/authSlice'
-import userReducer from '../features/userSlice'
+import authReducer from './features/authSlice'
+import userReducer from './features/userSlice'
 
 export const store = configureStore({
   

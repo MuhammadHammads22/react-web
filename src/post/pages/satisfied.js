@@ -1,6 +1,6 @@
 import React from 'react';
 import PostCard from '../components/post-card';
-import {getToken, removeToken} from '../../services/LocalStorageService';
+import {getToken, removeToken} from '../../storage/LocalStorageService';
 import { useGetPostSatisfiedQuery } from '../../services/postApis';
 import "../assets/css/post.css"
 

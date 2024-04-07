@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useChangeUserPasswordMutation } from '../../services/userAuthApi';
-import { getToken } from '../../services/LocalStorageService';
+import { getToken } from '../../storage/LocalStorageService';
 
 const ChangePassword = () => {
   const [server_error, setServerError] = useState({});

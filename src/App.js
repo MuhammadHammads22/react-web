@@ -5,8 +5,8 @@ import SendPasswordResetEmail from "./main/authPages/SendPasswordResetEmail.js";
 import PrivacyPolicy from "./main/policyPages/privacy_policy.js";
 import TermsAndConditions from "./main/policyPages/terms&conditions.js";
 
-import Layout from "./layouts/Layout.js";
-import AuthLayout from "./layouts/authLayout.js";
+import PostLayout from "./post/layout/Layout.js";
+import AuthLayout from "./main/authPages/layout/authLayout.js";
 import VerifyEmail from "./main/authPages/verifyEmail.js";
 import { useSelector } from "react-redux";
 import ChangePassword from "./main/authPages/ChangePassword.js";
@@ -23,7 +23,7 @@ import CreatePost from "./post/pages/create-post.js";
 
 
 //profile Pages: 
-import ProfileLayout from "./layouts/profileLayout.js";
+import ProfileLayout from "./profile/layout/profileLayout.js";
 import ProfileDetail from "./profile/pages/profile.js";
 import AllProfiles from "./profile/pages/allProfiles.js";
 import AllOrgs from "./profile/pages/allOrgs.js";
@@ -54,7 +54,7 @@ function App() {
             <Route path="/settings" element={<Settings />} />
           </Route>          
 
-          <Route path="/post" element={access_token ? <Layout /> : <Navigate to="/login" />}>
+          <Route path="/post" element={access_token ? <PostLayout /> : <Navigate to="/login" />}>
             <Route index element={access_token ? <PostHome /> : <Navigate to="/login" />} />
             <Route path="satisfied/" element={<PostSatisfied />} />
             <Route path="history/" element={<PostHistory />} />
