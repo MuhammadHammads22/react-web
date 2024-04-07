@@ -11,7 +11,7 @@ import { FcDonate } from "react-icons/fc";
 
 const PostCard = ({ post }) => {
   
-  console.log(post)
+  console.log('post***', post.seeker_vid)
   const navigate = useNavigate(); 
   
 

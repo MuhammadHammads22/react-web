@@ -89,15 +89,35 @@ export const postApis = createApi({
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('access_token') }`,
+            'Content-Type': 'multipart/form-data',
           },
           body: data
         }
       },
 
     }),
-    
+
+    uploadFile : builder.mutation({
+      query: (formData) => {
+        console.log('***** formData', formData)
+        return {
+          url: 'upload-file/',
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('access_token') }`,
+            'Content-Type': 'multipart/form-data',
+          },
+          body: formData,
+        }
+      },
+    }),
+
+
   }),
 })
 
-export const { useGetPostListQuery, useGetPostHistoryQuery, useGetPostSatisfiedQuery, useGetPostSavesQuery, useGetPostDetailQuery, useGetPostDocFilesQuery, useCreatePostMutation } = postApis
+export const { 
+    useGetPostListQuery, useGetPostHistoryQuery, useGetPostSatisfiedQuery, useGetPostSavesQuery, useGetPostDetailQuery, useGetPostDocFilesQuery, useCreatePostMutation, useUploadFileMutation
+
+} = postApis
 

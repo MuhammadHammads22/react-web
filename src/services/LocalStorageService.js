@@ -9,6 +9,26 @@ const storeToken = (value) => {
   }
 }
 
+//localStorage.theme
+
+const getTheme = () => {
+  // default to light
+  if (!localStorage.getItem('theme')) {
+    localStorage.setItem('theme', 'light')
+  }
+
+  let theme = localStorage.getItem('theme')
+  return theme
+}
+
+const setTheme = (value) => {
+  if (value) {
+    localStorage.setItem('theme', value)
+  }
+}
+
+
+
 const getToken = () => {
   let access_token = localStorage.getItem('access_token')
   let refresh_token = localStorage.getItem('refresh_token')
@@ -34,4 +54,4 @@ const handleTokenRefresh = async () => {
   }
 };
 
-export { storeToken, getToken, removeToken, handleTokenRefresh }
+export { storeToken, getToken, removeToken, handleTokenRefresh, getTheme, setTheme }

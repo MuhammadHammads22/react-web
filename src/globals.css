@@ -2,22 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Light mode styles */
 @layer base {
   body {
-    @apply bg-gray-200;
+    @apply bg-gray-200 dark:bg-dark-4; /* Set light mode background color */
+  }
+}
+
+/* Dark mode styles */
+@layer utilities {
+  .dark-mode {
+    @apply dark:bg-dark-3; /* Set dark mode background color */
   }
 }
 
 /* Loading icon animation */
 .loading-icon {
-  animation: rotate 1s linear infinite; /* Animation properties */
+  animation: rotate 1s linear infinite; 
 }
 
 @keyframes rotate {
   from {
-    transform: rotate(0deg); /* Start rotation from 0 degrees */
+    transform: rotate(0deg); 
   }
   to {
-    transform: rotate(360deg); /* Rotate to 360 degrees */
+    transform: rotate(360deg);
   }
 }

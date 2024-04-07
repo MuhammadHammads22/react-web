@@ -16,7 +16,7 @@ import LogoutButton from '../main/authPages/Logout_btn.js';
 import { Button } from '@mui/material';
 import { Link } from "react-router-dom";
 import ProfileDetail from "../profile/pages/profile.js"
-
+import Switcher from "../layouts/darkmode.js";
 
 export default function AccountMenu() {
   const navigate = useNavigate();
@@ -118,6 +118,12 @@ export default function AccountMenu() {
             <Logout fontSize="small" />
           </ListItemIcon>
           <LogoutButton />
+        </MenuItem>
+
+        <MenuItem >
+          <ListItemIcon>
+            <Switcher />
+          </ListItemIcon>
         </MenuItem>
 
 

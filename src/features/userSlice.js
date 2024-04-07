@@ -15,8 +15,8 @@ export const userSlice = createSlice({
       state.name = action.payload.name
     },
     unsetUserInfo: (state, action) => {
-      state.email = action.payload.email
-      state.name = action.payload.name
+      state.email = ''
+      state.name = ''
     },
   }
   

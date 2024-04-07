@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import "../assets/css/create-post.css";
 import {useCreatePostMutation} from "../../services/postApis";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { useSelector } from 'react-redux'; // Import useSelector to access Redux store
-import { setUserInfo, unsetUserInfo } from '../../features/userSlice';
+import axios from 'axios';
+
 
 const CreatePostPage = () => {
-  const userInfo = useSelector((state) => state.user_info); // Access user information from Redux store
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
 
   const [formData, setFormData] = useState({
-    creator: userInfo.name || '',
+    creator: '1',
     post_type: '',
     kind: '',
     seeker: '',
-    blur_face: false,
     description: '',
     address: '',
     phone_number: '',
@@ -27,13 +27,6 @@ const CreatePostPage = () => {
     iban_number: '',
   });
 
-  useEffect(() => {
-    // Update creator field whenever user info changes
-    setFormData((prevData) => ({
-      ...prevData,
-      creator: userInfo.name || '',
-    }));
-  }, [userInfo]);
 
 
   const [createPost, { isLoading }] = useCreatePostMutation();
@@ -47,33 +40,113 @@ const CreatePostPage = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSeekerFileChange = async (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/post/upload-file/', formData, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      if (response.status === 200) {
+        const uploadedFileUrl = response.data.url;
+        console.log('File uploaded successfully:', uploadedFileUrl);
+        
+        setFormData(prevFormData => ({
+          ...prevFormData,
+          seeker_vid: uploadedFileUrl,
+        }));
+
+        setSuccessMessage('Seeker video uploaded successfully');
+      } else {
+        console.error('Failed to upload file:', file.name);
+        setErrorMessage('Failed to upload seeker video');
+      }
+    } catch (error) {
+      console.error('Error occurred while uploading file:', error);
+      setErrorMessage('Error uploading seeker video');
+    }
+  };
+
+  const handlePlaceFileChange = async (e) => {
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/post/upload-file/', formData, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
+      if (response.status === 200) {
+        const uploadedFileUrl = response.data.url;
+        console.log('File uploaded successfully:', uploadedFileUrl);
+        
+        setFormData(prevFormData => ({
+          ...prevFormData,
+          place_vid: uploadedFileUrl,
+        }));
+
+        setSuccessMessage('Place video uploaded successfully');
+      } else {
+        console.error('Failed to upload file:', file.name);
+        setErrorMessage('Failed to upload Place video');
+      }
+    } catch (error) {
+      console.error('Error occurred while uploading file:', error);
+      setErrorMessage('Error uploading Place video');
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
-
+    console.log("type of form ", typeof formData);
+  
+    // Convert formData to JSON format
+    const jsonData = JSON.stringify(formData);
+  
     // Create post
-    createPost(formData)
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-
+    const config = {
+      headers: {
+        'Content-Type': 'application/json', // Use JSON content type
+        'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+      }
+    };
+  
+    try {
+      const response = await axios.post('http://127.0.0.1:8000/post/create/', jsonData, config);
+      console.log(response);
+    } catch (error) {
+      console.error('Error occurred while creating post:', error);
+    }
   };
+
 
   return (
     <div className="page">
-      <h1 className="text-3xl font-bold mb-8">Create Post</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='create-form-card' enctype="multipart/form-data">
 
+        <h1 className="text-3xl font-bold mb-8">Create Post</h1>
+
+        <div className='grid grid-cols-2 gap-4'>
+        <div>
         {/* Seeker */}
-        <div className="mb-4">
-          <label htmlFor="seeker" className="block font-semibold mb-2">Seeker</label>
+        <div className="mb-4 field-width">
+          <label htmlFor="seeker" className="block font-semibold mb-2">Name</label>
           <input
             type="text"
             id="seeker"
             name="seeker"
+            placeholder='Name of Seeker: Bilal Ahmed'
             value={formData.seeker}
             onChange={handleChange}
             className="block w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-400"
@@ -81,13 +154,14 @@ const CreatePostPage = () => {
           />
         </div>
 
-      {/* Address */}
-      <div className="mb-4">
+        {/* Address */}
+        <div className="mb-4 field-width">
           <label htmlFor="address" className="block font-semibold mb-2">Address</label>
           <input
             type="text"
             id="address"
             name="address"
+            placeholder='Address: 123 Main Street, Anytown USA'
             value={formData.address}
             onChange={handleChange}
             className="block w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-400"
@@ -96,22 +170,80 @@ const CreatePostPage = () => {
         </div>
 
         {/* Phone Number */}
-        <div className="mb-4">
+        <div className="mb-4 field-width">
           <label htmlFor="phone_number" className="block font-semibold mb-2">Phone Number</label>
           <input
             type="tel"
             id="phone_number"
             name="phone_number"
+            placeholder='03xx-xxxxxx21'
             value={formData.phone_number}
             onChange={handleChange}
             className="block w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-400"
             required
           />
         </div>
+        </div>
+        
+        <div>
+        {/* Seeker Video */}
+        <div className="mb-4 field-width">
+          <label htmlFor="seeker_vid" className="block font-semibold mb-2">Seeker Video</label>
+          <input
+            type="file"
+            id="seeker_vid"
+            name="seeker_vid"
+            onChange={handleSeekerFileChange}
+            className="block w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-400"
+          />
+          {successMessage && <div>{successMessage}</div>}
+          {errorMessage && <div>{errorMessage}</div>}
+        </div>
+        
+
+        {/* Place Video */}
+        <div className="mb-4 field-width">
+          <label htmlFor="place_vid" className="block font-semibold mb-2">Place Video</label>
+          <input
+            type="file"
+            id="place_vid"
+            name="place_vid"
+            onChange={handlePlaceFileChange}
+            className="block w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-400"
+          />
+          {successMessage && <div>{successMessage}</div>}
+          {errorMessage && <div>{errorMessage}</div>}
+        </div>
 
         {/* Post Type */}
-        <div className="mb-4">
-          <label htmlFor="post_type" className="block font-semibold mb-2">Post Type</label>
+        <div className="mb-4 field-width">
+          <label htmlFor="post_type" className="block font-semibold mb-2">Which place?</label>
+          <select
+            id="post_type"
+            name="post_type"
+            value={formData.place}
+            onChange={handleChange}
+            className="block w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-400"
+            required
+          >
+            <option value="">Select place</option>
+            <option value="house">House</option>
+            <option value="ngo">NGO</option>
+            <option value="masjid">Masjid</option>
+            <option value="madrasa">Madrasa</option>
+          </select>
+        </div>
+
+        </div>
+
+        </div>
+
+        <div className='grid grid-cols-2 gap-4'>
+        
+        <div className='mt-10'>
+        {/* Post Type */}
+        <div className="mb-4 field-width">
+          <label htmlFor="post_type" className="block font-semibold mb-2">Asking for What?</label>
           <select
             id="post_type"
             name="post_type"
@@ -120,17 +252,17 @@ const CreatePostPage = () => {
             className="block w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-400"
             required
           >
-            <option value="">Select Post Type</option>
-            <option value="fam">Family</option>
-            <option value="org">Organization</option>
-            <option value="org">Masjid</option>
-            <option value="org">Madrasa</option>
-            <option value="org">NGO</option>
+            <option value="">Select Purpose</option>
+            <option value="fam">Asking for Family</option>
+            <option value="masjid">Asking for Masjid</option>
+            <option value="madrasa">Asking for Madrasa</option>
+            <option value="ngo">Asking for NGO</option>
+            <option value="myself">Asking for Myself</option>
           </select>
         </div>
 
         {/* Kind */}
-        <div className="mb-4">
+        <div className="mb-4 field-width">
           <label htmlFor="kind" className="block font-semibold mb-2">What you need?</label>
           <select
             id="kind"
@@ -142,43 +274,14 @@ const CreatePostPage = () => {
           >
             <option value="">Select Need</option>
             <option value="zakat">Zakat</option>
-            <option value="help">Donation</option>
+            <option value="donation">Donation</option>
             <option value="help">Help</option>
           </select>
         </div>
 
-        
-
-        {/* Blur Face */}
-        <div className="mb-4">
-          <label htmlFor="blur_face" className="block font-semibold mb-2">Blur Face</label>
-          <input
-            type="checkbox"
-            id="blur_face"
-            name="blur_face"
-            checked={formData.blur_face}
-            onChange={handleChange}
-            className="mr-2"
-          />
-        </div>
-
-        {/* Description */}
-        <div className="mb-4">
-          <label htmlFor="description" className="block font-semibold mb-2">Description</label>
-          <textarea
-            id="description"
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-            className="block w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-400"
-            required
-          />
-        </div>
-
-        
         {/* Needed Money */}
-        <div className="mb-4">
-          <label htmlFor="needed_money" className="block font-semibold mb-2">Needed Money</label>
+        <div className="mb-4 field-width">
+        <label htmlFor="needed_money" className="block font-semibold mb-2">How much money do you need?</label>
           <input
             type="number"
             id="needed_money"
@@ -189,35 +292,14 @@ const CreatePostPage = () => {
             required
           />
         </div>
-
-        {/* Seeker Video */}
-        <div className="mb-4">
-          <label htmlFor="seeker_vid" className="block font-semibold mb-2">Seeker Video</label>
-          <input
-            type="text"
-            id="seeker_vid"
-            name="seeker_vid"
-            value={formData.seeker_vid}
-            onChange={handleChange}
-            className="block w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-400"
-          />
         </div>
+        
 
-        {/* Place Video */}
-        <div className="mb-4">
-          <label htmlFor="place_vid" className="block font-semibold mb-2">Place Video</label>
-          <input
-            type="text"
-            id="place_vid"
-            name="place_vid"
-            value={formData.place_vid}
-            onChange={handleChange}
-            className="block w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-400"
-          />
-        </div>
+        
+      <div className='mt-10'>
 
         {/* Bank Title */}
-        <div className="mb-4">
+        <div className="mb-4 field-width">
           <label htmlFor="bank_title" className="block font-semibold mb-2">Bank Title</label>
           <input
             type="text"
@@ -230,7 +312,7 @@ const CreatePostPage = () => {
         </div>
 
         {/* Bank Name */}
-        <div className="mb-4">
+        <div className="mb-4 field-width">
           <label htmlFor="bank_name" className="block font-semibold mb-2">Bank Name</label>
           <input
             type="text"
@@ -243,7 +325,7 @@ const CreatePostPage = () => {
         </div>
 
         {/* Account Number */}
-        <div className="mb-4">
+        <div className="mb-4 field-width">
           <label htmlFor="account_number" className="block font-semibold mb-2">Account Number</label>
           <input
             type="text"
@@ -256,7 +338,7 @@ const CreatePostPage = () => {
         </div>
 
         {/* IBAN Number */}
-        <div className="mb-4">
+        <div className="mb-4 field-width">
           <label htmlFor="iban_number" className="block font-semibold mb-2">IBAN Number</label>
           <input
             type="text"
@@ -265,6 +347,23 @@ const CreatePostPage = () => {
             value={formData.iban_number}
             onChange={handleChange}
             className="block w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-400"
+          />
+        </div>
+
+        </div>
+
+        </div>
+
+        {/* Description */}
+        <div className="mb-4 post-description">
+          <label htmlFor="description" className="block font-semibold mb-2">Description</label>
+          <textarea
+            id="description"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            className="block w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-400"
+            required
           />
         </div>
 
