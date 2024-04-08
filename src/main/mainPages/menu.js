@@ -1,133 +1,67 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Avatar from '@mui/material/Avatar';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Tooltip from '@mui/material/Tooltip';
-import PersonAdd from '@mui/icons-material/PersonAdd';
-import Settings from '@mui/icons-material/Settings';
-import { NavLink, useNavigate } from 'react-router-dom';
-import Logout from '@mui/icons-material/Logout';
+import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import { CgProfile } from "react-icons/cg";
 import LogoutButton from '../authPages/Logout_btn.js';
-import { Button } from '@mui/material';
-import { Link } from "react-router-dom";
-import ProfileDetail from "../../profile/pages/profile.js"
 import Switcher from "./darkmode.js";
+import { Link } from 'react-router-dom';
 
 export default function AccountMenu() {
-  const navigate = useNavigate();
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  const [isOpen, setIsOpen] = useState(false);
 
-
-  const handleProfileClick = () => {
-    const username = '1';
-    navigate(`/profiles/${username}`);
+  const handleMenu = () => {
+    setIsOpen(!isOpen);
   };
-
 
   return (
-    
-    <React.Fragment>
-      <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
-        <Tooltip title="Account settings">
-          <IconButton
-            onClick={handleClick}
-            size="small"
-            sx={{ ml: 2 }}
-            aria-controls={open ? 'account-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-          >
-            <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
-          </IconButton>
-        </Tooltip>
-      </Box>
-      <Menu
-        anchorEl={anchorEl}
-        id="account-menu"
-        open={open}
-        onClose={handleClose}
-        onClick={handleClose}
-        PaperProps={{
-          elevation: 0,
-          sx: {
-            overflow: 'visible',
-            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-            mt: 1.5,
-            '& .MuiAvatar-root': {
-              width: 32,
-              height: 32,
-              ml: -0.5,
-              mr: 1,
-            },
-            '&::before': {
-              content: '""',
-              display: 'block',
-              position: 'absolute',
-              top: 0,
-              right: 14,
-              width: 10,
-              height: 10,
-              bgcolor: 'background.paper',
-              transform: 'translateY(-50%) rotate(45deg)',
-              zIndex: 0,
-            },
-          },
-        }}
-        transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-        anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+    <div className="relative inline-block">
+      <button
+        className="relative z-10 p-2 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-75 focus:z-30"
+        onClick={handleMenu}
+        aria-expanded={isOpen}
+        aria-haspopup="true"
       >
-        
-        <MenuItem onClick={handleProfileClick}>
-          <Avatar /> Profile
-        </MenuItem>
+        <CgProfile className="w-8 h-8 text-gray-400" /> {/* Icon with improved contrast */}
+      </button>
 
-      <Divider />
-
-        <Link to='/settings'>
-          <MenuItem onClick={handleClose}>
-            <ListItemIcon>
-              <Settings fontSize="small" />
-            </ListItemIcon>
-            Settings
-          </MenuItem>
+      <div
+        className={`absolute right-0 origin-top-right mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none ${
+          isOpen ? 'block' : 'hidden'
+        }`}
+        role="menu"
+        aria-orientation="vertical"
+        aria-labelledby="account-menu"
+      >
+        <Link to="/profiles/1" className="block px-4 py-2 hover:bg-gray-100 text-gray-700"> {/* Improved text contrast */}
+          <div className="flex items-center">
+            <div className="w-6 h-6 rounded-full bg-gray-200"></div>
+            <span className="ml-3">Profile</span>
+          </div>
         </Link>
-
-        <Link to='/change_password'>
-          <MenuItem onClick={handleClose}>
-            <ListItemIcon>
-              <Settings fontSize="small" />
-            </ListItemIcon>
-            Change Password
-          </MenuItem>
-        </Link>
-
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <Logout fontSize="small" />
-          </ListItemIcon>
-          <LogoutButton />
-        </MenuItem>
-
-        <MenuItem >
-          <ListItemIcon>
+        <div className="border-t border-gray-200"></div>
+        <NavLink to="/settings" className="block px-4 py-2 hover:bg-gray-100 text-gray-700"> {/* Consistent text color */}
+          <span className="flex items-center">
+            <i className="fas fa-cog text-gray-400 mr-3"></i> Settings
+          </span>
+        </NavLink>
+        <NavLink to="/change_password" className="block px-4 py-2 hover:bg-gray-100 text-gray-700"> {/* Consistent text color */}
+          <span className="flex items-center">
+            <i className="fas fa-key text-gray-400 mr-3"></i> Change Password
+          </span>
+        </NavLink>
+        <div className="border-t border-gray-200"></div>
+        <div className="block px-4 py-2 hover:bg-gray-100 text-gray-700"> {/* Consistent text color */}
+          <span className="flex items-center">
+            <i className="fas fa-sign-out-alt text-gray-400 mr-3"></i>
+            <LogoutButton />
+          </span>
+        </div>
+        <div className="block px-4 py-2 hover:bg-gray-100 text-gray-700"> {/* Consistent text color */}
+          <span className="flex items-center">
+            <i className="fas fa-moon text-blue-400 mr-3"></i> {/* Consider a more accessible icon color */}
             <Switcher />
-          </ListItemIcon>
-        </MenuItem>
-
-
-      </Menu>
-    </React.Fragment>
+          </span>
+        </div>
+      </div>
+    </div>
   );
 }
