@@ -13,7 +13,7 @@ export const profileApis = createApi({
     profile: builder.query({
       query: (pk) => {
         return {
-          url: `detail/${pk}/`, 
+          url: `detail/${pk}`, 
           method: 'GET',
           headers: {
               Authorization: `Bearer ${localStorage.getItem('access_token')}`, 

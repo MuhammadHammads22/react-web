@@ -31,7 +31,7 @@ export default function AccountMenu() {
         aria-orientation="vertical"
         aria-labelledby="account-menu"
       >
-        <Link to="/profiles/1" className="block px-4 py-2 hover:bg-gray-100 text-gray-700"> {/* Improved text contrast */}
+        <Link to="/profiles/abuubaida01" className="block px-4 py-2 hover:bg-gray-100 text-gray-700"> {/* Improved text contrast */}
           <div className="flex items-center">
             <div className="w-6 h-6 rounded-full bg-gray-200"></div>
             <span className="ml-3">Profile</span>

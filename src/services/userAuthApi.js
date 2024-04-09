@@ -51,9 +51,9 @@ export const userAuthApi = createApi({
     }),
     
     getLoggedUser: builder.query({
-      query: () => {
+      query: (username) => {
         return {
-          url: 'getuserD/',
+          url: `get-user-detial/${username}`,
           method: 'GET',
           headers: {
             'authorization': `Bearer ${localStorage.getItem('access_token') }`,
