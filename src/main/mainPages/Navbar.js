@@ -3,6 +3,8 @@ import { NavLink } from 'react-router-dom';
 import AccountMenu from './menu';
 import { GrAdd } from "react-icons/gr";
 import { getToken } from '../../storage/LocalStorageService';
+import { IoMdNotificationsOutline } from "react-icons/io";
+import { LuLogIn } from "react-icons/lu";
 
 const Navbar = () => {
   const { access_token } = getToken();
@@ -13,25 +15,33 @@ const Navbar = () => {
         <div className="flex items-center">
           <NavLink to="/post" className="text-xl text-white font-bold">AddaZakat</NavLink>
         </div>
+        {access_token ? (
         <ul className="flex space-x-4">
           <li>
             <NavLink to="/post/create" className="text-white hover:text-gray-200 flex mt-2 items-center">
-            <GrAdd className="w-6 h-6" /> Create Post
+            <GrAdd className="w-8 h-8" />
             </NavLink>
           </li>
-          
-          {access_token ? (
-            <li>
+
+          <li>
+            <NavLink to="/post" className="text-white hover:text-gray-200 flex mt-2 items-center">
+            <IoMdNotificationsOutline className="w-8 h-8" />
+            </NavLink>
+          </li>
+          <li>
               <AccountMenu />
-            </li>
-          ) : (
-            <li>
-              <NavLink to="/login" className="text-white hover:text-gray-200 px-3 py-2 rounded-md transition duration-300 bg-gray-700">
-                Login
-              </NavLink>
-            </li>
-          )}
+          </li>
         </ul>
+        ) : (
+        <ul className="flex space-x-4">
+          <li>
+            <NavLink to="/login" className="text-white hover:text-gray-200 flex mt-2 items-center">
+            <LuLogIn className="w-7 h-7" />
+            </NavLink>
+          </li>
+        </ul>
+        )}
+
       </div>
     </nav>
   );

@@ -1,6 +1,5 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { Button } from '@mui/material';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { unSetUserToken } from '../../storage/features/authSlice';
 import { setUserInfo, unsetUserInfo } from '../../storage/features/userSlice';
@@ -19,13 +18,13 @@ const LogoutButton = () => {
   };
 
   return (
-    <Button
+    <button
       component={NavLink}
       to='/post'
       onClick={handleLogout}
     >
       Logout
-    </Button>
+    </button>
   );
 };
 

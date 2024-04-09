@@ -8,9 +8,9 @@ const ProfileLayout = () => {
     <div >
       <Navbar />
       <div className='flex'> 
-        <div className='sidebar'>
+        {/* <div className='sidebar'>
           <ProfileSidebar /> 
-        </div>
+        </div> */}
         <div className='content'> 
           <Outlet />
         </div>

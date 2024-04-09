@@ -15,12 +15,12 @@ export default function AccountMenu() {
   return (
     <div className="relative inline-block">
       <button
-        className="relative z-10 p-2 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-75 focus:z-30"
+        className="relative z-10 p-2 rounded-md shadow-sm"
         onClick={handleMenu}
         aria-expanded={isOpen}
         aria-haspopup="true"
       >
-        <CgProfile className="w-8 h-8 text-gray-400" /> {/* Icon with improved contrast */}
+        <CgProfile className="w-8 h-8 text-gray-400" /> 
       </button>
 
       <div
@@ -48,19 +48,20 @@ export default function AccountMenu() {
             <i className="fas fa-key text-gray-400 mr-3"></i> Change Password
           </span>
         </NavLink>
+        <div className="block px-4 py-2 hover:bg-gray-100 text-gray-700"> 
+          <span className="flex items-center">
+            <i className="fas fa-moon text-blue-400 mr-3"></i>
+            <Switcher />
+          </span>
+        </div>
         <div className="border-t border-gray-200"></div>
-        <div className="block px-4 py-2 hover:bg-gray-100 text-gray-700"> {/* Consistent text color */}
+        <div className="block px-4 py-2 hover:bg-gray-100 text-gray-700"> 
           <span className="flex items-center">
             <i className="fas fa-sign-out-alt text-gray-400 mr-3"></i>
             <LogoutButton />
           </span>
         </div>
-        <div className="block px-4 py-2 hover:bg-gray-100 text-gray-700"> {/* Consistent text color */}
-          <span className="flex items-center">
-            <i className="fas fa-moon text-blue-400 mr-3"></i> {/* Consider a more accessible icon color */}
-            <Switcher />
-          </span>
-        </div>
+        
       </div>
     </div>
   );
