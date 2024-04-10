@@ -1,19 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import "../assets/css/post.css";
+import videojs from 'video.js';
 
 import { BiUpvote } from "react-icons/bi";
 import { BiDownvote } from "react-icons/bi";
 import { GoReport } from "react-icons/go";
 import { FcDonate } from "react-icons/fc";
-
+import VideoJS from './video-player.js'
 
 
 const PostCard = ({ post }) => {
   
-  console.log('post***', post.seeker_vid)
+  console.log('post***', `${post.seeker_vid}`)
   const navigate = useNavigate(); 
+  const playerRef = React.useRef(null);
   
+  const videoJsOptions = {
+    autoplay: true,
+    controls: true,
+    responsive: true,
+    fluid: true,
+    sources: [{
+      src: `${post.seeker_vid}`,
+      type: 'video/mp4'
+    }]
+  };
+
+  const handlePlayerReady = (player) => {
+    playerRef.current = player;
+
+    // You can handle player events here, for example:
+    player.on('waiting', () => {
+      videojs.log('player is waiting');
+    });
+
+    player.on('dispose', () => {
+      videojs.log('player will dispose');
+    });
+  };
+
 
 
   const handleClick = () => {
@@ -27,9 +53,7 @@ const PostCard = ({ post }) => {
 
         <div className='grid gap-4'>
           <div>
-            <video className='video-frame-size' controls controlsList="nodownload">
-              <source src={post.seeker_vid} type="video/mp4" />
-            </video>
+            <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
           </div>
         </div>
 

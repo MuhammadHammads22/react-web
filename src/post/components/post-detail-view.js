@@ -16,14 +16,13 @@ const PostDetailView = () => {
 
   const { data, isError, error, isLoading } = useGetPostDetailQuery(slug);
   const { docfiles, docfileIsLoading} = useGetPostDocFilesQuery(slug);
-
+  
   if (isLoading){
     return <div><CircularProgress />Loading...</div>;
   }
   if (isError) return <div>Error: {error.message}</div>;
 
   return (
-    
     <div className='PostDetailView'>
       <div className='flex items-center mb-4'>
         <p className='text-lg font-bold'>{data.creator}</p>
@@ -37,7 +36,7 @@ const PostDetailView = () => {
       </div>
 
       <div className='grid grid-cols-2 gap-4'>
-        <div className=''>
+        <div className='detail-video-size'>
             <video className='detail-video-size' controls controlsList="nodownload">
               <source src={data.seeker_vid} type="video/mp4" />
             </video>
