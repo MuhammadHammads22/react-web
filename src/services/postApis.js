@@ -112,12 +112,52 @@ export const postApis = createApi({
       },
     }),
 
+    upvote : builder.mutation({
+      query: (slug) => {
+        return {
+          url: `upvote/${slug}/`,
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('access_token') }`,
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      },
+    }),
+
+    downvote : builder.mutation({
+      query: (slug) => {
+        return {
+          url: `downvote/${slug}/`,
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('access_token') }`,
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      },
+    }),
+
+    save : builder.mutation({
+      query: (slug) => {
+        return {
+          url: `save/${slug}/`,
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('access_token') }`,
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      },
+    }),
+
 
   }),
 })
 
 export const { 
-    useGetPostListQuery, useGetPostHistoryQuery, useGetPostSatisfiedQuery, useGetPostSavesQuery, useGetPostDetailQuery, useGetPostDocFilesQuery, useCreatePostMutation, useUploadFileMutation
+    useGetPostListQuery, useGetPostHistoryQuery, useGetPostSatisfiedQuery, useGetPostSavesQuery, useGetPostDetailQuery, useGetPostDocFilesQuery, useCreatePostMutation, useUploadFileMutation,
+    useUpvoteMutation, useDownvoteMutation, useSaveMutation,
 
 } = postApis
 

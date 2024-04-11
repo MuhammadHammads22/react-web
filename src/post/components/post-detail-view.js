@@ -1,22 +1,80 @@
-import React from 'react'
-import { useGetPostDetailQuery, useGetPostDocFilesQuery } from '../../services/postApis';
+import React, { useState, useEffect } from 'react';
+import { useGetPostDetailQuery, useGetPostDocFilesQuery, useDownvoteMutation, useUpvoteMutation, useSaveMutation } from '../../services/postApis';
 import { useParams } from 'react-router-dom';
 import {  CircularProgress } from '@mui/material';
 import { multiFormatDateString } from '../../lib/utils/DateConvertor';
 import "../assets/css/post.css";
 import { Link } from 'react-router-dom';
-
 import { BiUpvote } from "react-icons/bi";
 import { BiDownvote } from "react-icons/bi";
-
+import { FaRegBookmark } from "react-icons/fa";
 
 const PostDetailView = () => {
 
-  const { slug } = useParams(); // Extract username from URL parameters
-
+  const { slug } = useParams();
   const { data, isError, error, isLoading } = useGetPostDetailQuery(slug);
   const { docfiles, docfileIsLoading} = useGetPostDocFilesQuery(slug);
   
+
+  const [upvote, setUpvotes] = useState(0)
+  const [downvote, setDownvote] = useState(0)
+  
+  useEffect(() => {
+    if (data) {
+      setUpvotes(data.upvote_count);
+      setDownvote(data.downvote_count);
+    }
+  }, [data]);
+
+  const [isUpvoted, setIsUpvoted] = useState(false);
+  const [isDownvoted, setIsDownvoted] = useState(false);
+
+
+  const [ upvoteMutation ] = useUpvoteMutation()
+  const [ downvoteMutation ] = useDownvoteMutation()
+  const [ saveMutation ] = useSaveMutation()
+
+  const handleUpvote = (event) => {
+    event.stopPropagation();
+    if (!isUpvoted) {
+      setUpvotes(upvote + 1)
+      setIsUpvoted(true)
+      if (isDownvoted){
+        setDownvote(downvote - 1)
+        setIsDownvoted(false)
+      };
+      upvoteMutation(slug)
+    }else {
+      setUpvotes(upvote - 1)
+      setIsUpvoted(false)
+      upvoteMutation(slug)
+    }
+  }
+
+  const handleDownvote = (event) => {
+    event.stopPropagation();
+
+    if (!isDownvoted) {
+      setDownvote(downvote + 1)
+      setIsDownvoted(true)
+      if(isUpvoted){
+        setUpvotes(upvote - 1)
+        setIsUpvoted(false)
+      };
+      downvoteMutation(slug)
+    }else{
+      setDownvote(downvote - 1)
+      setIsDownvoted(false)
+      downvoteMutation(slug)
+    }
+  }
+
+  // Save button
+
+  const handleSave = (event) => {
+    saveMutation(slug)
+  }
+
   if (isLoading){
     return <div><CircularProgress />Loading...</div>;
   }
@@ -52,19 +110,22 @@ const PostDetailView = () => {
       <div className='flex justify-between py-4'>
         
         <div className='flex'>
-          <Link className='icon-container' rel="stylesheet" href="">
+          <Link className='icon-container' rel="stylesheet" onClick={handleUpvote}>
             <BiUpvote className='text-xl'></BiUpvote>
-            <p className='text-xs font-bold text-blue-500'>1</p>
+            <p className='text-xs font-bold text-blue-500'>{upvote}</p>
           </Link>
-          <Link className='icon-container' rel="stylesheet" href="">
+          <Link className='icon-container' rel="stylesheet" onClick={handleDownvote}>
             <BiDownvote className='text-xl'></BiDownvote>
-            <p className='text-xs font-bold text-blue-500'>2</p>
+            <p className='text-xs font-bold text-blue-500'>{downvote}</p>
+          </Link>
+          <Link className='icon-container' rel="stylesheet" onClick={handleSave}>
+            <FaRegBookmark className='text-xl'></FaRegBookmark>
           </Link>
         </div>
 
         <div className='flex'>
-          <p className='text-sm rounded-full'>Donors 3</p>
-          <p className='text-sm rounded-full'>Reports 55</p>
+          <p className='text-sm rounded-full'>Donors {data.report_count}</p>
+          <p className='text-sm rounded-full'>Reports {data.donors_count}</p>
         </div>
 
       </div>
@@ -100,8 +161,8 @@ const PostDetailView = () => {
       <div className='mt-4'>
         {docfileIsLoading && docfiles && (
               <>
-                {docfiles.map((post) => (
-                  <p>{post}</p>
+                {docfiles.map((data) => (
+                  <p>{data}</p>
                 ))}
               </>
             )}
