@@ -3,8 +3,8 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import "../assets/css/post.css";
 import videojs from 'video.js';
 
-import { BiUpvote } from "react-icons/bi";
-import { BiDownvote } from "react-icons/bi";
+import { BiUpvote, BiSolidUpvote } from "react-icons/bi";
+import { BiDownvote, BiSolidDownvote } from "react-icons/bi";
 import { GoReport } from "react-icons/go";
 import { FcDonate } from "react-icons/fc";
 import VideoJS from './video-player.js'
@@ -102,11 +102,11 @@ const PostCard = ({ post }) => {
         <div className='flex justify-between py-4'>
           <div className='flex'>
             <Link className='icon-container' rel="stylesheet" onClick={handleUpvote}>
-              <BiUpvote className='text-xl'></BiUpvote>
+              {isUpvoted ? <BiSolidUpvote className='text-xl text-green-500' /> : <BiUpvote className='text-xl' />}
               <p className='text-xs font-bold text-blue-500'>{upvote}</p>
             </Link>
             <Link className='icon-container' rel="stylesheet" onClick={handleDownvote}>
-              <BiDownvote className='text-xl'></BiDownvote>
+              {isDownvoted ? <BiSolidDownvote className='text-xl text-red-500' /> : <BiDownvote className='text-xl' />}
               <p className='text-xs font-bold text-blue-500'>{downvote}</p>
             </Link>
           </div>

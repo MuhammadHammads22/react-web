@@ -5,9 +5,10 @@ import {  CircularProgress } from '@mui/material';
 import { multiFormatDateString } from '../../lib/utils/DateConvertor';
 import "../assets/css/post.css";
 import { Link } from 'react-router-dom';
-import { BiUpvote } from "react-icons/bi";
-import { BiDownvote } from "react-icons/bi";
-import { FaRegBookmark } from "react-icons/fa";
+import { BiUpvote, BiSolidUpvote } from "react-icons/bi";
+import { BiDownvote, BiSolidDownvote } from "react-icons/bi";
+import { FaRegBookmark, FaBookmark } from "react-icons/fa";
+
 
 const PostDetailView = () => {
 
@@ -79,7 +80,8 @@ const PostDetailView = () => {
     return <div><CircularProgress />Loading...</div>;
   }
   if (isError) return <div>Error: {error.message}</div>;
-
+  console.log('*** data.is_upvoted', data.is_upvoted)
+  
   return (
     <div className='PostDetailView'>
       <div className='flex items-center mb-4'>
@@ -111,11 +113,11 @@ const PostDetailView = () => {
         
         <div className='flex'>
           <Link className='icon-container' rel="stylesheet" onClick={handleUpvote}>
-            <BiUpvote className='text-xl'></BiUpvote>
+            {data.is_upvoted ? <BiSolidUpvote className='text-xl' /> : <BiUpvote className='text-xl' />}
             <p className='text-xs font-bold text-blue-500'>{upvote}</p>
           </Link>
           <Link className='icon-container' rel="stylesheet" onClick={handleDownvote}>
-            <BiDownvote className='text-xl'></BiDownvote>
+            {isDownvoted ? <BiSolidDownvote className='text-xl' /> : <BiDownvote className='text-xl' />}
             <p className='text-xs font-bold text-blue-500'>{downvote}</p>
           </Link>
           <Link className='icon-container' rel="stylesheet" onClick={handleSave}>
