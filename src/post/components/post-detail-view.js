@@ -19,16 +19,21 @@ const PostDetailView = () => {
 
   const [upvote, setUpvotes] = useState(0)
   const [downvote, setDownvote] = useState(0)
+  const [isUpvoted, setIsUpvoted] = useState(false);
+  const [isDownvoted, setIsDownvoted] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
   
   useEffect(() => {
     if (data) {
       setUpvotes(data.upvote_count);
       setDownvote(data.downvote_count);
+      setIsUpvoted(data.is_upvoted);
+      setIsDownvoted(data.is_downvoted);
+      setIsSaved(data.is_saved);
     }
   }, [data]);
 
-  const [isUpvoted, setIsUpvoted] = useState(false);
-  const [isDownvoted, setIsDownvoted] = useState(false);
+
 
 
   const [ upvoteMutation ] = useUpvoteMutation()
@@ -73,7 +78,13 @@ const PostDetailView = () => {
   // Save button
 
   const handleSave = (event) => {
-    saveMutation(slug)
+    if (!isSaved) {
+      setIsSaved(true)
+      saveMutation(slug)
+    }else{
+      setIsSaved(false)
+      saveMutation(slug)
+    }
   }
 
   if (isLoading){
@@ -113,15 +124,15 @@ const PostDetailView = () => {
         
         <div className='flex'>
           <Link className='icon-container' rel="stylesheet" onClick={handleUpvote}>
-            {data.is_upvoted ? <BiSolidUpvote className='text-xl' /> : <BiUpvote className='text-xl' />}
+            {isUpvoted ? <BiSolidUpvote className='text-xl text-green-500' /> : <BiUpvote className='text-xl' />}
             <p className='text-xs font-bold text-blue-500'>{upvote}</p>
           </Link>
           <Link className='icon-container' rel="stylesheet" onClick={handleDownvote}>
-            {isDownvoted ? <BiSolidDownvote className='text-xl' /> : <BiDownvote className='text-xl' />}
+            { isDownvoted ? <BiSolidDownvote className='text-xl' /> : <BiDownvote className='text-xl' />}
             <p className='text-xs font-bold text-blue-500'>{downvote}</p>
           </Link>
           <Link className='icon-container' rel="stylesheet" onClick={handleSave}>
-            <FaRegBookmark className='text-xl'></FaRegBookmark>
+            {isSaved ? <FaBookmark className='text-xl' /> : <FaRegBookmark className='text-xl' />}
           </Link>
         </div>
 

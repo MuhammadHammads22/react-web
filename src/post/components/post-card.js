@@ -43,8 +43,8 @@ const PostCard = ({ post }) => {
   // upvote handling! 
   const [upvote, setUpvotes] = useState(post.upvote_count)
   const [downvote, setDownvote] = useState(post.downvote_count)
-  const [isUpvoted, setIsUpvoted] = useState(false);
-  const [isDownvoted, setIsDownvoted] = useState(false);
+  const [isUpvoted, setIsUpvoted] = useState(post.is_upvoted);
+  const [isDownvoted, setIsDownvoted] = useState(post.is_downvoted);
 
   const [ upvoteMutation ] = useUpvoteMutation()
   const [ downvoteMutation ] = useDownvoteMutation()
