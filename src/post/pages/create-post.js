@@ -41,7 +41,7 @@ const CreatePostPage = () => {
   };
 
   const handleSeekerFileChange = async (e) => {
-    const file = e.target.files[0];
+    const file = e.target.files[0]; // it
     const formData = new FormData();
     formData.append('file', file);
 

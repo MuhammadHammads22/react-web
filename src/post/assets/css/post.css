@@ -51,16 +51,77 @@
 
 
 .PostDetailView{
-  margin-left: 1em;
   margin-top: 5em;
-  max-width: 86%;
+  max-width: 67em;
+  width: 67em;
+  padding: 5px;
+  border: 5px solid black;
+  margin-bottom: 3em;
 }
 
-.detail-video-size{
+.detailVideo{
+  width: 600px;
+  height: 300px;
+}
+
+.description{
   width: 100%;
-  height:100%;
+  height: 100%;
   max-height: 600px;
   align-items: center;
-  padding: 1px;
-  margin: 5px;
+  padding: 8px;
+  border: 2px solid black;
 }
+
+.seeker-info{
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  padding: 8px;
+  border: 2px solid black;
+}
+
+
+.detail-buttons{
+  padding: 5px;
+  border: 2px solid black;
+  background-color: antiquewhite;
+  justify-content: center;
+}
+
+.comment-form{
+  width: 100%;
+  padding: 5px;
+  border: 2px solid black;
+  background-color: aliceblue;
+  justify-content: center;
+}
+
+.comment-form input{
+  width: 90%;
+  padding: 5px;
+  border: 2px solid black;
+  background-color: aliceblue;
+  justify-content: center;
+}
+
+.comment-form button{
+  width: 10%;
+  padding: 5px;
+  border: 2px solid black;
+  background-color: rgb(22, 132, 228);
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+}
+
+/* <div className='flex items-center'>
+        <p className='ml-4 text-gray-600'>Seeker: {data.seeker}</p>
+        <p className='ml-4 text-gray-600'>Need: {data.kind}</p>
+        <p className='ml-4 text-gray-600'>From: {data.address}</p>
+        <p className='ml-4 text-gray-600'>Satisfied: {data.satisfied} No</p>
+        <p className='ml-4 text-gray-600'>verified: {data.verified}%</p>
+        <p className='ml-4 text-gray-600'>Without House: {data.without_house}yes</p>
+        <p className='ml-4 text-gray-600'>Phone # {data.phone_number}yes</p>
+        <p className='ml-auto text-gray-600'>{multiFormatDateString(data.created)}</p>
+      </div> */

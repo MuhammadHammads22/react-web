@@ -151,13 +151,26 @@ export const postApis = createApi({
       },
     }),
 
+    comment : builder.mutation({
+      query: (formData) => {
+        return {
+          url: 'PostCommenta/',
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('access_token') }`,
+          },
+          body: formData
+        }
+      },
+    }),
+
 
   }),
 })
 
 export const { 
     useGetPostListQuery, useGetPostHistoryQuery, useGetPostSatisfiedQuery, useGetPostSavesQuery, useGetPostDetailQuery, useGetPostDocFilesQuery, useCreatePostMutation, useUploadFileMutation,
-    useUpvoteMutation, useDownvoteMutation, useSaveMutation,
+    useUpvoteMutation, useDownvoteMutation, useSaveMutation, useCommentMutation,
 
 } = postApis
 
