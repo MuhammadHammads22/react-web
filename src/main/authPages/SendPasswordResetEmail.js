@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import './assets/css/sendPasswordResetEmail.css'
 import { useSendPasswordResetEmailMutation } from "../../services/userAuthApi";
+import { Send } from '@mui/icons-material';
 
 const SendPasswordResetEmail = () => {
   const [server_error, setServerError] = useState({})
@@ -24,27 +26,23 @@ const SendPasswordResetEmail = () => {
     }
   }
 
+
   return (
-    <div className="flex justify-center">
-      <div className="w-full sm:w-1/2 p-4">
-        <h1 className="text-center">Reset Password</h1>
-        <form className="mt-4" id="password-reset-email-form" onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-gray-700 font-bold mb-2" htmlFor="email">Email Address</label>
-            <input
-              id="email"
-              name="email"
-              type="email"
-              required
-              className="px-3 py-2 w-full rounded border focus:outline-none focus:border-blue-500 text-black"
-            />
-            {server_error.email && <p className="text-red-500 text-xs mt-1">{server_error.email[0]}</p>}
+    <div className="content-wrapper flex items-center justify-center h-screen bg-white-100">
+      <div className="max-w-md bg-white p-6 rounded-lg shadow-md">
+        <h1 className="text-2xl font-semibold mb-4 text-gray-800">Forgot Password?</h1>
+        <form id="password-reset-email-form" onSubmit={handleSubmit}>
+          <div className="mt-4">Kindly Enter the Email Address tied to your account, we would help you reset your password
+          <div className="mb-4 mt-4">
+            <label htmlFor="email" className="block text-gray-700 font-bold mb-2">Email Address</label>
+            <input type="email" name="email" id="email" placeholder="mail@yourmail.com" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required />
           </div>
-          <div className="text-center">
-            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded focus:outline-none hover:bg-blue-600">Send</button>
           </div>
-          {server_error.non_field_errors && <div className="text-red-500 text-xs mt-2">{server_error.non_field_errors[0]}</div>}
-          {server_msg.msg && <div className="text-green-500 text-xs mt-2">{server_msg.msg}</div>}
+          {server_error.email && <p className="text-grey-500 text-xs italic">{server_error.email}</p>}
+          <button type="submit" className="w-full bg-blue-500 hover:bg-red-1000 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" disabled={isLoading} >
+            Recover Password
+          </button>
+          {server_msg.message && <p className="mt-2 text-green-500 text-xs italic">{server_msg.message}</p>}
         </form>
       </div>
     </div>
