@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useGetPostDetailQuery, useGetPostDocFilesQuery, useDownvoteMutation, useUpvoteMutation, useSaveMutation, useCommentMutation } from '../../services/postApis';
+import { useGetPostDetailQuery, useGetPostDocFilesQuery, useDownvoteMutation, useUpvoteMutation, useSaveMutation, useCommentMutation, useGetCommentsQuery } from '../../services/postApis';
 import { useParams } from 'react-router-dom';
 import {  CircularProgress } from '@mui/material';
 import { multiFormatDateString } from '../../lib/utils/DateConvertor';
@@ -8,22 +8,24 @@ import { Link } from 'react-router-dom';
 import { BiUpvote, BiSolidUpvote } from "react-icons/bi";
 import { BiDownvote, BiSolidDownvote } from "react-icons/bi";
 import { FaRegBookmark, FaBookmark } from "react-icons/fa";
-
+import CommentList from './comments';
+import '../assets/css/comments.css';
 
 const PostDetailView = () => {
 
   const { slug } = useParams();
   const { data, isError, error, isLoading } = useGetPostDetailQuery(slug);
-  const { docfiles, docfileIsLoading} = useGetPostDocFilesQuery(slug);
-  
+  const { data: docData } = useGetPostDocFilesQuery(slug);
+  console.log('*** data *** ', docData)
 
   const [upvote, setUpvotes] = useState(0)
   const [downvote, setDownvote] = useState(0)
   const [isUpvoted, setIsUpvoted] = useState(false);
   const [isDownvoted, setIsDownvoted] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
-  const [comment, setComment] = useState("");
-  const [comments, setComments] = useState([]);
+  const [commentList, setCommentList] = useState([]);
+  const { data: commentData } = useGetCommentsQuery(slug);
+  const [commentCount, setCommentCount] = useState(0);
   
   useEffect(() => {
     if (data) {
@@ -32,12 +34,15 @@ const PostDetailView = () => {
       setIsUpvoted(data.is_upvoted);
       setIsDownvoted(data.is_downvoted);
       setIsSaved(data.is_saved);
-      //fetchComments(slug);
+      setCommentCount(data.comment_count);
     }
   }, [data]);
 
-
-
+  useEffect(() => {
+    if (commentData) {
+      setCommentList(commentData);
+    }
+  }, [commentData]);
 
   const [ upvoteMutation ] = useUpvoteMutation()
   const [ downvoteMutation ] = useDownvoteMutation()
@@ -79,8 +84,6 @@ const PostDetailView = () => {
     }
   }
 
-  // Save button
-
   const handleSave = (event) => {
     if (!isSaved) {
       setIsSaved(true)
@@ -91,7 +94,6 @@ const PostDetailView = () => {
     }
   }
 
-   // Function to handle comment submission
   const handleSubmitComment = async (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -100,19 +102,13 @@ const PostDetailView = () => {
   
     try {
       const response = await commentMutation(formData);
-      console.log("Response:", response);
-      // Do something with the response if needed
-      setComment("");
+      setCommentList([...commentList, response.data]);
+      setCommentCount(commentCount + 1);
+      event.target.reset(); 
     } catch (error) {
       console.error("Error:", error);
-      // Handle error appropriately
     }
   };
-
-  // Function to handle replying to a comment
-  const handleReply = (commentId) => {
-    // Handle reply action
-  }
 
   if (isLoading){
     return <div><CircularProgress />Loading...</div>;
@@ -182,18 +178,32 @@ const PostDetailView = () => {
         </div>
       </div>
 
+      <div className="flex py-4 post-documents">
+        <p className='text-xl'>Documents</p>
+        {docData && docData.map(doc => (
+          <Link key={doc.id} to={doc.file} target="_blank" rel="noopener noreferrer" className='flex items-center ml-2 text-bold text-blue-800'>
+            <p className='p-2'>{doc.name}</p>
+          </Link>
+        ))}
+      </div>
+      
       <div className='flex description'>
         <p className='text-gray-700'>{data.description}</p>
       </div>
 
-      <div className='py-4'>
-        <h2 className='text-xl'>{data.comment_count} Comments</h2>
+      <div className='py-4 comments'>
+        <h2 className='text-xl'>{commentCount} Comments</h2>
         
         <form onSubmit={handleSubmitComment} className='comment-form'>
           <input type='text' placeholder='Add a comment...' name='body' />
           <input type='hidden' value={data.slug} name='slug' />
           <button type='submit'>Comment</button>
         </form>
+
+        {commentList && [...commentList].reverse().map(comment => (
+          <CommentList key={comment.id} comment={comment} />
+        ))}
+        
       </div>
     
     </div>
@@ -201,16 +211,3 @@ const PostDetailView = () => {
 }
 
 export default PostDetailView
-
-
-
-
-// <div className='mt-4'>
-// {docfileIsLoading && docfiles && (
-//       <>
-//         {docfiles.map((data) => (
-//           <p>{data}</p>
-//         ))}
-//       </>
-//     )}
-// </div>
