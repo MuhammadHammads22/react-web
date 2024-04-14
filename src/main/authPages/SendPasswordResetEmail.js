@@ -35,12 +35,12 @@ const SendPasswordResetEmail = () => {
           <div className="mt-4">Kindly Enter the Email Address tied to your account, we would help you reset your password
           <div className="mb-4 mt-4">
             <label htmlFor="email" className="block text-gray-700 font-bold mb-2">Email Address</label>
-            <input type="email" name="email" id="email" placeholder="mail@yourmail.com" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required />
+            <input type="email" name="email" id="email" placeholder="abc@example.com" className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required />
           </div>
           </div>
           {server_error.email && <p className="text-grey-500 text-xs italic">{server_error.email}</p>}
           <button type="submit" className="w-full bg-blue-500 hover:bg-red-1000 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" disabled={isLoading} >
-            Recover Password
+            submit
           </button>
           {server_msg.message && <p className="mt-2 text-green-500 text-xs italic">{server_msg.message}</p>}
         </form>
