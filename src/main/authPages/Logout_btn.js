@@ -14,13 +14,13 @@ const LogoutButton = () => {
     dispatch(unsetUserInfo({ name: "", email: "" }));
     dispatch(unSetUserToken({ access_token: null }));
     removeToken();
-    navigate('/login');
+    navigate('/auth/login');
   };
 
   return (
     <button
       component={NavLink}
-      to='/post'
+      to='/'
       onClick={handleLogout}
     >
       Logout

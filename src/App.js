@@ -18,6 +18,7 @@ import PostHistory from "./post/pages/history.js";
 import PostSatisfied from "./post/pages/satisfied.js";
 import PostSaves from "./post/pages/saves.js";
 import PostFilter from "./post/pages/filter.js";
+import SearchResults from "./post/pages/search-results.js";
 import PostDetailView from "./post/components/post-detail-view.js"; 
 import CreatePost from "./post/pages/create-post.js";
 
@@ -42,29 +43,30 @@ function App() {
       <BrowserRouter>
         <Routes>
 
-          <Route path="/" element={<AuthLayout />}>
-            <Route path="policy" element={<PrivacyPolicy />} />
-            <Route path="terms" element={<TermsAndConditions />} />
+          <Route path="/auth" element={<AuthLayout />}>
+            <Route path="policy/" element={<PrivacyPolicy />} />
+            <Route path="terms/" element={<TermsAndConditions />} />
 
-            <Route path="login" element={!access_token ? <AuthCard /> : <Navigate to="/post" />} />
-            <Route path="sendpasswordresetemail" element={<SendPasswordResetEmail />} />
-            <Route path="user/reset/:id/:token" element={<ResetPassword />} />
+            <Route path="login/" element={!access_token ? <AuthCard /> : <Navigate to="/" />} />
+            <Route path="sendpasswordresetemail/" element={<SendPasswordResetEmail />} />
+            <Route path="user/reset/:id/:token/" element={<ResetPassword />} />
             <Route path="user/verify/:token/" element={<VerifyEmail />} />
-            <Route path="change_password" element={<ChangePassword />} />
-            <Route path="/settings" element={<Settings />} />
+            <Route path="change_password/" element={<ChangePassword />} />
+            <Route path="settings/" element={<Settings />} />
           </Route>          
 
-          <Route path="/post" element={access_token ? <PostLayout /> : <Navigate to="/login" />}>
-            <Route index element={access_token ? <PostHome /> : <Navigate to="/login" />} />
+          <Route path="/" element={access_token ? <PostLayout /> : <Navigate to="/auth/login" />}>
+            <Route index element={access_token ? <PostHome /> : <Navigate to="/auth/login" />} />
             <Route path="satisfied/" element={<PostSatisfied />} />
             <Route path="history/" element={<PostHistory />} />
             <Route path="saves/" element={<PostSaves />} />
             <Route path="filters/" element={<PostFilter />} />
             <Route path="detail/:slug" element={<PostDetailView />} />
             <Route path="create/" element={<CreatePost />} />
+            <Route path="search" element={<SearchResults />} />
           </Route>
 
-          <Route path="/profiles" element={access_token ? <ProfileLayout /> : <Navigate to="/login" />}>
+          <Route path="/profiles" element={access_token ? <ProfileLayout /> : <Navigate to="/auth/login" />}>
             <Route path=":username" element={<ProfileDetail />} />
             <Route index element={<AllProfiles />} />
             <Route path="organization" element={<AllOrgs />} />

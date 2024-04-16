@@ -38,7 +38,7 @@ const Registration = () => {
     if (res.data) {
       console.log(res.data)
       storeToken(res.data.token);
-      navigate('/post');
+      navigate('/');
     }
   };
 

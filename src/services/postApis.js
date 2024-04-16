@@ -176,13 +176,26 @@ export const postApis = createApi({
       },
     }),
 
+    search: builder.query({
+      query: (query) => {
+        return {
+          url: 'search/',
+          method: 'GET',
+          params: {query},
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('access_token') }`,
+          }
+        }
+      },
+    }),
+
 
   }),
 })
 
 export const { 
     useGetPostListQuery, useGetPostHistoryQuery, useGetPostSatisfiedQuery, useGetPostSavesQuery, useGetPostDetailQuery, useGetPostDocFilesQuery, useCreatePostMutation, useUploadFileMutation,
-    useUpvoteMutation, useDownvoteMutation, useSaveMutation, useCommentMutation, useGetCommentsQuery,
+    useUpvoteMutation, useDownvoteMutation, useSaveMutation, useCommentMutation, useGetCommentsQuery, useSearchQuery
 
 } = postApis
 

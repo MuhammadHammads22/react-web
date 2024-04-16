@@ -28,7 +28,7 @@ const ResetPassword = () => {
       setServerMsg(res.data)
       document.getElementById('password-reset-form').reset()
       setTimeout(() => {
-        navigate("/login")
+        navigate("/auth/login")
       }, 3000)
     }
   }

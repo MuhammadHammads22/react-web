@@ -85,7 +85,7 @@ const PostCard = ({ post }) => {
   }
   
   const handleClick = () => {
-    navigate(`/post/detail/${post.slug}`);
+    navigate(`/detail/${post.slug}`);
   };
 
 

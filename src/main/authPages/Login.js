@@ -35,7 +35,7 @@ const UserLogin = () => {
       storeToken(res.data.token);
       let { access_token } = getToken();
       dispatch(setUserToken({ access_token: access_token }));
-      navigate('/post');
+      navigate('/');
     }
 
   };
@@ -100,15 +100,15 @@ const UserLogin = () => {
         </div>
 
         <div className="text-center">
-          <NavLink to="/sendpasswordresetemail" className="text-blue-500 hover:underline">
+          <NavLink to="/auth/sendpasswordresetemail" className="text-blue-500 hover:underline">
             Forgot Password?
           </NavLink>
           <br />
-          <NavLink to="/policy" className="text-blue-500 hover:underline">
+          <NavLink to="/auth/policy" className="text-blue-500 hover:underline">
             Privacy Policy
           </NavLink>
           <span className="mx-1"> & </span>
-          <NavLink to="/terms" className="text-blue-500 hover:underline">
+          <NavLink to="/auth/terms" className="text-blue-500 hover:underline">
             Terms and Conditions
           </NavLink>
         </div>

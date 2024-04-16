@@ -6,7 +6,7 @@ const VerifyEmail = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/login');
+    navigate('/auth/login');
   };
 
   return (

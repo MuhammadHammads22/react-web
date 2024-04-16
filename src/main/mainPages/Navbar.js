@@ -5,6 +5,8 @@ import { GrAdd } from "react-icons/gr";
 import { getToken } from '../../storage/LocalStorageService';
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { LuLogIn } from "react-icons/lu";
+import SearchBar from './search-bar';
+
 
 const Navbar = () => {
   const { access_token } = getToken();
@@ -13,18 +15,24 @@ const Navbar = () => {
     <nav className="bg-gray-800 fixed top-0 w-full z-10">
       <div className="container flex justify-between items-center m-1">
         <div className="flex items-center">
-          <NavLink to="/post" className="text-xl text-white font-bold">AddaZakat</NavLink>
+          <NavLink to="/" className="text-xl text-white font-bold">AddaZakat</NavLink>
         </div>
+        {access_token && (
+          <SearchBar />
+        )}
+        
         {access_token ? (
         <ul className="flex space-x-4">
+          
           <li>
-            <NavLink to="/post/create" className="text-white hover:text-gray-200 flex mt-2 items-center">
+            <NavLink to="/create" className="text-white hover:text-gray-200 flex mt-2 items-center">
             <GrAdd className="w-8 h-8" />
             </NavLink>
           </li>
 
+
           <li>
-            <NavLink to="/post" className="text-white hover:text-gray-200 flex mt-2 items-center">
+            <NavLink to="/" className="text-white hover:text-gray-200 flex mt-2 items-center">
             <IoMdNotificationsOutline className="w-8 h-8" />
             </NavLink>
           </li>
