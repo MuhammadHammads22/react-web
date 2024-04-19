@@ -21,7 +21,7 @@ const ResetPassword = () => {
 
     if (res.error) {
       setServerMsg({})
-      setServerError(res.error.data.errors)
+      setServerError(res.error)
     }
     if (res.data) {
       setServerError({})

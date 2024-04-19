@@ -27,8 +27,7 @@ const UserLogin = () => {
     const res = await loginUser(actualData);
     
     if (res.error) {
-      console.log(res.error.data.errors['non_field_errors'][0])
-      setServerError(res.error.data.errors['non_field_errors'][0]);
+      setServerError(res.error);
     }
     
     if (res.data) {
