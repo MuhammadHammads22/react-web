@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { IoMdSearch } from 'react-icons/io';
 import './assets/css/search-bar.css';
 import { useSearchQuery } from '../../services/postApis';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate , Link} from 'react-router-dom';
 
 const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -16,6 +16,7 @@ const SearchBar = () => {
   
   const handleSubmit = () => {
     navigate(`/search?query=${searchQuery}`);
+    setSearchQuery('');
   };
 
   const handleKeyDown = (event) => {
@@ -41,23 +42,34 @@ const SearchBar = () => {
         <IoMdSearch />
       </button>
 
-      {searchData && searchData.posts.length > 0 && (
+      {searchData && (
         <div className="search-results">
           <ul>
-            {searchData.posts.map((post) => (
 
-              <li key={post.id}>
-                {/* Display the details of each post */}
+          {searchData.posts && searchData.posts.length > 0 && (
+            searchData.posts.map((post) => (
+              <Link to={`/detail/${post.slug}`} key={post.id} className="block px-4 py-2 hover:bg-gray-100 text-gray-700" onClick={()=> setSearchQuery('')}> 
                 <p>{post.description}</p>
-                {/* Add more details here as needed */}
-              </li>
-            ))}
+              </Link>
+            ))
+          )}
+          
+          {searchData.profiles && searchData.profiles.length > 0 && (
+              searchData.profiles.map((profile) => (
+              <Link to={`/profiles/${profile.user}`} key={profile.id} className="block px-4 py-2 hover:bg-gray-100 text-gray-700" onClick={()=> setSearchQuery('')}> 
+                <p>{profile.user}</p>
+              </Link>
+            ))
+          )}
+
+          {isLoading && <p>Loading...</p>}
+          {isError && <p>Error occurred while fetching data.</p>}
+
           </ul>
         </div>
       )}
 
-      {isLoading && <p>Loading...</p>}
-      {isError && <p>Error occurred while fetching data.</p>}
+      
     </div>
   );
 };

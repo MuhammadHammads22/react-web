@@ -292,6 +292,9 @@ const CreatePostPage = () => {
             required
           />
         </div>
+
+
+
         </div>
         
 

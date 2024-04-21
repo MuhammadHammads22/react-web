@@ -60,7 +60,7 @@ function App() {
             <Route path="satisfied/" element={<PostSatisfied />} />
             <Route path="history/" element={<PostHistory />} />
             <Route path="saves/" element={<PostSaves />} />
-            <Route path="filters/" element={<PostFilter />} />
+            <Route path="filter/" element={<PostFilter />} />
             <Route path="detail/:slug" element={<PostDetailView />} />
             <Route path="create/" element={<CreatePost />} />
             <Route path="search" element={<SearchResults />} />

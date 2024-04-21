@@ -6,11 +6,10 @@ import '../assets/css/comments.css';
 
 const Comment = ({ comment, onUpvote, onDownvote, onReply }) => {
   return (
-    <div className='mt-4'>
+    <div className='mt-4 ml-2'>
       <div className='flex justify-between'>
         <span className='text-lg font-bold'>{comment.user}</span>
         <span className='mr-30 text-gray-600'>{multiFormatDateString(comment.created)}</span>     
-        {/* <span className='text-gray-600'>{comment.username}</span> */}
       </div>
       <p className='text-gray-600'>{comment.body}</p>
       <div className='flex items-center'>
