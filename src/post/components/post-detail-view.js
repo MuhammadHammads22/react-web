@@ -16,7 +16,6 @@ const PostDetailView = () => {
   const { slug } = useParams();
   const { data, isError, error, isLoading } = useGetPostDetailQuery(slug);
   const { data: docData } = useGetPostDocFilesQuery(slug);
-  console.log('*** data *** ', docData)
 
   const [upvote, setUpvotes] = useState(0)
   const [downvote, setDownvote] = useState(0)
@@ -114,6 +113,9 @@ const PostDetailView = () => {
     return <div><CircularProgress />Loading...</div>;
   }
   if (isError) return <div>Error: {error.message}</div>;
+  
+  console.log('data.seeker_vid', data.seeker_vid);
+  console.log('data.place_vid', data.place_vid);
   
   return (
     <div className='PostDetailView'>

@@ -3,15 +3,17 @@ import "../assets/css/create-post.css";
 import {useCreatePostMutation} from "../../services/postApis";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 const CreatePostPage = () => {
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
 
 
   const [formData, setFormData] = useState({
-    creator: '1',
+    creator: 'abuubaida01',
     post_type: '',
     kind: '',
     seeker: '',
@@ -54,7 +56,7 @@ const CreatePostPage = () => {
       });
 
       if (response.status === 200) {
-        const uploadedFileUrl = response.data.url;
+        const uploadedFileUrl = response.data.absolute_path;
         console.log('File uploaded successfully:', uploadedFileUrl);
         
         setFormData(prevFormData => ({
@@ -87,7 +89,7 @@ const CreatePostPage = () => {
       });
 
       if (response.status === 200) {
-        const uploadedFileUrl = response.data.url;
+        const uploadedFileUrl = response.data.absolute_path;
         console.log('File uploaded successfully:', uploadedFileUrl);
         
         setFormData(prevFormData => ({
@@ -124,7 +126,9 @@ const CreatePostPage = () => {
   
     try {
       const response = await axios.post('http://127.0.0.1:8000/post/create/', jsonData, config);
-      console.log(response);
+      if (response.status === 201) {
+        navigate('/detail/' + response.data.slug)
+      }
     } catch (error) {
       console.error('Error occurred while creating post:', error);
     }

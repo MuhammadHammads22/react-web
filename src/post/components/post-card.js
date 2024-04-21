@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import "../assets/css/post.css";
-import videojs from 'video.js';
-
 import { BiUpvote, BiSolidUpvote } from "react-icons/bi";
 import { BiDownvote, BiSolidDownvote } from "react-icons/bi";
-import { GoReport } from "react-icons/go";
-import { FcDonate } from "react-icons/fc";
 import VideoJS from './video-player.js'
 import {useUpvoteMutation, useDownvoteMutation} from "../../services/postApis";
 
@@ -15,6 +11,8 @@ const PostCard = ({ post }) => {
   
   const navigate = useNavigate(); 
   const playerRef = React.useRef(null);
+
+  console.log('video ', post.seeker_vid)
   
   const videoJsOptions = {
     autoplay: true,
@@ -29,14 +27,12 @@ const PostCard = ({ post }) => {
 
   const handlePlayerReady = (player) => {
     playerRef.current = player;
-
-    // You can handle player events here, for example:
     player.on('waiting', () => {
-      videojs.log('player is waiting');
+      console.log('player is waiting');
     });
 
     player.on('dispose', () => {
-      videojs.log('player will dispose');
+      console.log('player will dispose');
     });
   };
   
@@ -96,6 +92,13 @@ const PostCard = ({ post }) => {
         <div className='grid gap-4'>
           <div>
             <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
+            
+            
+            {/* <video>
+              <source src={`${post.seeker_vid}`} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video> */}
+
           </div>
         </div>
 
