@@ -154,8 +154,8 @@ const PostDetailView = () => {
         </div>
 
         <div className='flex'>
-          <p className='text-xs '>Donors {data.report_count}</p>
-          <p className='text-xs '>Reports {data.donors_count}</p>
+          <p className='float-right m-1 border border-gray-400 p-1'>Donors {data.report_count}</p>
+          <p className='float-right m-1 border border-gray-400 p-1'>Reports {data.donors_count}</p>
         </div>
 
       </div>
