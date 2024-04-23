@@ -10,6 +10,7 @@ import { BiDownvote, BiSolidDownvote } from "react-icons/bi";
 import { FaRegBookmark, FaBookmark } from "react-icons/fa";
 import CommentList from './comments';
 import '../assets/css/comments.css';
+import ReportModel from './report';
 
 const PostDetailView = () => {
 
@@ -155,7 +156,9 @@ const PostDetailView = () => {
 
         <div className='flex'>
           <p className='float-right m-1 border border-gray-400 p-1'>Donors {data.report_count}</p>
-          <p className='float-right m-1 border border-gray-400 p-1'>Reports {data.donors_count}</p>
+          <ReportModel slug={data.slug}>
+            <p className='float-right m-1 border border-gray-400 p-1'>Reports {data.donors_count}</p>
+          </ReportModel>
         </div>
 
       </div>
