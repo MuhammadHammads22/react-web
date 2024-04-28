@@ -92,13 +92,6 @@ const PostCard = ({ post }) => {
         <div className='grid gap-4'>
           <div>
             <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
-            
-            
-            {/* <video>
-              <source src={`${post.seeker_vid}`} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video> */}
-
           </div>
         </div>
 

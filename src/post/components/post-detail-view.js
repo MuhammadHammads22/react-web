@@ -11,6 +11,7 @@ import { FaRegBookmark, FaBookmark } from "react-icons/fa";
 import CommentList from './comments';
 import '../assets/css/comments.css';
 import ReportModel from './report';
+import DonateModel from './donate';
 
 const PostDetailView = () => {
 
@@ -155,10 +156,8 @@ const PostDetailView = () => {
         </div>
 
         <div className='flex'>
-          <p className='float-right m-1 border border-gray-400 p-1'>Donors {data.report_count}</p>
-          <ReportModel slug={data.slug}>
-            <p className='float-right m-1 border border-gray-400 p-1'>Reports {data.donors_count}</p>
-          </ReportModel>
+            <DonateModel slug={data.slug} count={data.donors_count} />
+            <ReportModel slug={data.slug} count={data.report_count} />
         </div>
 
       </div>

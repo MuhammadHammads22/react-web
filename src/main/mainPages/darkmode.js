@@ -10,7 +10,7 @@ export default function Switcher() {
   };
 
   return (
-    <button onClick={toggleDarkMode}>
+    <button onClick={toggleDarkMode} >
       {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
     </button>
   );

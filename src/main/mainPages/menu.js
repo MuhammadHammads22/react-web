@@ -43,7 +43,7 @@ export default function AccountMenu() {
             <i className="fas fa-cog text-gray-400 mr-3"></i> Settings
           </span>
         </NavLink>
-        <NavLink to="/change_password" className="block px-4 py-2 hover:bg-gray-100 text-gray-700"> {/* Consistent text color */}
+        <NavLink to="/auth/change_password" className="block px-4 py-2 hover:bg-gray-100 text-gray-700"> {/* Consistent text color */}
           <span className="flex items-center">
             <i className="fas fa-key text-gray-400 mr-3"></i> Change Password
           </span>

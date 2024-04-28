@@ -63,13 +63,13 @@ export const userAuthApi = createApi({
     }),
 
     changeUserPassword: builder.mutation({
-      query: ({ actualData, access_token }) => {
+      query: ({ actualData }) => {
         return {
           url: 'changepassword/',
           method: 'POST',
           body: actualData,
           headers: {
-            'authorization': `Bearer ${access_token}`,
+            'authorization': `Bearer ${localStorage.getItem('access_token') }`,
           }
         }
       }

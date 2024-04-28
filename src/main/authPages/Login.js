@@ -5,7 +5,6 @@ import { setUserToken } from '../../storage/features/authSlice';
 import { getToken, storeToken } from '../../storage/LocalStorageService';
 import { useLoginUserMutation } from '../../services/userAuthApi';
 import "./assets/css/auth_card.css";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const UserLogin = () => {
   const [server_error, setServerError] = useState({});
@@ -86,7 +85,7 @@ const UserLogin = () => {
         <div className="text-center">
           {isLoading ? (
             <div className="inline-block loading-icon">
-              <AiOutlineLoading3Quarters />
+              <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-gray-900 dark:border-stone-100" />
             </div>
           ) : (
             <button

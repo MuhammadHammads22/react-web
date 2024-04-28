@@ -12,10 +12,10 @@ const Navbar = () => {
   const { access_token } = getToken();
 
   return (
-    <nav className="bg-gray-800 fixed top-0 w-full z-10">
+    <nav className="bg-white fixed top-0 w-full z-10 dark:bg-gray-700">
       <div className="container flex justify-between items-center m-1">
         <div className="flex items-center">
-          <NavLink to="/" className="text-xl text-white font-bold">AddaZakat</NavLink>
+          <NavLink to="/" className="text-2xl text-dark font-bold dark:text-white">AddaZakat</NavLink>
         </div>
         {access_token && (
           <SearchBar />
@@ -43,7 +43,7 @@ const Navbar = () => {
         ) : (
         <ul className="flex space-x-4">
           <li>
-            <NavLink to="/login" className="text-white hover:text-gray-200 flex mt-2 items-center">
+            <NavLink to="/auth/login" className="text-white hover:text-gray-200 flex mt-2 items-center">
             <LuLogIn className="w-7 h-7" />
             </NavLink>
           </li>

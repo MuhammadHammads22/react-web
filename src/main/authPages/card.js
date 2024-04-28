@@ -15,9 +15,6 @@ const TabPanel = (props) => {
 const AuthCard = () => {
   
   const [value, setValue] = useState(0);
-  const handleChange = (newValue) => {
-    setValue(newValue);
-  };
 
   return (
     <>
@@ -27,13 +24,12 @@ const AuthCard = () => {
             <div className="flex justify-between items-center pb-4">
               <button
                 className={`text-lg font-bold focus:outline-none ${value === 0 ? 'text-blue-500' : 'text-gray-500'}`}
-                onClick={() => handleChange(0)}
-              >
+                onClick={() => setValue(0)}>
                 Login
               </button>
               <button 
                 className={`text-lg font-bold focus:outline-none ${value === 1 ? 'text-blue-500' : 'text-gray-500'}`}
-                onClick={() => handleChange(1)}
+                onClick={() => setValue(1)}
               >
                 Registration
               </button>
