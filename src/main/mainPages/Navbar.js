@@ -18,7 +18,7 @@ const Navbar = () => {
           <NavLink to="/" className="text-2xl text-dark font-bold dark:text-white">AddaZakat</NavLink>
         </div>
         {access_token && (
-          <SearchBar />
+          <SearchBar className='text-slate-950 dark:text-white '/>
         )}
         
         {access_token ? (
@@ -26,18 +26,18 @@ const Navbar = () => {
           
           <li>
             <NavLink to="/create" className="text-white hover:text-gray-200 flex mt-2 items-center">
-            <GrAdd className="w-8 h-8" />
+            <GrAdd className="w-8 h-8 text-slate-950 dark:text-white" />
             </NavLink>
           </li>
 
 
           <li>
             <NavLink to="/" className="text-white hover:text-gray-200 flex mt-2 items-center">
-            <IoMdNotificationsOutline className="w-8 h-8" />
+            <IoMdNotificationsOutline className="w-8 h-8 text-slate-950 dark:text-white" />
             </NavLink>
           </li>
           <li>
-              <AccountMenu />
+              <AccountMenu className='text-slate-950 dark:text-white ' />
           </li>
         </ul>
         ) : (

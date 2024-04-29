@@ -1,8 +1,8 @@
 
 import { Outlet } from "react-router-dom";
-import Navbar from "../../main/mainPages/Navbar";
+import Navbar from "./Navbar";
 import Sidebar from "./sidebar";
-import './layout.css'; // Import CSS module
+import './assets/css/layout.css';
 
 const PostLayout = () => {
   return (

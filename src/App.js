@@ -5,8 +5,8 @@ import SendPasswordResetEmail from "./main/authPages/SendPasswordResetEmail.js";
 import PrivacyPolicy from "./main/policyPages/privacy_policy.js";
 import TermsAndConditions from "./main/policyPages/terms&conditions.js";
 
-import PostLayout from "./post/layout/Layout.js";
-import AuthLayout from "./main/authPages/layout/authLayout.js";
+import PostLayout from "./main/mainPages/Layout.js";
+import AuthLayout from "./main/mainPages/authLayout.js";
 import VerifyEmail from "./main/authPages/verifyEmail.js";
 import { useSelector } from "react-redux";
 import ChangePassword from "./main/authPages/ChangePassword.js";

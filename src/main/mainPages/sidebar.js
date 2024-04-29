@@ -1,14 +1,13 @@
 // Sidebar.jsx
 import React from "react";
 import { Link } from "react-router-dom";
-import "./sidebar.css";
 import { FaHome, FaUserCheck, FaSave, FaHistory, FaFilter } from "react-icons/fa";
 
 
 const Sidebar = () => {
 
   return (
-    <div className="bg-white h-full max-h-full fixed w-64 dark:bg-gray-700">
+    <div className="bg-white h-full max-h-full fixed w-64 dark:bg-gray-700 overflow-y-auto">
       <ul className="list-none p-2 ">
         <Link to='/'>
           <li className="flex items-center hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg p-2 dark:text-white">
@@ -22,18 +21,7 @@ const Sidebar = () => {
             <p className="pl-5">Satisfied People</p>
           </li>
         </Link>
-        <Link to='/saves'>
-          <li className="flex items-center hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg p-2 dark:text-white">
-            <FaSave />
-            <p className="pl-5">Save Posts</p>
-          </li>
-        </Link>
-        <Link to='/history'>
-          <li className="flex items-center hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg p-2 dark:text-white">
-              <FaHistory /> 
-              <p className="pl-5">History</p>
-          </li>
-        </Link>
+        
         <Link to='/filter'>
           <li className="flex items-center hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg p-2 dark:text-white">
             <FaFilter />
@@ -42,23 +30,46 @@ const Sidebar = () => {
         </Link>
 
         <hr className='p-2 border-t-2 border-slate-500'/>
-        
+        <p className='text-md p-2'>History</p>
         <Link to='/'>
           <li className="flex items-center hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg p-2 dark:text-white">
             <FaHome />
-            <p className="pl-5">Followings</p>
+            <p className="pl-5">Visited Posts</p>
           </li>
         </Link>
-        <Link to='/satisfied'>
-          <li className="flex items-center hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg p-2 dark:text-white">
-            <FaUserCheck />
-            <p className="pl-5">Followers</p>
-          </li>
-        </Link>
+
         <Link to='/saves'>
           <li className="flex items-center hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg p-2 dark:text-white">
             <FaSave />
-            <p className="pl-5">Like</p>
+            <p className="pl-5">Saved Posts</p>
+          </li>
+        </Link>
+
+        <Link to='/'>
+          <li className="flex items-center hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg p-2 dark:text-white">
+            <FaHome />
+            <p className="pl-5">Upvoted Posts</p>
+          </li>
+        </Link>
+
+        <Link to='/satisfied'>
+          <li className="flex items-center hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg p-2 dark:text-white">
+            <FaUserCheck />
+            <p className="pl-5">Donated Posts</p>
+          </li>
+        </Link>
+        
+        <Link to='/saves'>
+          <li className="flex items-center hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg p-2 dark:text-white">
+            <FaSave />
+            <p className="pl-5">Commented Posts</p>
+          </li>
+        </Link>
+
+        <Link to='/saves'>
+          <li className="flex items-center hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg p-2 dark:text-white">
+            <FaSave />
+            <p className="pl-5">Reported Posts</p>
           </li>
         </Link>
 
