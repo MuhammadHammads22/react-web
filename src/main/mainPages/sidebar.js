@@ -2,7 +2,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaHome, FaUserCheck, FaSave, FaHistory, FaFilter } from "react-icons/fa";
-
+import FilterPost from "./filterPost";
 
 const Sidebar = () => {
 
@@ -22,12 +22,7 @@ const Sidebar = () => {
           </li>
         </Link>
         
-        <Link to='/filter'>
-          <li className="flex items-center hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg p-2 dark:text-white">
-            <FaFilter />
-            <p className="pl-5">Filter Posts</p>
-          </li>
-        </Link>
+        <FilterPost />
 
         <hr className='p-2 border-t-2 border-slate-500'/>
         <p className='text-md p-2'>History</p>

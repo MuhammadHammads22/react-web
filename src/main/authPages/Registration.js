@@ -11,7 +11,6 @@ const Registration = () => {
   const [server_error, setServerError] = useState({});
   const navigate = useNavigate();  
   const [gender, setGender] = useState('');
-  const [dateOfBirth, setDateOfBirth] = useState();
   const [registerUser, { isLoading }] = useRegisterUserMutation();
 
   const handleSubmit = async (e) => {

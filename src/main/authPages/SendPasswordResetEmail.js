@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import './assets/css/sendPasswordResetEmail.css'
 import { useSendPasswordResetEmailMutation } from "../../services/userAuthApi";
-import { Send } from '@mui/icons-material';
 
 const SendPasswordResetEmail = () => {
   const [server_error, setServerError] = useState({})

@@ -20,7 +20,7 @@ const LogoutButton = () => {
   return (
     <button
       component={NavLink}
-      to='/'
+      to='/auth/login'
       onClick={handleLogout}
     >
       Logout
