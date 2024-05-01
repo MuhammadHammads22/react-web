@@ -7,14 +7,16 @@ import FilterPost from "./filterPost";
 const Sidebar = () => {
 
   return (
-    <div className="bg-white h-full max-h-full fixed w-64 dark:bg-gray-700 overflow-y-auto">
+    <div className="bg-white h-full max-h-full fixed w-64 dark:bg-gray-700 overflow-y-auto ">
       <ul className="list-none p-2 ">
+        
         <Link to='/'>
           <li className="flex items-center hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg p-2 dark:text-white">
             <FaHome />
             <p className="pl-5">Home</p>
           </li>
         </Link>
+
         <Link to='/satisfied'>
           <li className="flex items-center hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg p-2 dark:text-white">
             <FaUserCheck />
@@ -22,10 +24,10 @@ const Sidebar = () => {
           </li>
         </Link>
         
-        <FilterPost />
+        <FilterPost className='w-full'/>
 
         <hr className='p-2 border-t-2 border-slate-500'/>
-        <p className='text-md p-2'>History</p>
+        <p className='text-md p-2 dark:text-white font-bold'>History</p>
         <Link to='/'>
           <li className="flex items-center hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg p-2 dark:text-white">
             <FaHome />

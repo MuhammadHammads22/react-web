@@ -216,15 +216,15 @@ export const postApis = createApi({
       },
     }),
 
-    filter : builder.mutation({
-      query: (data) => {
+    filter: builder.query({
+      query: (query) => {
         return {
           url: 'filter/',
-          method: 'POST',
+          method: 'GET',
+          params: {query},
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('access_token') }`,
-          },
-          body: data
+          }
         }
       },
     }),
@@ -234,7 +234,7 @@ export const postApis = createApi({
 
 export const { 
     useGetPostListQuery, useGetPostHistoryQuery, useGetPostSatisfiedQuery, useGetPostSavesQuery, useGetPostDetailQuery, useGetPostDocFilesQuery, useCreatePostMutation, useUploadFileMutation,
-    useUpvoteMutation, useDownvoteMutation, useSaveMutation, useCommentMutation, useGetCommentsQuery, useSearchQuery, useReportMutation, useDonateMutation, useFilterMutation
+    useUpvoteMutation, useDownvoteMutation, useSaveMutation, useCommentMutation, useGetCommentsQuery, useSearchQuery, useReportMutation, useDonateMutation, useFilterQuery
 
 } = postApis
 

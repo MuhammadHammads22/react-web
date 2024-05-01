@@ -23,6 +23,7 @@ import PostDetailView from "./post/components/post-detail-view.js";
 import CreatePost from "./post/pages/create-post.js";
 
 
+
 //profile Pages: 
 import ProfileLayout from "./profile/layout/profileLayout.js";
 import ProfileDetail from "./profile/pages/profile.js";
@@ -60,7 +61,7 @@ function App() {
             <Route path="satisfied/" element={<PostSatisfied />} />
             <Route path="history/" element={<PostHistory />} />
             <Route path="saves/" element={<PostSaves />} />
-            <Route path="filter/" element={<PostFilter />} />
+            <Route path="filter" element={<PostFilter />} />
             <Route path="detail/:slug" element={<PostDetailView />} />
             <Route path="create/" element={<CreatePost />} />
             <Route path="search" element={<SearchResults />} />

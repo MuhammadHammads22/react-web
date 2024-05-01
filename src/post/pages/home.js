@@ -19,7 +19,7 @@ const PostHome = () => {
   return (
     <>
     <div className="flex-col items-center size-70 fam-posts">
-          {isSuccess && data && (
+          {isSuccess && data && data.length > 0 && (
             <>
               {data.map((post) => (
                   <PostCard key={post.id} post={post}/>
