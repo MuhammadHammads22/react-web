@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useChangeUserPasswordMutation } from '../../services/userAuthApi';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 const ChangePassword = () => {
@@ -27,81 +27,95 @@ const ChangePassword = () => {
       setServerError({});
       setServerMsg(res.data);
       document.getElementById('password-change-form').reset();
-      
+
       setTimeout(() => {
         navigate('/auth/login');
         // localStorage.removeItem('access_token')
         // localStorage.removeItem('refresh_token')
-      
+
       }, 5000);
-    
+
     }
   };
 
   return (
-      <div className="flex justify-center items-center h-screen ml-60">
-        <div className='w-full max-w-md rounded-lg shadow-lg p-8 text-black-50 dark:text-blue-500 '>
-          <form className="mt-4" onSubmit={handleSubmit} noValidate id="password-change-form">
-            
-            <div className="mb-4">
-              <p className="text-2xl font-bold text-blue-500 dark:text-stone-50 mb-2">Change Password</p>
+    <div className="content-wrapper flex items-center justify-center h-screen bg-white-100">
+      <div className='max-w-md bg-white p-10 m-10 rounded-lg shadow-md '>
+        <form className="mt-4" onSubmit={handleSubmit} noValidate id="password-change-form">
+          <p className="text-2xl font-bold mb-4 text-gray-800 dark:text-stone-50">Change Password </p>
+          <div className="mb-4 mt-4">
+            <label htmlFor="current-password" className=" text-gray-700 font-bold mb-2  dark:text-stone-50">
+              Current Password
+            </label>
+            <input
+              id="current-password"
+              name="current-password"
+              type="password"
+              required
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            />
+            {server_error.current_password && (
+              <p className="text-red-500 text-xs mt-1">{server_error.current_password[0]}</p>
 
-              <label htmlFor="password" className="block text-gray-700 font-bold mb-2  dark:text-stone-50">
-                New Password
-              </label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                required
-                className="px-3 py-2 w-full rounded border focus:outline-none focus:border-blue-500"
-              />
-              {server_error.password && (
-                <p className="text-red-500 text-xs mt-1">{server_error.password[0]}</p>
-              )}
-            </div>
-            <div className="mb-4">
-              <label htmlFor="password2" className="block text-gray-700 font-bold mb-2  dark:text-stone-50">
-                Confirm New Password
-              </label>
-              <input
-                id="password2"
-                name="password2"
-                type="password"
-                required
-                className="px-3 py-2 w-full rounded border focus:outline-none focus:border-blue-500"
-              />
-              {server_error.password2 && (
-                <p className="text-red-500 text-xs mt-1">{server_error.password2[0]}</p>
-              )}
-            </div>
-
-            <div className="text-center">
-              {isLoading ? (
-                <div className="inline-block">
-                  <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-gray-900 dark:border-stone-100" />
-                </div>
-              ) : (
-                <button
-                  type="submit"
-                  className="bg-blue-500 text-white px-4 py-2 rounded focus:outline-none hover:bg-blue-600"
-                >
-                  Update
-                </button>
-              )}
-            </div>
-
-            {server_error.non_field_errors && (
-              <div className="text-red-500 text-xs mt-2">{server_error.non_field_errors[0]}</div>
             )}
-
-            {server_msg.msg && (
-              <div className="text-green-500 text-xs mt-2">{server_msg.msg}</div>
+          </div>
+          <div className='mb-4 mt-4'>
+            <label htmlFor="password" className=" text-gray-700 font-bold mb-2  dark:text-stone-50">
+              New Password
+            </label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              required
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            />
+            {server_error.password && (
+              <p className="text-red-500 text-xs mt-1">{server_error.password[0]}</p>
             )}
+          </div>
+          <div className="mb-4 mt-4">
+            <label htmlFor="password2" className="block text-gray-700 font-bold mb-2  dark:text-stone-50">
+              Confirm New Password
+            </label>
+            <input
+              id="password2"
+              name="password2"
+              type="password"
+              required
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            />
+            {server_error.password2 && (
+              <p className="text-red-500 text-xs mt-1">{server_error.password2[0]}</p>
+            )}
+          </div>
 
-          </form>
-        </div>
+          <div className="text-center">
+            {isLoading ? (
+              <div className="inline-block">
+                <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-gray-900 dark:border-stone-100" />
+              </div>
+            ) : (
+              <button
+                type="submit"
+                className="w-full bg-blue-500 hover:bg-red-1000 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              >
+                Update
+              </button>
+            )}
+          </div>
+
+          {server_error.non_field_errors && (
+            <div className="text-red-500 text-xs mt-2">{server_error.non_field_errors[0]}</div>
+          )}
+
+          {server_msg.msg && (
+            <div className="text-green-500 text-xs mt-2">{server_msg.msg}</div>
+          )}
+
+        </form>
       </div>
+    </div>
   );
 };
 
