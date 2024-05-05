@@ -10,7 +10,10 @@ import AuthLayout from "./main/mainPages/authLayout.js";
 import VerifyEmail from "./main/authPages/verifyEmail.js";
 import { useSelector } from "react-redux";
 import ChangePassword from "./main/authPages/ChangePassword.js";
-import Settings from "./main/settings.js";
+
+import SettingsLayout from "./main/settings/layout.js";
+import EditUser from "./main/settings/edit-user.js";
+import EditProfile from "./main/settings/edit-profile.js";
 
 //Post pages 
 import PostHome from "./post/pages/home.js";
@@ -21,7 +24,8 @@ import PostFilter from "./post/pages/filter.js";
 import SearchResults from "./post/pages/search-results.js";
 import PostDetailView from "./post/components/post-detail-view.js"; 
 import CreatePost from "./post/pages/create-post.js";
-
+import DonateHistory from "./post/pages/donate-history.js";
+import ReportHistory from "./post/pages/report-history.js";
 
 
 //profile Pages: 
@@ -52,9 +56,13 @@ function App() {
             <Route path="sendpasswordresetemail/" element={<SendPasswordResetEmail />} />
             <Route path="user/reset/:id/:token/" element={<ResetPassword />} />
             <Route path="user/verify/:token/" element={<VerifyEmail />} />
+          </Route>       
+
+          <Route path="/settings" element={<SettingsLayout />}>
+            <Route path="edit-user/" element={<EditUser />} />
+            <Route path="edit-profile/" element={<EditProfile />} />
             <Route path="change_password/" element={<ChangePassword />} />
-            <Route path="settings/" element={<Settings />} />
-          </Route>          
+          </Route>        
 
           <Route path="/" element={access_token ? <PostLayout /> : <Navigate to="/auth/login" />}>
             <Route index element={access_token ? <PostHome /> : <Navigate to="/auth/login" />} />
@@ -65,6 +73,10 @@ function App() {
             <Route path="detail/:slug" element={<PostDetailView />} />
             <Route path="create/" element={<CreatePost />} />
             <Route path="search" element={<SearchResults />} />
+
+            <Route path="donated" element={<DonateHistory />} />
+            <Route path="reported" element={<ReportHistory />} />
+
           </Route>
 
           <Route path="/profiles" element={access_token ? <ProfileLayout /> : <Navigate to="/auth/login" />}>

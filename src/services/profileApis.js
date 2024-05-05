@@ -93,7 +93,23 @@ export const profileApis = createApi({
         }
       }
     }),
+
+    updateProfile: builder.mutation({
+      query: (data) => {
+        return {
+          url: 'update/',
+          method: 'PATCH',
+          body: data,
+          headers: {
+            'Content-type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+          }
+        }
+      }
+    }),
+
   })
 });
 
-export const { useProfileQuery, useAllOrgsQuery,useAllFollowersQuery, useAllFollowingQuery, useAllMMQuery, useNearMeQuery, useProfilesQuery } = profileApis;
+export const { useProfileQuery, useAllOrgsQuery,useAllFollowersQuery, useAllFollowingQuery, useAllMMQuery, useNearMeQuery, useProfilesQuery, useUpdateProfileMutation
+ } = profileApis;

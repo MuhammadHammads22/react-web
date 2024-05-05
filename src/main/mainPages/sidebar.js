@@ -49,7 +49,7 @@ const Sidebar = () => {
           </li>
         </Link>
 
-        <Link to='/satisfied'>
+        <Link to='/donated'>
           <li className="flex items-center hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg p-2 dark:text-white">
             <FaUserCheck />
             <p className="pl-5">Donated Posts</p>
@@ -63,7 +63,7 @@ const Sidebar = () => {
           </li>
         </Link>
 
-        <Link to='/saves'>
+        <Link to='/reported'>
           <li className="flex items-center hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg p-2 dark:text-white">
             <FaSave />
             <p className="pl-5">Reported Posts</p>

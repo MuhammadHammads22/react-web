@@ -1,12 +1,11 @@
 import React, {useEffect, useState} from 'react'
-import {useNavigate, useLocation} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import { FaFilter } from "react-icons/fa";
 
 const FilterPost = () => {
   const [filterData, setFilterData] = useState({});
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-  const location = useLocation();
 
   const handleFilter = () => {
     setIsOpen(!isOpen);
@@ -23,7 +22,7 @@ const FilterPost = () => {
         .filter(([key, value]) => value !== '') 
         .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
         .join('&');
-      const url = queryParams ? `/filter?${queryParams}` : '/filter'; 
+      const url = queryParams ? `/filter?${queryParams}` : '/'; 
       navigate(url);
     }
   }, [filterData, isOpen, navigate]);
@@ -51,7 +50,7 @@ const FilterPost = () => {
         <div className='flex flex-col ps-4'>
           <label htmlFor='support' className='text-sm w-full font-medium text-slate-950 block dark:text-white'>Support</label>
           <select id='support' name='support' onChange={handleChange} className='flex h-5 rounded-md color-slate-950 dark:bg-gray-600 dark:text-blue-50 pl-1'>
-            <option value=''useFilterMutation>Select</option>
+            <option value=''>Select</option>
             <option value='family'>Needy Family</option>
             <option value='madrasa'>Madrasa</option>
             <option value='masjid'>Masjid</option>

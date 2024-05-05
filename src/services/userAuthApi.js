@@ -101,7 +101,20 @@ export const userAuthApi = createApi({
       }
     }),
 
+    updateUser: builder.mutation({
+      query: ({ actualData }) => {
+        return {
+          url: 'update-user-details/',
+          method: 'PATCH',
+          body: actualData,
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('access_token') }`,
+          },
+        }
+      }
+    }),
+
   }),
 })
 
-export const { useRegisterUserMutation, useLoginUserMutation, useGetLoggedUserQuery, useChangeUserPasswordMutation, useSendPasswordResetEmailMutation, useResetPasswordMutation, useRefreshTokenMutation } = userAuthApi
+export const { useRegisterUserMutation, useLoginUserMutation, useGetLoggedUserQuery, useChangeUserPasswordMutation, useSendPasswordResetEmailMutation, useResetPasswordMutation, useRefreshTokenMutation, useUpdateUserMutation } = userAuthApi

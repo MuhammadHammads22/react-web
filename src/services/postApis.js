@@ -229,12 +229,36 @@ export const postApis = createApi({
       },
     }),
 
+    profilePost: builder.query({
+      query: () => {
+        return {
+          url: 'profile-posts/',
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('access_token') }`,
+          }
+        }
+      },
+    }),
+
+
+    supportHistory: builder.query({
+      query: () => {
+        return {
+          url: 'donate-history/',
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('access_token') }`,
+          }
+        }
+      },
+    })
   }),
 })
 
 export const { 
     useGetPostListQuery, useGetPostHistoryQuery, useGetPostSatisfiedQuery, useGetPostSavesQuery, useGetPostDetailQuery, useGetPostDocFilesQuery, useCreatePostMutation, useUploadFileMutation,
-    useUpvoteMutation, useDownvoteMutation, useSaveMutation, useCommentMutation, useGetCommentsQuery, useSearchQuery, useReportMutation, useDonateMutation, useFilterQuery
+    useUpvoteMutation, useDownvoteMutation, useSaveMutation, useCommentMutation, useGetCommentsQuery, useSearchQuery, useReportMutation, useDonateMutation, useFilterQuery, useProfilePostQuery, useSupportHistoryQuery
 
 } = postApis
 
