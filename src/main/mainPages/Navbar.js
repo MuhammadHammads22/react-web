@@ -12,13 +12,13 @@ const Navbar = () => {
   const { access_token } = getToken();
 
   return (
-    <nav className="bg-white fixed top-0 w-full z-10 dark:bg-gray-700">
-      <div className="container flex justify-between items-center m-1">
-        <div className="flex items-center">
+    <nav className=" bg-white top-0 flex items-center relative justify-between w-full m-0  dark:bg-gray-700">
+      {/* <div className="container flex justify-between items-center m-1"> */}
+        <div className="flex items-center m-2">
           <NavLink to="/" className="text-2xl text-dark font-bold dark:text-white">AddaZakat</NavLink>
         </div>
         {access_token && (
-          <SearchBar className='text-slate-950 dark:text-white '/>
+          <SearchBar className='text-slate-950'/>  
         )}
         
         {access_token ? (
@@ -26,7 +26,7 @@ const Navbar = () => {
           
           <li>
             <NavLink to="/create" className="text-white hover:text-gray-200 flex mt-2 items-center">
-            <GrAdd className="w-8 h-8 text-slate-950 dark:text-white" />
+            <GrAdd className="w-8 h-8 text-slate-950" />
             </NavLink>
           </li>
 
@@ -37,7 +37,7 @@ const Navbar = () => {
             </NavLink>
           </li>
           <li>
-              <AccountMenu className='text-slate-950 dark:text-white ' />
+              <AccountMenu className='text-slate-950' />
           </li>
         </ul>
         ) : (
@@ -50,7 +50,7 @@ const Navbar = () => {
         </ul>
         )}
 
-      </div>
+      {/* </div> */}
     </nav>
   );
 };

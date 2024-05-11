@@ -1,6 +1,6 @@
 .sidebar-dev {
   height: 100vh;
-  position: fixed; 
+  /* position: fixed;  */
   left: 0; 
   top: 0; 
   width: 200px; 
