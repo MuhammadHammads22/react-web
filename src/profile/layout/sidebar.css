@@ -1,6 +1,6 @@
 .sidebar-dev {
   height: 100vh;
-  /* position: fixed;  */
+  position: fixed; 
   left: 0; 
   top: 0; 
   width: 200px; 
@@ -15,7 +15,7 @@
 
 .list-none {
   padding: 0; 
-  margin-top: 70px; 
+  /* margin-top: 70px; */
 }
 
 .list-none li {
