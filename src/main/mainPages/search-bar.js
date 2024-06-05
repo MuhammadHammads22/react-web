@@ -28,7 +28,7 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="relative text-gray-600">
+    <div className="relative text-gray-600 overflow-y-auto">
       <input
         className="border-2 border-gray-300 bg-white dark:bg-gray-800 dark:text-white h-10 px-15 pl-2 pr-8 rounded-lg text-sm focus:outline-none search-bar"
         type="search"
@@ -48,7 +48,7 @@ const SearchBar = () => {
 
           {searchData.posts && searchData.posts.length > 0 && (
             searchData.posts.map((post) => (
-              <Link to={`/detail/${post.slug}`} key={post.id} className="block px-4 py-2 hover:bg-gray-100 text-gray-700" onClick={()=> setSearchQuery('')}> 
+              <Link to={`/detail/${post.slug}`} key={post.id} className="block px-4 py-2 hover:bg-gray-100 text-gray-700 "  onClick={()=> setSearchQuery('')}> 
                 <p>{post.description}</p>
               </Link>
             ))

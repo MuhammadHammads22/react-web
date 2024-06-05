@@ -4,15 +4,17 @@
 
 /* Adjust the position of the search results */
 .search-results {
-  /* position: absolute; */
-  top: 100%; /* Position below the search bar */
+  position: relative;
+  top: 100%; 
   left: 0;
-  z-index: 1000; /* Ensure it's above other elements */
-  width: 100%; /* Take full width */
-  /* background-color: #fff; Background color */
+  z-index: 1000; 
+  width: 100%; 
   border: 1px solid #ccc; /* Border */
   border-top: none; /* Remove top border */
   border-radius: 0 0 5px 5px; /* Rounded corners on bottom */
+  max-height: 300px;
+  overflow-y: scroll; /* Enable vertical scrolling */
+
 }
 
 /* Style the search results list */

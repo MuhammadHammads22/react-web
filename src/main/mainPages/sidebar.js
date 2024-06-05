@@ -7,7 +7,7 @@ import FilterPost from "./filterPost";
 const Sidebar = () => {
 
   return (
-    <div className="bg-white h-full max-h-full fixed w-64 dark:bg-gray-700 overflow-y-auto ">
+    <div className="bg-white h-full max-h-full fixed w-64 dark:bg-gray-700 overflow-y-auto mt-12">
       <ul className="list-none p-2 ">
         
         <Link to='/'>

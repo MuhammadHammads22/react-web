@@ -12,7 +12,7 @@ const Navbar = () => {
   const { access_token } = getToken();
 
   return (
-    <nav className=" bg-white top-0 flex items-center relative justify-between w-full m-0  dark:bg-gray-700">
+    <nav className="bg-white top-0 flex items-center justify-between w-full fixed z-50 dark:bg-gray-700">
       {/* <div className="container flex justify-between items-center m-1"> */}
         <div className="flex items-center m-2">
           <NavLink to="/" className="text-2xl text-dark font-bold dark:text-white">AddaZakat</NavLink>
