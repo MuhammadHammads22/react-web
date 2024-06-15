@@ -1,15 +1,18 @@
 
 .page { 
+  position: relative;
   margin-top: 5em;
-  width: 1070px;
+  max-width: 1070px;
+  width: auto;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   padding: 15px;
-  border: 2px solid black;
-  background-color: rgb(255, 254, 252);
+  margin-left: 2em;
 }
+
 
 .field-width {
   width: 450px;

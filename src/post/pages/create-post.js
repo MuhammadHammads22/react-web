@@ -136,7 +136,7 @@ const CreatePostPage = () => {
 
 
   return (
-    <div className="page">
+    <div className="page bg-white  dark:bg-gray-700" >
       <form onSubmit={handleSubmit} className='create-form-card' enctype="multipart/form-data">
 
         <h1 className="text-3xl font-bold mb-8">Create Post</h1>

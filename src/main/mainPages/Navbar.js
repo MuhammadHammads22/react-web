@@ -25,17 +25,17 @@ const Navbar = () => {
         <ul className="flex space-x-4">
           
           <li>
-            <NavLink to="/create" className="text-white hover:text-gray-200 flex mt-2 items-center">
-            <GrAdd className="w-8 h-8 text-slate-950" />
+            <NavLink to="/create" className="text-white hover:text-gray-200 flex mt-2 items-center ">
+            <GrAdd className="w-8 h-8 text-slate-950 dark:text-white" />
             </NavLink>
           </li>
 
 
-          <li>
+          {/* <li>
             <NavLink to="/" className="text-white hover:text-gray-200 flex mt-2 items-center">
             <IoMdNotificationsOutline className="w-8 h-8 text-slate-950 dark:text-white" />
             </NavLink>
-          </li>
+          </li> */}
           <li>
               <AccountMenu className='text-slate-950' />
           </li>
