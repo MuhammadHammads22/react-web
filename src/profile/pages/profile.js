@@ -1,23 +1,41 @@
 import React from 'react'
-import { useProfileQuery } from '../../services/profileApis';
+import { useProfileQuery, useFollowOrUnfollowMutation } from '../../services/profileApis';
 import { useGetLoggedUserQuery } from '../../services/userAuthApi';
 import { useParams } from 'react-router-dom';
 import {  CircularProgress } from '@mui/material';
 import '../assets/css/profile-card.css'
 import PostCard from '../../post/components/post-card'
 import {useProfilePostQuery} from "../../services/postApis";
+import ReportProfileModel from "../components/reportProfile";
+
 
 
 const ProfileDetail = () => {
 
+  const [follow, setFollow] = React.useState(false);
   const { username } = useParams();
 
   const { data, isSuccess, isError, error, isLoading } = useProfileQuery(username);
+
+  const [followOrUnfollow] = useFollowOrUnfollowMutation();
+
+  const handleFollowOrUnfollow = async () => {
+    try {
+      await followOrUnfollow(username).unwrap();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleFollowClick = () => {
+    handleFollowOrUnfollow();
+    setFollow(!follow);
+  };  
   
   const { data: userdeatil, isError: isErrorUser, error: userError } = useGetLoggedUserQuery(username)
 
   const {data: posts, isSuccess: isPostSuccess, } = useProfilePostQuery()
-  console.log('***  posts',posts)
+
   if (isErrorUser) return <div>Error: {userError.message}</div>;
 
   if (isLoading){
@@ -52,15 +70,16 @@ const ProfileDetail = () => {
 
             <div className="space-x-8 flex justify-between mt-32 md:mt-0 md:justify-center">
               <button
-                className="text-white py-2 px-4 uppercase rounded bg-blue-400 hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
+                className="text-white py-2 px-4 uppercase rounded bg-blue-400 hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5" onClick={handleFollowClick} 
               >
-                Follow
+                {follow ? 'Unfollow' : 'Follow'}
               </button>
               
               <button
                 className="text-white py-2 px-4 uppercase rounded bg-gray-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5"
               >
-                Report
+              <ReportProfileModel username={username} count={data.report_count} />
+
               </button>
 
             </div>

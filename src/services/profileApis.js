@@ -108,8 +108,34 @@ export const profileApis = createApi({
       }
     }),
 
+    followOrUnfollow: builder.mutation({
+      query: (pk) => {
+        return {
+          url: `${pk}/follow`,
+          method: 'POST',
+          headers: {
+            'Content-type': 'application/json',
+            Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+          }
+        }
+      }
+    }),
+
+    report : builder.mutation({
+      query: (data) => {
+        return {
+          url: 'report/',
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('access_token') }`,
+          },
+          body: data
+        }
+      },
+    }),
+
   })
 });
 
-export const { useProfileQuery, useAllOrgsQuery,useAllFollowersQuery, useAllFollowingQuery, useAllMMQuery, useNearMeQuery, useProfilesQuery, useUpdateProfileMutation
+export const { useProfileQuery, useAllOrgsQuery,useAllFollowersQuery, useAllFollowingQuery, useAllMMQuery, useNearMeQuery, useProfilesQuery, useUpdateProfileMutation, useFollowOrUnfollowMutation, useReportMutation
  } = profileApis;

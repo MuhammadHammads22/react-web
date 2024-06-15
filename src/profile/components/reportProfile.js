@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { useReportMutation } from '../../services/postApis';
+import { useReportMutation } from '../../services/profileApis';
 import Popup from 'reactjs-popup';
 
 
-const ReportModel = ({ slug, count }) => {
+const ReportProfileModel = ({ username, count }) => {
   const [reportMutation] = useReportMutation();
   const [selectedOption, setSelectedOption] = useState(''); 
 
@@ -15,8 +15,8 @@ const ReportModel = ({ slug, count }) => {
     event.preventDefault();
     const formData = new FormData();
     console.log(formData)
-    formData.append("slug", slug);
-    formData.append('report', selectedOption); 
+    formData.append("username", username );
+    formData.append('problem', selectedOption); 
 
     try {
       const response = await reportMutation(formData);
@@ -36,7 +36,7 @@ const ReportModel = ({ slug, count }) => {
       {close => (
         <div className="bg-zinc-50 dark:bg-gray-800 text-white border border-gray-700 p-8 rounded-lg">
           <button className="absolute top-0 right-0 p-2" onClick={close}>&times;</button>
-          <div className="text-xl font-bold mb-4 text-slate-950 dark:text-slate-300">Report Post</div>
+          <div className="text-xl font-bold mb-4 text-slate-950 dark:text-slate-300">Report {username}</div>
           <div className="content">
             <form onSubmit={handleSubmitReport} >
               <div className="mb-4 text-slate-950 dark:text-stone-200">
@@ -103,7 +103,7 @@ const ReportModel = ({ slug, count }) => {
               </div>
               
               <div className="flex justify-between">
-                <button type='submit' className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Submit</button>
+                <button type='submit' className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={close}>Submit</button>
 
                 <button className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded" onClick={close}>Close</button>
               </div>
@@ -117,4 +117,4 @@ const ReportModel = ({ slug, count }) => {
   );
 };
 
-export default ReportModel;
+export default ReportProfileModel;
