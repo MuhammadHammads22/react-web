@@ -8,7 +8,7 @@ const SettingsLayout = () => {
   return (
     <div >
       <Navbar />
-      <div className='flex '> 
+      {/* <div className='flex '>  */}
         
         <div className='sidebar'>
           <Sidebar />
@@ -18,7 +18,7 @@ const SettingsLayout = () => {
           <Outlet />
         </div>
 
-      </div>
+      {/* </div> */}
     </div>
   );
 };
