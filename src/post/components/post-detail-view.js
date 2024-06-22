@@ -120,7 +120,7 @@ const PostDetailView = () => {
   console.log('data.place_vid', data.place_vid);
   
   return (
-    <div className='PostDetailView'>
+    <div className='bg-white PostDetailView dark:bg-gray-700 text-dark-1 dark:text-gray-100'>
       <div className='grid grid-cols-2 gap-4'>
         <div>
             <video className='detailVideo' controls controlsList="nodownload">
@@ -155,15 +155,20 @@ const PostDetailView = () => {
           </Link>
         </div>
 
-        <div className='flex'>
+        <div className="flex justify-center space-x-4">
+          <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-2 rounded">
             <DonateModel slug={data.slug} count={data.donors_count} />
+          </button>
+          <button className="bg-teal-500 hover:bg-green-600 text-white font-bold py-1 px-2 rounded">
             <ReportModel slug={data.slug} count={data.report_count} />
+          </button>
         </div>
 
       </div>
 
       <div className='justify-between py-4 grid grid-cols-2 gap-4'>
         <div className='flex-col seeker-info'>
+          <p className='text-xl font-bold'>Seeker Details</p>
           <p className=''>Seeker: {data.seeker}</p>
           <p className=''>Need: {data.kind}</p>
           <p className=''>From: {data.address}</p>
@@ -171,10 +176,11 @@ const PostDetailView = () => {
           <p className=''>verified: {data.verified}%</p>
           <p className=''>Without House: {data.without_house}yes</p>
           <p className=''>Phone # {data.phone_number}yes</p>
-          <p className='text-gray-600'>{multiFormatDateString(data.created)}</p>
+          <p className='text-dark-1 dark:text-white'>Created at: {multiFormatDateString(data.created)}</p>
         </div>
 
         <div className='flex-col seeker-info'>
+          <p className='text-xl font-bold'>Seeker Bank Details</p>
           <p className=''>Account Title: {data.bank_title} No</p>
           <p className=''>Bank Name: {data.bank_name}%</p>
           <p className=''>Account Number: {data.account_number}yes</p>
@@ -183,23 +189,24 @@ const PostDetailView = () => {
       </div>
 
       <div className="flex py-4 post-documents">
-        <p className='text-xl'>Documents</p>
+        <p className='text-xl font-bold'>Documents</p>
         {docData && docData.map(doc => (
           <Link key={doc.id} to={doc.file} target="_blank" rel="noopener noreferrer" className='flex items-center ml-2 text-bold text-blue-800'>
-            <p className='p-2'>{doc.name}</p>
+            <p className='p-2 text-dark-1 dark:text-gray-100'>{doc.name}</p>
           </Link>
         ))}
       </div>
       
-      <div className='flex description'>
-        <p className='text-gray-700'>{data.description}</p>
+      <div className='description'>
+        <div className='text-xl font-bold'>Discription</div>
+        <p className='text-dark-1 dark:text-white'>{data.description}</p>
       </div>
 
-      <div className='py-4 comments'>
-        <h2 className='text-xl'>{commentCount} Comments</h2>
+      <div className='py-4 comments bg-white dark:bg-gray-700 '>
+        <p className='text-xl font-bold text-dark-1 dark:text-white'>{commentCount} Comments</p>
         
-        <form onSubmit={handleSubmitComment} className='comment-form'>
-          <input type='text' placeholder='Add a comment...' name='body' />
+        <form onSubmit={handleSubmitComment} className=' bg-white dark:bg-gray-700 comment-form  '>
+          <input type='text' placeholder='Add a comment...' name='body' className=' text-dark-1 dark:text-white bg-white dark:bg-gray-700' />
           <input type='hidden' value={data.slug} name='slug' />
           <button type='submit'>Comment</button>
         </form>

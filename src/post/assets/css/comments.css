@@ -2,7 +2,6 @@
   margin-top: 1em;
   width: 100%;
   padding: 5px;
-  border: 2px solid black;
   background-color: aliceblue;
   justify-content: center;
 }
@@ -10,7 +9,6 @@
 .comment-form{
   width: 100%;
   padding: 5px;
-  border: 2px solid black;
   background-color: aliceblue;
   justify-content: center;
 }
@@ -18,15 +16,15 @@
 .comment-form input{
   width: 90%;
   padding: 5px;
-  border: 2px solid black;
-  background-color: aliceblue;
+  border: 1px solid white ;
+  border-radius: 5px;
+  background-color: rgb(220, 239, 255);
   justify-content: center;
 }
 
 .comment-form button{
   width: 10%;
   padding: 5px;
-  border: 2px solid black;
   background-color: rgb(22, 132, 228);
   justify-content: center;
   font-weight: bold;

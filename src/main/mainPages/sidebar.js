@@ -17,12 +17,20 @@ const Sidebar = () => {
           </li>
         </Link>
 
-        <Link to='/satisfied'>
+        <Link to='/saves'>
+          <li className="flex items-center hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg p-2 dark:text-white">
+            <FaSave />
+            <p className="pl-5">Saved Posts</p>
+          </li>
+        </Link>
+
+        {/* <Link to='/satisfied'>
           <li className="flex items-center hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg p-2 dark:text-white">
             <FaUserCheck />
             <p className="pl-5">Satisfied People</p>
           </li>
         </Link>
+         */}
         
         <FilterPost className='w-full'/>
 
@@ -35,12 +43,7 @@ const Sidebar = () => {
           </li>
         </Link>
 
-        <Link to='/saves'>
-          <li className="flex items-center hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg p-2 dark:text-white">
-            <FaSave />
-            <p className="pl-5">Saved Posts</p>
-          </li>
-        </Link>
+        
 
         <Link to='/'>
           <li className="flex items-center hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg p-2 dark:text-white">
@@ -52,7 +55,7 @@ const Sidebar = () => {
         <Link to='/donated'>
           <li className="flex items-center hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg p-2 dark:text-white">
             <FaUserCheck />
-            <p className="pl-5">Donated Posts</p>
+            <p className="pl-5">Supported Posts</p>
           </li>
         </Link>
         
@@ -63,12 +66,12 @@ const Sidebar = () => {
           </li>
         </Link>
 
-        <Link to='/reported'>
+        {/* <Link to='/reported'>
           <li className="flex items-center hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg p-2 dark:text-white">
             <FaSave />
             <p className="pl-5">Reported Posts</p>
           </li>
-        </Link>
+        </Link> */}
 
 
       </ul>
