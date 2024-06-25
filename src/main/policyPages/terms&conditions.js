@@ -5,8 +5,8 @@ const TermsAndConditions = () => {
     {/* <Grid container justifyContent='center'>
       <Grid item sm={10}> */}
     {/* <div className="bg-gray-100 min-h-screen py-12 sm:px-6 lg:px-8"> */}
-    <div className="max-w-4xl mx-auto bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
-      <h1 className="text-center text-3xl font-bold mb-8">Privacy Policy</h1>
+    <div className="max-w-4xl mx-auto bg-white  p-10">
+      <h1 className="text-center text-3xl font-bold mb-8">Terms and Conditions</h1>
 
       <div className="text-base">
         <hr className="mb-4" />

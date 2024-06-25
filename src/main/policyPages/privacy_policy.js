@@ -4,14 +4,14 @@ const PrivacyPolicy = () => {
   return <>
     {/* <Grid container justifyContent='center'>
       <Grid item sm={10}> */}
-    <div className="max-w-4xl mx-auto bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
+    <div className="max-w-4xl mx-auto bg-white  p-10">
       <h1 className="text-center text-3xl font-bold mb-8">Privacy Policy</h1>
       <div className="text-base">  {/*Changed the font-size of all page */}
         <hr className="mb-4" />
         <div class="max-w-3xl mx-auto p-4">
           {/* <h1>Privacy policy</h1> */}
           {/* <hr /> */}
-          <h1 id='AdaZakat_english_font_hading' class="text-3xl font-bold mb-2"><strong>Terms and Conditions</strong></h1>
+          <h1 id='AdaZakat_english_font_hading' class="text-3xl font-bold mb-2"><strong>Privacy policy</strong></h1>
           <hr class="my-4 border-2 border-gray-500" />
           {/* <h1 id='AdaZakat_english_font_hading'>What is the Privacy Policy</h1> */}
 
