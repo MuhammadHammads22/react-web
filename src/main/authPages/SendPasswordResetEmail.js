@@ -27,7 +27,7 @@ const SendPasswordResetEmail = () => {
 
 
   return (
-    <div className="content-wrapper flex items-center justify-center h-screen bg-white-100">
+    <div className=" flex items-center justify-center h-screen bg-white-100">
       <div className="max-w-md bg-white p-6 rounded-lg shadow-md">
         <h1 className="text-2xl font-semibold mb-4 text-gray-800">Forgot Password?</h1>
         <form id="password-reset-email-form" onSubmit={handleSubmit}>

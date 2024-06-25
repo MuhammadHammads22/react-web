@@ -18,8 +18,8 @@ const AuthCard = () => {
 
   return (
     <>
-      <div className="flex justify-center items-center h-screen mt-10 AuthCard">
-        <div className="bg-white rounded-lg shadow-lg p-8 w-full">
+      <div className="flex items-center h-screen mt-10 AuthCard">
+        <div className="bg-white rounded-lg shadow-lg p-8">
           <div className="border-b">
             <div className="flex justify-between items-center pb-4">
               <button
