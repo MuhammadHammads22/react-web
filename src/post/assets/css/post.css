@@ -87,20 +87,3 @@
   justify-content: center;
 }
 
-
-.post-documents{
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 1em;
-}
-
-/* <div className='flex items-center'>
-        <p className='ml-4 text-gray-600'>Seeker: {data.seeker}</p>
-        <p className='ml-4 text-gray-600'>Need: {data.kind}</p>
-        <p className='ml-4 text-gray-600'>From: {data.address}</p>
-        <p className='ml-4 text-gray-600'>Satisfied: {data.satisfied} No</p>
-        <p className='ml-4 text-gray-600'>verified: {data.verified}%</p>
-        <p className='ml-4 text-gray-600'>Without House: {data.without_house}yes</p>
-        <p className='ml-4 text-gray-600'>Phone # {data.phone_number}yes</p>
-        <p className='ml-auto text-gray-600'>{multiFormatDateString(data.created)}</p>
-      </div> */

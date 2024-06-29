@@ -36,12 +36,12 @@ const Sidebar = () => {
 
         <hr className='p-2 border-t-2 border-slate-500'/>
         <p className='text-md p-2 dark:text-white font-bold'>History</p>
-        <Link to='/'>
+        {/* <Link to='/'>
           <li className="flex items-center hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg p-2 dark:text-white">
             <FaHome />
             <p className="pl-5">Visited Posts</p>
           </li>
-        </Link>
+        </Link> */}
 
         
 
