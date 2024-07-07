@@ -1,10 +1,9 @@
 .search-bar{
   width: 665px;
 }
-
 /* Adjust the position of the search results */
 .search-results {
-  position: relative;
+  position: absolute;
   top: 100%; 
   left: 0;
   z-index: 1000; 
@@ -13,8 +12,8 @@
   border-top: none; /* Remove top border */
   border-radius: 0 0 5px 5px; /* Rounded corners on bottom */
   max-height: 300px;
-  overflow-y: scroll; /* Enable vertical scrolling */
-
+  overflow-y: scroll; 
+  background-color: #fff;
 }
 
 /* Style the search results list */
@@ -29,6 +28,7 @@
   padding: 10px;
   border-bottom: 1px solid #ccc; /* Separator between items */
 }
+
 
 /* Style for loading and error messages */
 .search-message {

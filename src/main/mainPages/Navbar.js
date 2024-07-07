@@ -17,9 +17,10 @@ const Navbar = () => {
         <div className="flex items-center m-2">
           <NavLink to="/" className="text-2xl text-dark font-bold dark:text-white">AddaZakat</NavLink>
         </div>
-        {access_token && (
+        
+        {/* {access_token && (
           <SearchBar className='text-slate-950'/>  
-        )}
+        )} */}
         
         {access_token ? (
         <ul className="flex space-x-4">

@@ -10,31 +10,6 @@ import {useUpvoteMutation, useDownvoteMutation} from "../../services/postApis";
 const PostCard = ({ post }) => {
   
   const navigate = useNavigate(); 
-  const playerRef = React.useRef(null);
-
-  console.log('video ', post.seeker_vid)
-  
-  const videoJsOptions = {
-    autoplay: true,
-    controls: true,
-    responsive: true,
-    fluid: true,
-    sources: [{
-      src: `${post.seeker_vid}`,
-      type: 'video/mp4'
-    }]
-  };
-
-  const handlePlayerReady = (player) => {
-    playerRef.current = player;
-    player.on('waiting', () => {
-      console.log('player is waiting');
-    });
-
-    player.on('dispose', () => {
-      console.log('player will dispose');
-    });
-  };
   
   // upvote handling! 
   const [upvote, setUpvotes] = useState(post.upvote_count)
@@ -86,16 +61,16 @@ const PostCard = ({ post }) => {
 
 
   return (
-    <div onClick={handleClick} style={{ cursor: 'pointer' }} className='mb-5 mt-5 PostCard'>
+    <div onClick={handleClick} style={{ cursor: 'pointer' }} className='mb-5 mt-5 PostCard bg-white dark:bg-gray-800 rounded shadow-md'>
       <div className='border border-gray-400 rounded-lg p-6'>
 
-        <div className='grid gap-4'>
-          <div>
-            <VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
-          </div>
+        <div className='grid gap-4 text-dark font-bold dark:text-white justify-start'>
+          <p>{post.description}</p>
         </div>
 
-        <div className='flex justify-between py-4'>
+        <hr className='mt-3 p-2 border-t-2 border-slate-500'/>
+        
+        <div className='flex justify-between'>
           <div className='flex'>
             <Link className='icon-container' rel="stylesheet" onClick={handleUpvote}>
               {isUpvoted ? <BiSolidUpvote className='text-xl text-green-500' /> : <BiUpvote className='text-xl' />}
@@ -108,12 +83,12 @@ const PostCard = ({ post }) => {
           </div>
 
           <div className='flex'>
-            <a className='float-right m-2 border border-gray-400 p-1'>
-              <p className='text-sm rounded-full'>Donors {post.donors_count}</p>
+            <a className='float-right m-2  p-1'>
+              <p className='text-sm rounded-full text-dark font-bold dark:text-white'>Donors {post.donors_count}</p>
             </a>
 
-            <button className='float-right m-2 border border-gray-400 p-1'>
-              <p className='text-sm rounded-full'>Reports {post.report_count}</p>
+            <button className='float-right m-2  p-1'>
+              <p className='text-sm rounded-full text-dark font-bold dark:text-white'>Reports {post.report_count}</p>
             </button>
           </div>
 
