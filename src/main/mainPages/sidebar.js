@@ -8,8 +8,8 @@ const Sidebar = () => {
 
   return (
     <div className="bg-white h-full max-h-full fixed w-64 dark:bg-gray-700 overflow-y-auto mt-12">
-      <ul className="list-none p-2 ">
-        
+      <ul className="list-none mt-15 p-2 ">
+
         <Link to='/'>
           <li className="flex items-center hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg p-2 dark:text-white">
             <FaHome />
@@ -31,10 +31,10 @@ const Sidebar = () => {
           </li>
         </Link>
          */}
-        
-        <FilterPost className='w-full'/>
 
-        <hr className='p-2 border-t-2 border-slate-500'/>
+        <FilterPost className='w-full' />
+
+        <hr className='p-2 border-t-2 border-slate-500' />
         <p className='text-md p-2 dark:text-white font-bold'>History</p>
         <Link to='/'>
           <li className="flex items-center hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg p-2 dark:text-white">
@@ -43,7 +43,7 @@ const Sidebar = () => {
           </li>
         </Link>
 
-        
+
 
         <Link to='/'>
           <li className="flex items-center hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg p-2 dark:text-white">
@@ -58,7 +58,7 @@ const Sidebar = () => {
             <p className="pl-5">Supported Posts</p>
           </li>
         </Link>
-        
+
         <Link to='/saves'>
           <li className="flex items-center hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg p-2 dark:text-white">
             <FaSave />

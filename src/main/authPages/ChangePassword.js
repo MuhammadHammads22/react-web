@@ -39,7 +39,8 @@ const ChangePassword = () => {
   };
 
   return (
-    <div className="content-wrapper flex items-center justify-center h-screen bg-white-100">
+    <div className="container mx-auto flex items-center justify-center mb-4 mt-12">
+    {/* // content-wrapper flex items-center justify-center h-screen bg-white-100" */}
       <div className='max-w-md bg-white p-10 m-10 rounded-lg shadow-md '>
         <form className="mt-4" onSubmit={handleSubmit} noValidate id="password-change-form">
           <p className="text-2xl font-bold mb-4 text-gray-800 dark:text-stone-50">Change Password </p>

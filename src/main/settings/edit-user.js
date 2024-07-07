@@ -33,7 +33,7 @@ const EditUser = () => {
 
 
   return (
-    <div className='container flex justify-center items-center mb-4 mt-20'>
+    <div className='container flex justify-center items-center mb-4 mt-12'>
       <form className="bg-white dark:bg-gray-700 shadow-md rounded px-8 pt-6 pb-8 overflow-y-auto" onSubmit={handleSubmit}>
       <h2 className="text-xl text-gray-800 dark:text-white font-bold mb-6 text-center">Update User</h2>
         

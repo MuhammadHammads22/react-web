@@ -12,7 +12,8 @@ const Sidebar = () => {
       <ul className="list-none p-2 ">
         
         <Link to='/settings/edit-user'>
-          <li className="flex items-center hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg p-2 dark:text-white">
+          <li className="flex items-center hover:bg-slate-200 dark:hover:bg-slate-800 rounded-lg p-2 dark:text-white
+          ">
             <FaHome />
             <p className="pl-5">Edit User</p>
           </li>

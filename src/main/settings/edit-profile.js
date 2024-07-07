@@ -34,10 +34,10 @@ const EditProfile = () => {
 
 
   return (
-    <div className='container mx-auto flex items-center justify-center mb-4 mt-20'
+    <div className='container mx-auto flex items-center justify-center mb-4 mt-12 bg-white  max-h-full w-100'
       style={{minHeight: '100vh', display: 'flex', alignItems: 'center'}}>
-      <form className="bg-white dark:bg-gray-700 shadow-md rounded px-8 pt-6 pb-8 overflow-y-auto"
-        onSubmit={handleSubmit} style={{maxWidth: '30rem'}}>
+      <form className="bg-slate-200 dark:bg-gray-700 max-h-full w-100 shadow-md rounded px-8 pt-6 pb-8 overflow-y-auto"
+        onSubmit={handleSubmit} style={{minWidth: '50rem'}}>
       <h2 className="text-xl text-gray-800 dark:text-white font-bold mb-6 text-center">Update Profile</h2>
         
         <div className="mb-4">
